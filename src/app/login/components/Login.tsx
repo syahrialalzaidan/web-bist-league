@@ -4,8 +4,8 @@ export default function Login() {
   return (
     <div className="flex flex-start lg:justify-start gap-48">
       <div className="py-20 px-20 lg:py-6">
-        <h1 className="font-extrabold text-base lg:text-3xl lg:mt-12">Login</h1>
-        <h1 className="font-extrabold text-base mt-4 mb-4 lg:text-5xl">
+        <h1 className="font-extrabold text-base lg:text-2xl lg:mt-12">Login</h1>
+        <h1 className="font-extrabold text-base mt-4 mb-4 lg:text-3xl">
           Hello, Welcome Back!
         </h1>
         <Image
@@ -16,7 +16,7 @@ export default function Login() {
           className="lg:hidden"
         />
 
-        <div className="mt-5 lg:mt-16 text-sm lg:text-2xl">
+        <div className="mt-5 lg:mt-16 text-sm lg:text-xl">
           <h1 className="font-bold">Username</h1>
           <input
             className="border-2 border-gray-300 rounded-lg w-full py-2 px-3 mt-2 mb-2 max-w-xl"
@@ -25,7 +25,7 @@ export default function Login() {
           />
         </div>
 
-        <div className="mt-5 lg:mt-9 text-sm lg:text-2xl">
+        <div className="mt-5 lg:mt-9 text-sm lg:text-xl">
           <h1 className="font-bold">Password</h1>
           <input
             className="border-2 border-gray-300 rounded-lg w-full py-2 px-3 mt-2 mb-2 max-w-xl"
@@ -44,13 +44,16 @@ export default function Login() {
         </p>
       </div>
 
-      <Image
-        src="/images/login/login web.svg"
-        width={500}
-        height={500}
-        alt="Login Web Thumbnail"
-        className="hidden xl:block h-screen w-auto absolute right-0"
-      />
+      {/* src="/images/login/login web.svg" */}
+
+      <div className="h-screen aspect-[498/540] w-auto hidden lg:block fixed top-0 right-0">
+        <Image
+          src="/images/login/login web.svg"
+          fill={true}
+          alt="BIST League 6.0"
+          className="object-cover w-full h-full"
+        />
+      </div>
     </div>
   );
 }
