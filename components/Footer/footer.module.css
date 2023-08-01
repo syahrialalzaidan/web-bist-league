@@ -1,0 +1,129 @@
+.outer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffff;
+  padding: 24px;
+}
+
+.logoSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 160px;
+}
+
+.contactPersonSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 130px;
+  grid-column-gap: 40px;
+  padding-right: 10px;
+}
+
+.contactPersonSection p {
+  color: black;
+  margin-bottom: 12px;
+}
+
+.contactPersonHeading {
+  color: black;
+  font-weight: bold;
+  font-size: 1.6rem;
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.headOfMainEvent {
+  font-weight: bold;
+}
+
+.headOfCompetitionDivision {
+  font-weight: bold;
+}
+
+.socialMediaSection {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.emailBistLeague {
+  padding-top: 6px;
+  color: black;
+}
+
+.socialMediaLogo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 120px;
+}
+
+@media (max-width: 991px) {
+  .outer {
+    display: block;
+    background-color: #ffff;
+    padding: 24px;
+  }
+
+  .logoSection {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
+  .contactPersonSection {
+    display: block;
+  }
+
+  .contactPersonSection p {
+    color: black;
+    margin-bottom: 12px;
+  }
+
+  .contactPersonHeading {
+    color: black;
+    font-weight: bold;
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+  }
+
+  .mainEventContact {
+    margin-bottom: 35px;
+  }
+
+  .headOfMainEvent {
+    font-weight: bold;
+  }
+
+  .competetionContact {
+    margin-bottom: 35px;
+  }
+
+  .headOfCompetitionDivision {
+    font-weight: bold;
+  }
+
+  .socialMediaSection {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .emailBistLeague {
+    padding-top: 6px;
+    color: black;
+  }
+
+  .socialMediaLogo {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .svg {
+    margin-right: 20px;
+  }
+}
