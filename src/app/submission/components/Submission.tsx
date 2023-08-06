@@ -24,22 +24,22 @@ export default function Submission() {
             <div className="flex items-center justify-center my-8 ">
                 <div className="bg-white py-6 px-5 rounded-lg max-w-[540px]">
                     {submittedFile === "No submission yet" ? (
-                        <h1 className="text-center text-base lg:text-xl py-16 px-5 ">
+                        <h1 className="text-center text-base lg:text-xl py-16 px-5 lg:px-[50px] ">
                             Preliminary submission must be submitted in PDF format with a maximum size of 10MB.
                         </h1>
                     ) : (
-                        <>
-                            <h1 className="text-center text-base lg:text-xl mb-5 px-5">
+                        <div className="px-5 lg:px-12 lg:py-10">
+                            <h1 className="text-center text-base lg:text-xl mb-5">
                                 You may do another submission until the deadline.
                             </h1>
-                            <h1 className="text-center text-base lg:text-xl mb-5 px-5">
+                            <h1 className="text-center text-base lg:text-xl mb-5">
                                 Preliminary submission must be submitted in PDF format with a maximum size of 10MB.
                             </h1>
-                            <h1 className="text-center text-base lg:text-xl px-5">
+                            <h1 className="text-center text-base lg:text-xl">
                                 Last submission:
                             </h1>
-                            <h1 className="text-center text-base font-bold lg:text-xl mb-6 px-5">October 1st, 2023, 23:59</h1>
-                        </>
+                            <h1 className="text-center text-base font-bold lg:text-xl mb-6">October 1st, 2023, 23:59</h1>
+                        </div>
                     )}
 
                     <form>
