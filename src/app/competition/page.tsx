@@ -4,14 +4,31 @@ import Hero from "./components/Hero";
 import Registration from "./components/Registration";
 import Timeline from "./components/Timeline";
 
+import Image from "next/image";
+import KotakBottom from "@images/competition/hero/hero-kotak-bottom.svg";
+import BulatTiga from "@images/competition/registration/regist-bulat-tiga.svg";
+
+
 export default function CompetitionnPage() {
     return (
         <div className="bg-[#F3EEE7] overflow-hidden">
             <Hero />
             <Description />
             <Timeline />
-            <Registration />
-            <Guidebook />
+            <div className="relative">
+                <Registration />
+                <Guidebook />
+                <Image
+                    src={BulatTiga}
+                    alt="Hero Round"
+                    className="scale-50 lg:scale-100 absolute top-[698px] -right-11 lg:top-60 lg:right-0"
+                />
+            </div>
+            <Image
+                src={KotakBottom}
+                alt="Hero Round"
+                className="scale-50 lg:scale-100 overflow-hidden absolute top-96 -right-12 lg:bottom-5 lg:right-6"
+            />
         </div>
     )
 }
