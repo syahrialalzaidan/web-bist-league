@@ -87,7 +87,7 @@ export default function Hero() {
                     </>
                 )}
 
-                <div className="flex justify-center my-7 lg:my-10">
+                <div className="flex justify-center my-7 lg:my-10 z-10">
                     <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold">
                         Register Team
                     </button>

@@ -27,7 +27,7 @@ export default function CompetitionnPage() {
             <Image
                 src={KotakBottom}
                 alt="Hero Round"
-                className="scale-50 lg:scale-100 overflow-hidden absolute top-96 -right-12 lg:bottom-5 lg:right-6"
+                className="scale-50 lg:scale-100 overflow-hidden absolute top-[362px] -right-14 lg:top-[386px] lg:right-6 z-0"
             />
         </div>
     )
