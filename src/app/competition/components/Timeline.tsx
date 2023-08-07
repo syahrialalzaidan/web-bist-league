@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Timeline() {
     return (
-        <div className="relative bg-gradient-to-r from-[#279181] to-[#005E7C] pt-9 lg:py-14 pb-9 px-3.5 lg:px-40">
+        <div className="relative bg-[url('/images/competition/timeline/bg-timeline-mobile.svg')] lg:bg-[url('/images/competition/timeline/bg-timeline-web.svg')] bg-cover pt-9 lg:py-14 pb-9 px-3.5 lg:px-40">
             <h1 className="text-4xl lg:text-5xl font-extrabold text-[#F3EEE7] mb-8">Timeline</h1>
             {/* <div className="absolute left-1/2 top-[92px] translate-x-0.5 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-[800px] w-2.5" viewBox="0 0 10 750" fill="none">
@@ -112,7 +112,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white rounded-t-lg lg:rounded-s-lg lg:rounded-e-none" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Early Bird Registration</h3>
                         </div>
@@ -130,7 +130,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Mini Video Challenge</h3>
                         </div>
@@ -148,7 +148,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Normal Open Registration</h3>
                         </div>
@@ -166,7 +166,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Preliminary Case Release</h3>
                         </div>
@@ -184,7 +184,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Preliminary Case Submission</h3>
                         </div>
@@ -202,7 +202,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Finalist Announcement</h3>
                         </div>
@@ -220,7 +220,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center lg:my-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4 lg:py-0 lg:my-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Final Payment Period</h3>
                         </div>
@@ -238,7 +238,7 @@ export default function Timeline() {
                         <div className="h-full w-full bg-white rounded-b-lg lg:rounded-r-full lg:rounded-b-none" />
                         <div className="absolute w-6 h-6 rounded-full bg-[#F8A22D] z-10 text-white text-center" />
                     </div>
-                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-4">
+                    <div className="flex-1 lg:w-auto h-auto flex justify-center items-center py-8 lg:py-4">
                         <div className="order-1">
                             <h3 className="font-normal text-white text-sm text-center">Final Period</h3>
                         </div>
