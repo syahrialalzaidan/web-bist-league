@@ -1,0 +1,1227 @@
+.my-element {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.main {
+  position: relative;
+  width: 100%;
+}
+
+.backgroundImage {
+  max-width: 100%;
+  z-index: -1;
+}
+
+.backgroundImageMobile {
+  display: none;
+}
+
+.body {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.bistLeagueHeader {
+  font-family: "Monument Extended Bold";
+  font-size: 6.26vw;
+  text-align: center;
+  /* margin-top: 10rem; */
+  margin-top: 12.5vw;
+}
+
+.bistLeagueSubHeader {
+  text-align: center;
+  /* font-size: 1.78rem; */
+  font-size: 2.22856vw;
+  font-weight: bold;
+}
+
+.openRegistrationText {
+  text-align: center;
+  /* font-size: 1.5rem; */
+  font-size: 1.878vw;
+  font-weight: bold;
+  /* margin-top: 2.2rem; */
+  margin-top: 2.7544vw;
+}
+
+.countdownSection {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 1.5rem; */
+  margin-top: 1.878vw;
+}
+
+.countdownBox {
+  background-color: #f3eee7;
+  padding: 12px 2rem;
+  padding: 0.939vw 2.504vw;
+  width: 11.747265625vw;
+  border: none;
+  border-radius: 8px;
+}
+
+.countdownBox * {
+  color: #379392;
+}
+
+.timeValue {
+  /* font-size: 4rem; */
+  font-size: 5.008vw;
+  font-weight: 900;
+  text-align: center;
+}
+
+.unitOfTime {
+  text-align: center;
+  /* font-size: 1rem; */
+  font-size: 1.252vw;
+  font-weight: bold;
+}
+
+.unitOfTimeMobile {
+  display: none;
+}
+
+.eventDate {
+  text-align: center;
+  font-weight: bold;
+  /* margin-top: 1.2rem; */
+  margin-top: 1.5024vw;
+}
+
+.registerButtonDiv {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 2rem; */
+  margin-top: 2.504vw;
+}
+
+.registerButton {
+  /* padding: 0.5rem 3.2rem; */
+  padding: 0.626vw 4.0064vw;
+  background-color: #379392;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.aboutBistLeagueSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutBistLeagueHeading {
+  /* font-size: 2rem; */
+  font-size: 2.504vw;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-top: 3.13vw;
+}
+
+.aboutBistLeagueContainer {
+  /* padding: 2.5rem; */
+  padding: 3.13vw;
+  background-color: #f3eee7;
+  width: 70%;
+  border: none;
+  border-radius: 8px;
+  /* margin-top: 1.5rem; */
+  margin-top: 1.878vw;
+}
+
+.aboutBistLeagueText {
+  color: black;
+  /* word-spacing: 4px; */
+  word-spacing: 0.313vw;
+}
+
+.timelineHorizontalDiv {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 4rem; */
+  margin-top: 5.008vw;
+}
+
+.timelineHorizontal {
+  width: 75%;
+}
+
+.timelineVerticalDiv {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.timelineHeader {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.timelineVertical {
+  width: 75%;
+}
+
+.show {
+  display: block;
+}
+
+.transition {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hideBG {
+  display: none;
+  transition: display 1s;
+}
+
+.hide {
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  visibility: hidden;
+  transition: all 0s ease !important;
+}
+
+.activitiesHeader {
+  /* font-size: 2rem; */
+  font-size: 2.504vw;
+  font-weight: bold;
+  text-align: center;
+  /* margin-top: 11rem; */
+  margin-top: 13.772vw;
+}
+
+.activitiesSectionForDesktop {
+  /* margin-top: 8rem; */
+  margin-top: 10.016vw;
+  margin-left: 12.5%;
+  margin-right: auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  gap: 2rem;
+}
+
+.activitiesLeftSide {
+}
+
+.activitiesDate {
+  font-weight: bold;
+  /* font-size: 1.025rem; */
+  font-size: 1.28329;
+  transition: all 0.5s ease-out;
+}
+
+.activitiesTitle {
+  font-weight: bold;
+  font-size: 2.5rem;
+  font-size: 3.13vw;
+}
+
+.activitiesText {
+  /* font-size: 1rem; */
+  font-size: 1.252vw;
+  transition: all 0.5s ease-out;
+}
+
+.activitiesButton {
+  /* margin-top: 1rem; */
+  margin-top: 1.252vw;
+  /* padding: 0.5rem 3.2rem; */
+  padding: 0.626vw 4.0064vw;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  /* font-size: 1.2rem; */
+  font-size: 1.5024vw;
+  /* margin-bottom: 1rem; */
+  margin-bottom: 1.252vw;
+  transition: all 0.5s ease-out;
+}
+
+.businessCaseDescription {
+  /* margin-top: 0.5rem; */
+  margin-top: 0.626vw;
+}
+
+.miniChallengeDescription {
+  /* margin-top: 0.5rem; */
+  margin-top: 0.626vw;
+}
+
+.webinarDescription {
+  /* margin-top: 0.5rem; */
+  margin-top: 0.626vw;
+}
+
+.activitiesRightSide {
+  display: flex;
+  justify-content: center;
+}
+
+.activitiesImageDiv {
+  height: 29.34375vw;
+  width: 29.34375vw;
+  background-color: #d9d9d9;
+}
+
+.activitiesSectionForMobile {
+  display: none;
+}
+
+/* Sizing in 1096px */
+@media (991px < width <= 1200px) {
+  .bistLeagueHeader {
+    font-family: "Monument Extended Bold";
+    font-size: 6vw;
+    text-align: center;
+    margin-top: 12vw;
+  }
+
+  .bistLeagueSubHeader {
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+  }
+
+  .openRegistrationText {
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+    margin-top: 2.2rem;
+    margin-top: 3vw;
+  }
+
+  .countdownSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vw;
+  }
+
+  .countdownBox {
+    background-color: #f3eee7;
+    padding: 1vw 3vw;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .countdownBox * {
+    color: #379392;
+  }
+
+  .timeValue {
+    font-size: 5vw;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .unitOfTime {
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+  }
+
+  .unitOfTimeMobile {
+    display: none;
+  }
+
+  .eventDate {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1.8vw;
+  }
+
+  .registerButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vw;
+  }
+
+  .registerButton {
+    padding: 0.7vw 5vw;
+    background-color: #379392;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+
+  .aboutBistLeagueSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutBistLeagueHeading {
+    font-size: 2.7vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3.5vw;
+  }
+
+  .aboutBistLeagueContainer {
+    padding: 2.5vw;
+    text-align: justify;
+    background-color: #f3eee7;
+    width: 75%;
+    border: none;
+    border-radius: 8px;
+    margin-top: 2vw;
+  }
+
+  .aboutBistLeagueText {
+    color: black;
+    word-spacing: 4px;
+  }
+
+  .timelineHorizontalDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vw;
+  }
+
+  .timelineHorizontal {
+    width: 75%;
+  }
+
+  .timelineVerticalDiv {
+    display: none;
+  }
+
+  .activitiesHeader {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 13vw;
+  }
+
+  .activitiesSectionForDesktop {
+    margin-top: 10vw;
+    margin-left: 12.5%;
+    margin-right: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    gap: 3.8vw;
+  }
+
+  .activitiesDate {
+    font-weight: bold;
+    font-size: 1.5vw;
+  }
+
+  .activitiesTitle {
+    font-weight: bold;
+    font-size: 2.5vw;
+  }
+
+  .activitiesText {
+    font-size: 1.3vw;
+  }
+
+  .activitiesButton {
+    margin-top: 1.5vw;
+    padding: 1vw 4vw;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    font-size: 1.5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .businessCaseDescription {
+    margin-top: 1vw;
+  }
+
+  .miniChallengeDescription {
+    margin-top: 1vw;
+  }
+
+  .webinarDescription {
+    margin-top: 1vw;
+  }
+
+  .activitiesRightSide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .activitiesImageDiv {
+    height: 30vw;
+    width: 30vw;
+    background-color: #d9d9d9;
+  }
+
+  .activitiesSectionForMobile {
+    display: none;
+  }
+}
+
+@media (768px < width <= 991px) {
+  .backgroundImage {
+    display: none;
+  }
+
+  .backgroundImageMobile {
+    display: block;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .bistLeagueHeader {
+    font-family: "Monument Extended Bold";
+    font-size: 10vw;
+    text-align: center;
+    margin: 22vw auto 0 auto;
+    width: 80%;
+    text-wrap: balance;
+  }
+
+  .bistLeagueSubHeader {
+    text-align: center;
+    font-size: 6vw;
+    font-weight: bold;
+    margin: 6vw auto 0 auto;
+    width: 90%;
+  }
+
+  .openRegistrationText {
+    text-align: center;
+    font-size: 5vw;
+    font-weight: bold;
+    margin-top: 7vw;
+  }
+
+  .countdownSection {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    /* margin-top: 1.5rem; */
+    /* margin-top: 7%; */
+    margin-top: 7vw;
+  }
+
+  .countdownBox {
+    background-color: #f3eee7;
+    padding: 1.6vw 3.6vw;
+    width: 18.741vw;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .countdownBox * {
+    color: #379392;
+  }
+
+  .timeValue {
+    font-size: 6.8vw;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .unitOfTime {
+    display: none;
+  }
+
+  .unitOfTimeMobile {
+    display: block;
+    text-align: center;
+    font-size: 4vw;
+    font-weight: bold;
+  }
+
+  .eventDate {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 6vw;
+    font-size: 4.2vw;
+  }
+
+  .registerButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 19vw;
+    font-size: 4vw;
+  }
+
+  .registerButton {
+    /* padding: 0.8rem 3.2rem; */
+    padding: 3.6vw 19vw;
+    width: 60%;
+    background-color: #379392;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .aboutBistLeagueSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutBistLeagueHeading {
+    /* font-size: 1.7rem; */
+    font-size: 6.5vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 27.5vw;
+  }
+
+  .aboutBistLeagueContainer {
+    padding: 7vw;
+    background-color: #f3eee7;
+    width: 80%;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10vw;
+  }
+
+  .aboutBistLeagueText {
+    color: black;
+    line-height: 6vw;
+    text-align: justify;
+    font-size: 3.5vw;
+  }
+
+  .timelineHorizontalDiv {
+    display: none;
+  }
+
+  .timelineHorizontal /* [NON-AKTIF] */ {
+    width: 0;
+  }
+
+  .timelineVerticalDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 9vw;
+  }
+
+  .timelineHeader {
+    font-size: 8vw;
+    margin-bottom: 7.65vw;
+  }
+
+  .timelineVertical {
+    width: 75vw;
+  }
+
+  .activitiesSectionForDesktop {
+    display: none;
+  }
+
+  .activitiesSectionForMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .activitiesHeader {
+    font-size: 7vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 22vw;
+  }
+
+  .competetionImageDiv {
+    margin-top: 12vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+
+  .activitiesDate {
+    font-size: 3vw;
+    margin-top: 5vw;
+  }
+
+  .activitiesTitle {
+    font-size: 5.7vw;
+    margin-top: 2vw;
+  }
+
+  .activitiesText {
+    font-size: 3.5vw;
+    text-align: justify;
+    width: 80%;
+    margin: 3vw auto 0 auto;
+  }
+  .activitiesButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 24vw;
+  }
+
+  .bootcampImageDiv {
+    margin-top: 47.5vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+
+  .bootcampButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 60vw;
+  }
+
+  .miniChallengeImageDiv {
+    margin-top: 54vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+  .miniChallengeButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 37vw;
+  }
+
+  .webinarImageDiv {
+    margin-top: 60vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+  .webinarButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 40vw;
+  }
+}
+
+/* Ipad */
+@media (473px <= width <= 768px) {
+  .backgroundImage {
+    display: none;
+  }
+
+  .backgroundImageMobile {
+    display: block;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .bistLeagueHeader {
+    font-family: "Monument Extended Bold";
+    font-size: 10vw;
+    text-align: center;
+    margin: 22vw auto 0 auto;
+    width: 80%;
+    text-wrap: balance;
+  }
+
+  .bistLeagueSubHeader {
+    text-align: center;
+    font-size: 6vw;
+    font-weight: bold;
+    margin: 6vw auto 0 auto;
+    width: 90%;
+  }
+
+  .openRegistrationText {
+    text-align: center;
+    font-size: 5vw;
+    font-weight: bold;
+    margin-top: 7vw;
+  }
+
+  .countdownSection {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    /* margin-top: 1.5rem; */
+    /* margin-top: 7%; */
+    margin-top: 7vw;
+  }
+
+  .countdownBox {
+    background-color: #f3eee7;
+    padding: 1.6vw 3.6vw;
+    width: 18.741vw;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .countdownBox * {
+    color: #379392;
+  }
+
+  .timeValue {
+    font-size: 6.8vw;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .unitOfTime {
+    display: none;
+  }
+
+  .unitOfTimeMobile {
+    display: block;
+    text-align: center;
+    font-size: 4vw;
+    font-weight: bold;
+  }
+
+  .eventDate {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 6vw;
+    font-size: 4.2vw;
+  }
+
+  .registerButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 19vw;
+    font-size: 4vw;
+  }
+
+  .registerButton {
+    /* padding: 0.8rem 3.2rem; */
+    padding: 3.6vw 19vw;
+    width: 60%;
+    background-color: #379392;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .aboutBistLeagueSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutBistLeagueHeading {
+    /* font-size: 1.7rem; */
+    font-size: 6.5vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 27.5vw;
+  }
+
+  .aboutBistLeagueContainer {
+    padding: 7vw;
+    background-color: #f3eee7;
+    width: 80%;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10vw;
+  }
+
+  .aboutBistLeagueText {
+    color: black;
+    line-height: 6vw;
+    text-align: justify;
+    font-size: 3.5vw;
+  }
+
+  .timelineHorizontalDiv {
+    display: none;
+  }
+
+  .timelineHorizontal /* [NON-AKTIF] */ {
+    width: 0;
+  }
+
+  .timelineVerticalDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 9vw;
+  }
+
+  .timelineHeader {
+    font-size: 8vw;
+    margin-bottom: 7.65vw;
+  }
+
+  .timelineVertical {
+    width: 75vw;
+  }
+
+  .activitiesSectionForDesktop {
+    display: none;
+  }
+
+  .activitiesSectionForMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .activitiesHeader {
+    font-size: 7vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 22vw;
+  }
+
+  .competetionImageDiv {
+    margin-top: 12vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+
+  .activitiesDate {
+    font-size: 3vw;
+    margin-top: 5vw;
+  }
+
+  .activitiesTitle {
+    font-size: 5.7vw;
+    margin-top: 2vw;
+  }
+
+  .activitiesText {
+    font-size: 3.5vw;
+    text-align: justify;
+    width: 80%;
+    margin: 3vw auto 0 auto;
+  }
+  .activitiesButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 24vw;
+  }
+
+  .bootcampImageDiv {
+    margin-top: 47.5vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+
+  .bootcampButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 60vw;
+  }
+
+  .miniChallengeImageDiv {
+    margin-top: 54vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+  .miniChallengeButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 37vw;
+  }
+
+  .webinarImageDiv {
+    margin-top: 60vw;
+    height: 52vw;
+    width: 52vw;
+    background-color: #d9d9d9;
+  }
+  .webinarButton {
+    padding: 3vw 8vw;
+    font-size: 4vw;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 40vw;
+  }
+}
+
+/* Mobile */
+@media (max-width: 473px) {
+  .backgroundImage {
+    display: none;
+  }
+
+  .backgroundImageMobile {
+    display: block;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .bistLeagueHeader {
+    font-family: "Monument Extended Bold";
+    /* font-size: 2.7rem; */
+    font-size: 12vw;
+    text-align: center;
+    /* margin-top: 16%; */
+    /* margin-top: 8vh; */
+    margin-top: 16vw;
+    width: 100%;
+    text-wrap: balance;
+  }
+
+  .bistLeagueSubHeader {
+    text-align: center;
+    /* font-size: 1.4rem; */
+    font-size: 6.25vw;
+    /* font-size: 3.17vh; */
+    font-weight: bold;
+    /* margin-top: 1.5vh; */
+    margin-top: 3vw;
+    width: 100%;
+  }
+
+  .openRegistrationText {
+    text-align: center;
+    font-size: 5.8vw;
+    font-weight: bold;
+    /* margin-top: 5.05vh; */
+    margin-top: 10vw;
+  }
+
+  .countdownSection {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    /* margin-top: 3.55vh; */
+    margin-top: 7vw;
+  }
+
+  .countdownBox {
+    background-color: #f3eee7;
+    /* padding: 8px 14px; */
+    /* padding: 1.45vh 3.6vw; */
+    padding: 3vw 3.6vw;
+    width: 19vw;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .countdownBox * {
+    color: #379392;
+  }
+
+  .timeValue {
+    font-size: 6.8vw;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .unitOfTime {
+    display: none;
+  }
+
+  .unitOfTimeMobile {
+    display: block;
+    text-align: center;
+    font-size: 4.5vw;
+    font-weight: bold;
+  }
+
+  .eventDate {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5.4vw;
+    font-size: 4.9vw;
+  }
+
+  .registerButtonDiv {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 2rem; */
+    /* margin-top: 9%; */
+    margin-top: 13vw;
+    /* margin-top: 4.3vh; */
+  }
+
+  .registerButton {
+    /* padding: 0.8rem 3.2rem; */
+    padding: 3.6vw 20vw;
+    width: 60%;
+    background-color: #379392;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .aboutBistLeagueSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutBistLeagueHeading {
+    /* font-size: 1.7rem; */
+    font-size: 7.6vw;
+    font-weight: bold;
+    text-align: center;
+    /* margin-top: 11vh; */
+    margin-top: 25vw;
+  }
+
+  .aboutBistLeagueContainer {
+    /* padding: 1.5vh; */
+    padding: 3.1vw;
+    background-color: #f3eee7;
+    width: 90%;
+    border: none;
+    border-radius: 8px;
+    /* margin-top: 4.7vh; */
+    margin-top: 10vw;
+  }
+
+  .aboutBistLeagueText {
+    color: black;
+    /* line-height: 2.75vh; */
+    line-height: 5.77vw;
+    font-size: 4.5vw;
+    text-align: justify;
+  }
+
+  .timelineHorizontalDiv {
+    display: none;
+  }
+
+  .timelineHorizontal /* [NON-AKTIF] */ {
+    width: 0;
+  }
+
+  .timelineVerticalDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 3rem; */
+    /* margin-top: 6.45vh; */
+    margin-top: 13.5vw;
+  }
+
+  .timelineHeader {
+    font-size: 9vw;
+    margin-bottom: 7.65vw;
+  }
+
+  .timelineVertical {
+    width: 75vw;
+  }
+
+  .activitiesSectionForDesktop {
+    display: none;
+  }
+
+  .activitiesSectionForMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .activitiesHeader {
+    font-size: 9vw;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 21vw;
+  }
+
+  .competetionImageDiv {
+    /* margin-top: 4vh; */
+    margin-top: 8.2vw;
+    /* height: 27vh;
+    width: 27vh; */
+    height: 57.5vw;
+    width: 57.5vw;
+    background-color: #d9d9d9;
+  }
+
+  .activitiesDate {
+    font-size: 4.25vw;
+    margin-top: 5.2vw;
+  }
+
+  .activitiesTitle {
+    /* font-size: 3.5vh; */
+    font-size: 7.45vw;
+    /* margin-top: 0.3vh; */
+    margin-top: 0.6vw;
+  }
+
+  .activitiesText {
+    font-size: 4vw;
+    text-align: justify;
+    width: 85%;
+    margin: 2vw auto 0 auto;
+  }
+  .activitiesButton {
+    /* padding: 1.2vh 4vh; */
+    padding: 2.4vw 8vw;
+    /* font-size: 2vh; */
+    font-size: 4vw;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .bootcampImageDiv {
+    /* margin-top: 20vh; */
+    margin-top: 45vw;
+    height: 57.5vw;
+    width: 57.5vw;
+    background-color: #d9d9d9;
+  }
+
+  .bootcampButton {
+    padding: 2.4vw 8vw;
+    font-size: 4vw;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin-top: 62vw;
+  }
+
+  .miniChallengeImageDiv {
+    margin-top: 44vw;
+    height: 57.5vw;
+    width: 57.5vw;
+    background-color: #d9d9d9;
+  }
+  .miniChallengeButton {
+    padding: 2.4vw 8vw;
+    font-size: 4vw;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin-top: 33vw;
+  }
+
+  .webinarImageDiv {
+    margin-top: 54vw;
+    height: 57.5vw;
+    width: 57.5vw;
+    background-color: #d9d9d9;
+  }
+  .webinarButton {
+    padding: 2.4vw 10vw;
+    font-size: 4vw;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin-top: 31vw;
+  }
+}

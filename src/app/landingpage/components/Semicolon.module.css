@@ -1,0 +1,44 @@
+.semicolon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.semicolonBox {
+  height: 12px;
+  width: 12px;
+  background-color: #f3eee7;
+  border: none;
+  border-radius: 2px;
+}
+
+.upper {
+  margin-bottom: 0.8rem;
+}
+
+.bottom {
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .semicolon{
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+  }
+  
+  .semicolonBox {
+    height: 8px;
+    width: 8px;
+    background-color: #f3eee7;
+    border: none;
+    border-radius: 2px;
+  }
+  .upper {
+    margin-bottom: 0.5rem;
+  }
+
+  .bottom {
+    margin-top: 0.5rem;
+  }
+}
