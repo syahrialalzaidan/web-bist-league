@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState, useLayoutEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import css from "./components/landing.module.css";
-import Semicolon from "./components/Semicolon";
-import Countdown from "./components/Countdown";
+import Header from "./component/Header/Header";
+import Footer from "./component/Footer/Footer";
+import css from "./landing.module.css";
+import Countdown from "./component/Countdown/Countdown";
 
-export default function Home(props) {
-  useEffect(() => {
+export default function Home() {
+  useLayoutEffect(() => {
     console.log("window.innerHeight", window.innerHeight);
 
     // Function to set the CSS custom property for --vh
@@ -33,11 +31,27 @@ export default function Home(props) {
     };
   }, []);
 
-  const [activities, setActivities] = useState("competetion");
+  const [activities, setActivities] = useState < string > ("competetion"); // Added type annotation
 
-  const changeActivities = (name) => {
+  const changeActivities = (name: string) => {
+    // Added type annotation
     setActivities(name);
   };
+
+  // Ubah Registration close in -> Extended Registration
+  const registrationClose = new Date("September 17, 2023 22:37:00 ").getTime();
+
+  const [componentReady, setcomponentReady] = useState < boolean > (false);
+  const [registrationStatus, setRegistrationStatus] = useState < String > (
+    "Closed Registration in"
+  );
+  useLayoutEffect(() => {
+    const now = new Date().getTime();
+    if (now > registrationClose) {
+      setRegistrationStatus("Extended Registration");
+    }
+    setcomponentReady(true);
+  }, []);
 
   const seacrhParams = useSearchParams();
   const username = seacrhParams.get("username");
@@ -46,59 +60,58 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="flex-col justify-center content-center w-full">
+      <div
+        className={`flex-col justify-center content-center w-full ${componentReady ? "visible" : "invisible"
+          }`}
+      >
         {/* <Header page="Home" username={username} /> */}
         <Header page="Home" username={username} />
         <div className={`h-20 bg-white`}></div>
         <main className={css.main}>
           {/* Background Image */}
           <div
-            className={`${css.backgroundImage} w-full ${
-              activities === "competetion" ? "" : css.hideBG
-            }`}
+            className={`${css.backgroundImage} w-full ${activities === "competetion" ? "" : css.hideBG
+              }`}
           >
             <img
-              src="images/landingPageBackground.png"
+              src="images/landingPageBackground.svg"
               alt="background"
               className={`w-full`}
             />
           </div>
           <div
-            className={`${css.backgroundImage} w-full ${
-              activities === "bootcamp" ? "" : css.hideBG
-            }`}
+            className={`${css.backgroundImage} w-full ${activities === "bootcamp" ? "" : css.hideBG
+              }`}
           >
             <img
-              src="images/landingPageBackground2.png"
+              src="images/landingPageBackground2.svg"
               alt="background"
               className={`w-full`}
             />
           </div>
           <div
-            className={`${css.backgroundImage} w-full ${
-              activities === "miniChallenge" ? "" : css.hideBG
-            }`}
+            className={`${css.backgroundImage} w-full ${activities === "miniChallenge" ? "" : css.hideBG
+              }`}
           >
             <img
-              src="images/landingPageBackground3.png"
+              src="images/landingPageBackground3.svg"
               alt="background"
               className={`w-full`}
             />
           </div>
           <div
-            className={`${css.backgroundImage} w-full ${
-              activities === "webinar" ? "" : css.hideBG
-            }`}
+            className={`${css.backgroundImage} w-full ${activities === "webinar" ? "" : css.hideBG
+              }`}
           >
             <img
-              src="images/landingPageBackground4.png"
+              src="images/landingPageBackground4.svg"
               alt="background"
               className={`w-full`}
             />
           </div>
           <div className={`${css.backgroundImageMobile} w-full`}>
             <img
-              src="images/landingPageBackgroundMobile.png"
+              src="images/landingPageBackgroundMobile.svg"
               alt="background"
               className={`w-full`}
             />
@@ -112,14 +125,19 @@ export default function Home(props) {
               Sustainable Business Growth
             </p>
             <p className={`${css.openRegistrationText}`}>
-              Open Registration In
+              {componentReady && registrationStatus === "Extended Registration"
+                ? "Extended Registration"
+                : ""}
+              {componentReady && registrationStatus === "Closed Registration in"
+                ? "Closed Registration in"
+                : ""}
             </p>
 
             {/* Countdown Section */}
             <Countdown />
-            <p className={`${css.eventDate}`}>14 Agustus 2023</p>
+            <p className={`${css.eventDate}`}>17 September 2023</p>
             <div className={`${css.registerButtonDiv}`}>
-              <button className={`${css.registerButton}`}><Link href="/">Register</Link></button>
+              <button className={`${css.registerButton}`}>Register</button>
             </div>
             <div className={`${css.aboutBistLeagueSection}`}>
               <h1 className={`${css.aboutBistLeagueHeading}`}>
@@ -153,7 +171,7 @@ export default function Home(props) {
             </div>
             <div className={`${css.timelineHorizontalDiv}`}>
               <img
-                src="./images/timelineHorizontal.png"
+                src="./images/timelineHorizontal.svg"
                 alt="timeline"
                 className={`${css.timelineHorizontal}`}
               />
@@ -161,7 +179,7 @@ export default function Home(props) {
             <div className={`${css.timelineVerticalDiv}`}>
               <h1 className={`${css.timelineHeader}`}>Timeline</h1>
               <img
-                src="./images/timelineVertical.png"
+                src="./images/timelineVertical.svg"
                 alt="timeline"
                 className={`${css.timelineVertical}`}
               />
@@ -177,9 +195,8 @@ export default function Home(props) {
                 {/* Competetion Component Desktop */}
                 <div className={`${css.CompetetionDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${
-                      activities == "competetion" ? "" : css.hide
-                    }`}
+                    className={`${css.activitiesDate} ${activities == "competetion" ? "" : css.hide
+                      }`}
                   >
                     14 Agustus - 19 November
                   </p>
@@ -190,9 +207,8 @@ export default function Home(props) {
                     Competition
                   </button>
                   <p
-                    className={`${css.activitiesText} ${
-                      activities == "competetion" ? "" : css.hide
-                    }`}
+                    className={`${css.activitiesText} ${activities == "competetion" ? "" : css.hide
+                      }`}
                   >
                     Business IT Case Competition is one of the main events of
                     BIST League 6.0 which is a competition to hone the solve a
@@ -202,9 +218,8 @@ export default function Home(props) {
                     undergraduate/D3 students.
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${
-                      activities == "competetion" ? "" : css.hide
-                    } bg-[#276766]`}
+                    className={`${css.activitiesButton} ${activities == "competetion" ? "" : css.hide
+                      } bg-[#276766]`}
                   >
                     More About Competition
                   </button>
@@ -213,9 +228,8 @@ export default function Home(props) {
                 {/* Bootcamp Component Desktop */}
                 <div className={`${css.businessCaseDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${
-                      activities == "bootcamp" ? "" : css.hide
-                    } mt-8`}
+                    className={`${css.activitiesDate} ${activities == "bootcamp" ? "" : css.hide
+                      } mt-8`}
                   >
                     Coming Soon
                   </p>
@@ -226,16 +240,14 @@ export default function Home(props) {
                     Business Case Bootcamp
                   </button>
                   <p
-                    className={`${css.activitiesText} ${
-                      activities == "bootcamp" ? "" : css.hide
-                    }`}
+                    className={`${css.activitiesText} ${activities == "bootcamp" ? "" : css.hide
+                      }`}
                   >
                     (description Here)
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${
-                      activities == "bootcamp" ? "" : css.hide
-                    } bg-[#9E1B1B]`}
+                    className={`${css.activitiesButton} ${activities == "bootcamp" ? "" : css.hide
+                      } bg-[#9E1B1B]`}
                   >
                     More About Bootcamp
                   </button>
@@ -244,9 +256,8 @@ export default function Home(props) {
                 {/* Mini Challenge Component Desktop */}
                 <div className={`${css.miniChallengeDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${
-                      activities == "miniChallenge" ? "" : css.hide
-                    } mt-8`}
+                    className={`${css.activitiesDate} ${activities == "miniChallenge" ? "" : css.hide
+                      } mt-8`}
                   >
                     Coming Soon
                   </p>
@@ -257,18 +268,16 @@ export default function Home(props) {
                     Mini Challenge
                   </button>
                   <p
-                    className={`${css.activitiesText} ${
-                      activities == "miniChallenge" ? "" : css.hide
-                    }`}
+                    className={`${css.activitiesText} ${activities == "miniChallenge" ? "" : css.hide
+                      }`}
                   >
                     A video challenge that can be joined by participant and
                     public to increase awareness and insight regarding the
                     topics raised by BIST League 6.0
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${
-                      activities == "miniChallenge" ? "" : css.hide
-                    } bg-[#463461]`}
+                    className={`${css.activitiesButton} ${activities == "miniChallenge" ? "" : css.hide
+                      } bg-[#463461]`}
                   >
                     More About Mini Challenge
                   </button>
@@ -277,9 +286,8 @@ export default function Home(props) {
                 {/* Webinar Component Desktop */}
                 <div className={`${css.webinarDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${
-                      activities == "webinar" ? "" : css.hide
-                    } mt-8`}
+                    className={`${css.activitiesDate} ${activities == "webinar" ? "" : css.hide
+                      } mt-8`}
                   >
                     Coming Soon
                   </p>
@@ -290,18 +298,16 @@ export default function Home(props) {
                     Webinar
                   </button>
                   <p
-                    className={`${css.activitiesText} ${
-                      activities == "webinar" ? "" : css.hide
-                    }`}
+                    className={`${css.activitiesText} ${activities == "webinar" ? "" : css.hide
+                      }`}
                   >
                     A sharing sessions with incredible speakers from the
                     Technology industry with topics aligning with BIST League
                     6.0 theme.
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${
-                      activities == "webinar" ? "" : css.hide
-                    } bg-[#AE7120]`}
+                    className={`${css.activitiesButton} ${activities == "webinar" ? "" : css.hide
+                      } bg-[#AE7120]`}
                   >
                     More About Webinar
                   </button>
@@ -394,19 +400,19 @@ export default function Home(props) {
 
 {
   /* <div className={`${css.background1}`}>
-            <img src="images/background1.png" alt="background 1" />
+            <img src="images/background1.svg" alt="background 1" />
             
           </div>
           <div className={`${css.background2}`}>
-            <img src="images/background2.png" alt="background 2" />
+            <img src="images/background2.svg" alt="background 2" />
           </div>
           <div className={`${css.background3}`}>
-            <img src="images/background3.png" alt="background 3" />
+            <img src="images/background3.svg" alt="background 3" />
           </div>
           <div className={`${css.background4}`}>
-            <img src="images/background4.png" alt="background 4" />
+            <img src="images/background4.svg" alt="background 4" />
           </div>
           <div className={`${css.background5}`}>
-            <img src="images/background5.png" alt="background 5" />
+            <img src="images/background5.svg" alt="background 5" />
           </div> */
 }
