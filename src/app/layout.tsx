@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Manrope } from "next/font/google";
+import { LoginContextProvider } from "./context/Logincontext";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={manrope.className}>{children}</body>
+      <body className={manrope.className}>
+        <LoginContextProvider>{children}</LoginContextProvider>
+      </body>
     </html>
   );
 }

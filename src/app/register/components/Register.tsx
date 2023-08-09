@@ -1,6 +1,16 @@
+"use client";
 import Image from "next/image";
+import { useState, useContext } from "react";
+import axios from "axios";
+import { useLoginContext } from "@/app/context/Logincontext";
+
 
 export default function Register() {
+  const[fullname, setFullname] = useState("");
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("");
+  const[confirmPassword, setConfirmPassword] = useState("");
+
   return (
     <div className="flex flex-col lg:w-1/2 px-4">
       <div className="flex flex-row items-center mb-10 justify-between">
