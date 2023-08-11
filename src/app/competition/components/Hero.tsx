@@ -9,11 +9,57 @@ import BataMidRight from "@images/competition/hero/hero-bata-rightmid.svg";
 import BataBotRight from "@images/competition/hero/hero-bata-botright.svg";
 import KotakSatu from "@images/competition/hero/hero-kotak-satu.svg";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import Cookies from 'universal-cookie';
 
 export default function Hero() {
     const [login, setLogin] = useState(true);
+    const cookies = new Cookies();
 
+    const [timerDays, setTimerDays] = useState<number>(0);
+    const [timerHours, setTimerHours] = useState<number>(0);
+    const [timerMinutes, setTimerMinutes] = useState<number>(0);
+    const [timerSeconds, setTimerSeconds] = useState<number>(0);
+
+    const interval = useRef<NodeJS.Timeout | null>(null);
+
+    console.log(cookies.get('jwt_token'));
+
+    const startTimer = () => {
+        const countdownDate = new Date('August 14, 2023 00:00:00').getTime();
+
+        interval.current = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                // Stop timer
+                clearInterval(interval.current!);
+            } else {
+                // Update timer
+                setTimerDays(days);
+                setTimerHours(hours);
+                setTimerMinutes(minutes);
+                setTimerSeconds(seconds);
+            }
+        }, 1000);
+    };
+
+    // componentDidMount
+    useEffect(() => {
+        startTimer();
+        return () => {
+            if (interval.current) {
+                clearInterval(interval.current);
+            }
+        };
+    }, []);
+    
     return (
         <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative h-[568px] lg:h-[644px] bg-cover overflow-hidden">
             <Image
@@ -63,23 +109,23 @@ export default function Hero() {
                         </p>
                         <div className="flex items-center justify-center z-10">
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">00</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerDays < 10)  ? `0${timerDays}` : timerDays}</h1>
                                 <p className="text-[#379392] text-sm lg:text-lg font-extrabold">Days</p>
                             </div>
                             <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">00</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerHours < 10) ? `0${timerHours}` : timerHours}</h1>
                                 <p className="text-[#379392] text-sm lg:text-lg font-extrabold">Hours</p>
                             </div>
                             <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">00</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerMinutes < 10)  ? `0${timerMinutes}` : timerMinutes}</h1>
                                 <p className="hidden lg:block text-[#379392] text-sm lg:text-lg font-extrabold">Minutes</p>
                                 <p className="block lg:hidden text-[#379392] text-sm lg:text-lg font-extrabold">Mins</p>
                             </div>
                             <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">00</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerSeconds < 10)  ? `0${timerSeconds}` : timerSeconds}</h1>
                                 <p className="hidden lg:block text-[#379392] text-sm lg:text-lg font-extrabold">Seconds</p>
                                 <p className="block lg:hidden text-[#379392] text-sm lg:text-lg font-extrabold">Secs</p>
                             </div>

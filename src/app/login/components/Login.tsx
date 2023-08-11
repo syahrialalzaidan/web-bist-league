@@ -1,15 +1,14 @@
 "use client";
 import Image from "next/image";
-import { useState, createContext, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useLoginContext } from "@/app/context/Logincontext";
+import Cookies from 'universal-cookie';
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [jwttoken, setJwttoken] = useState("");
 
-  const [loginData, setLoginData] = useLoginContext();
+  const cookies = new Cookies();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +28,8 @@ export default function Login() {
         // Successful login logic
         console.log("Login successful!");
         const { jwt_token } = response.data.data;
-        setLoginData({ username, jwt_token });
+
+        cookies.set('jwt_token', jwt_token, { path: '/' });
       } else {
         // Handle login error
         console.log("Login failed.");
