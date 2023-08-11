@@ -41,8 +41,9 @@ export default function ProfilUser() {
                   type="text"
                   id="email"
                   placeholder="Please enter your email"
-                  className="w-full lg:w-72 xl:w-96 border-2 border-[#BDBDBD] rounded-sm px-2 lg:px-5 py-3"
+                  className="w-full lg:w-72 xl:w-96 border-2 border-[#BDBDBD] rounded-sm px-2 lg:px-5 py-3 mb-0"
                 />
+                <p className="font-medium text-[10px] md:text-[12px] text-[#2F80ED]">Please enter an active email address for verification.</p>
               </div>
               <div className="flex flex-col">
                 <label htmlFor="age" className="font-extrabold">
@@ -67,6 +68,7 @@ export default function ProfilUser() {
                   placeholder="Please enter your address"
                   className="w-full lg:w-72 xl:w-96 border-2 border-[#BDBDBD] rounded-sm px-2 lg:px-5 py-3"
                 />
+                <p className="font-medium text-[10px] md:text-[12px] text-[#2F80ED]">Enter your predicted address at the end of October.</p>
               </div>
               <div className="flex flex-col">
                 <label htmlFor="phone number" className="font-extrabold">
@@ -78,6 +80,7 @@ export default function ProfilUser() {
                   placeholder="Please enter your phone number"
                   className="w-full lg:w-72 xl:w-96 border-2 border-[#BDBDBD] rounded-sm px-2 lg:px-5 py-3"
                 />
+                <p className="font-medium text-[10px] md:text-[12px] text-[#2F80ED]"> Please enter an active phone number.</p>
               </div>
             </div>
             <div className="w-full flex flex-col lg:flex-row lg:justify-center gap-8">
@@ -102,6 +105,7 @@ export default function ProfilUser() {
                   placeholder="Please enter your linkedin"
                   className="w-full lg:w-72 xl:w-96 border-2 border-[#BDBDBD] rounded-sm px-2 lg:px-5 py-3"
                 />
+                <p className="font-medium text-[10px] md:text-[12px] text-[#2F80ED]">Please enter a valid link to your LinkedIn profile.</p>
               </div>
             </div>
             <div className="w-full flex flex-col lg:flex-row lg:justify-center gap-8">
@@ -139,6 +143,7 @@ export default function ProfilUser() {
                   placeholder="Please enter your entry year"
                   className="w-full lg:w-72 xl:w-96 border-2 border-[#BDBDBD] rounded-sm px-2 lg:px-5 py-3"
                 />
+                <p className="font-medium text-[10px] md:text-[12px] text-[#2F80ED]">Please enter the year you got admitted at your current institution.</p>
               </div>
             </div>
           </div>
