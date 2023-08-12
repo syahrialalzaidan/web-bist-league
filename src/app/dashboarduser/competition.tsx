@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
-import CountDown from "../component/countdown";
-import Dropzone from "../component/dropzone";
-import NavUser from "../component/nav";
+import { useState, useEffect } from "react";
+import CountDown from "./component/countdown";
+import Dropzone from "./component/dropzone";
+import NavUser from "./component/nav";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { BiUpload } from "react-icons/bi";
 import { FileRejection } from "react-dropzone";
@@ -13,6 +13,29 @@ export default function CompetitionUser() {
   const [studentfile, setStudentFile] = useState<File>();
   const [selfFile, setSelfFile] = useState<File>();
   const [twibbonfile, setTwibbonFile] = useState<File>();
+  const [date, setDate] = useState("September 18, 2023 23:59:59");
+  const [fase, setFase] = useState(1);
+
+  const now = new Date().getTime();
+  const target = new Date(date).getTime();
+
+  if (now > target) {
+    const temp = fase + 1;
+    setFase(temp);
+    if (fase == 2) {
+      setDate("October 2, 2023 23:59:59");
+    } else if (fase == 3) {
+      setDate("October 23, 2023 00:00:00");
+    } else if (fase == 4) {
+      setDate("November 18, 2023 17:59:59");
+    } else if (fase == 5) {
+      setDate("November 19, 2023 06:00:00");
+    }else{
+      setDate("December 20, 2023 00:00:00");
+    }
+  }
+
+  console.log(fase);
 
   const handleFileRejected = (fileRejections: FileRejection[]) => {
     // Handle rejected files
@@ -26,16 +49,32 @@ export default function CompetitionUser() {
           <p className="text-[24px] lg:text-[32px] font-extrabold text-center lg:text-start">
             Business IT Case Competition
           </p>
-          <div className="w-full bg-white flex flex-col items-center rounded-lg gap-2 py-4 px-5 lg:px-2">
+          <div className={`w-full bg-white flex flex-col items-center rounded-lg gap-2 py-4 px-5 lg:px-2 ${fase == 4 || fase == 7? "hidden" : ""}`}>
             <p className="text-[16px] lg:text-[24px] text-center mb-2">
-              Preliminary submission closes in
+              {fase == 1
+                ? "Competition start in"
+                : fase == 3
+                ? "Preliminary submission closes in"
+                : fase == 4
+                ? "Announcement in"
+                : fase == 5
+                ? "Final round start in"
+                : fase == 6
+                ? "Submission Final close in"
+                : ""}
             </p>
-            <CountDown />
+            <CountDown date={date} />
             <div className="w-full flex justify-center gap-4 mt-5">
               <button className="flex justify-center bg-white border-2 border-[#379392] rounded-lg text-[12px] lg:text-[16px] text-[#379392] font-extrabold px-6 lg:px-12 py-3">
-                Download Guidebook
+                {fase >= 1 && fase <= 3
+                  ? "Download Guidebook"
+                  : "Download Final Guidebook"}
               </button>
-              <button className="flex justify-center bg-[#379392] rounded-lg text-[12px] lg:text-[16px] text-white font-extrabold px-6 lg:px-14 py-3">
+              <button
+                className={`${
+                  fase == 1 || fase == 5 ? "hidden" : ""
+                } flex justify-center bg-[#379392] rounded-lg text-[12px] lg:text-[16px] text-white font-extrabold px-6 lg:px-14 py-3`}
+              >
                 Upload Submission
               </button>
             </div>
@@ -135,7 +174,7 @@ export default function CompetitionUser() {
                 <Dropzone
                   onFileSelected={(e: File) => setEnrollFile(e)}
                   onFileRejected={handleFileRejected}
-                  onFileDeleted={() =>setEnrollFile(undefined)}
+                  onFileDeleted={() => setEnrollFile(undefined)}
                 />
                 <button className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block">
                   <BiUpload size={24} />
@@ -154,7 +193,7 @@ export default function CompetitionUser() {
                 <Dropzone
                   onFileSelected={(e: File) => setStudentFile(e)}
                   onFileRejected={handleFileRejected}
-                  onFileDeleted={() =>setStudentFile(undefined)}
+                  onFileDeleted={() => setStudentFile(undefined)}
                 />
                 <button className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block">
                   <BiUpload size={24} />
@@ -173,7 +212,7 @@ export default function CompetitionUser() {
                 <Dropzone
                   onFileSelected={(e: File) => setSelfFile(e)}
                   onFileRejected={handleFileRejected}
-                  onFileDeleted={() =>setSelfFile(undefined)}
+                  onFileDeleted={() => setSelfFile(undefined)}
                 />
                 <button className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block">
                   <BiUpload size={24} />
@@ -192,7 +231,7 @@ export default function CompetitionUser() {
                 <Dropzone
                   onFileSelected={(e: File) => setTwibbonFile(e)}
                   onFileRejected={handleFileRejected}
-                  onFileDeleted={() =>setTwibbonFile(undefined)}
+                  onFileDeleted={() => setTwibbonFile(undefined)}
                 />
                 <button className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block">
                   <BiUpload size={24} />

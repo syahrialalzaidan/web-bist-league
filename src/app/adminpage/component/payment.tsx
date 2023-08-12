@@ -56,7 +56,7 @@ export default function PaymentVerification() {
                 <td className="px-4 py-4 text-center">{row.id}</td>
                 <td className="px-12 py-4 text-center">{row.teamName}</td>
                 <td className="px-12 py-4 text-center">{row.email}</td>
-                <td className="px-12 py-4 flex justify-center">
+                <td className="px-12 py-10 flex justify-center items-center">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-2"
                     onClick={() => setPopupUrl(row.proofOfPayment)}

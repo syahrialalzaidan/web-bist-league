@@ -6,7 +6,9 @@ import { IoMdLaptop } from "react-icons/io";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function NavUser({ active }: { active?: number }) {
   const [hamburger, setHamburger] = useState(false);
@@ -15,11 +17,33 @@ export default function NavUser({ active }: { active?: number }) {
       hamburger ? setHamburger(false) : setHamburger(true);
     }
   };
+  const [fullName, setFullName] = useState("");
+  const [isLoading, setisLoading] = useState(true);
+  const cookie = new Cookies();
+  const token = cookie.get("jwt_token");
+  const user_id = cookie.get("user_id");
+  const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+
+  const getProfileData = async () => {
+    try {
+      const response = await axios.get(url + "profile/" + user_id);
+      console.log(response.data.data.full_name);
+      setFullName(response.data.data.full_name);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getProfileData();
+  }, []);
   return (
     <>
       <div className="hidden lg:w-1/5 lg:bg-gradient-to-b lg:from-red-600 lg:to-orange-500 lg:flex lg:flex-col lg:px-3 lg:py-12">
         <div className="w-full rounded-lg bg-[#F3EEE7] px-4 py-4 mb-8">
-          <p className="text-[20px] font-bold mb-[2px]">Timothy Subekti</p>
+          <p className="text-[20px] font-bold mb-[2px]">{fullName}</p>
           <p className="text-[12px] font-bold">ITB Team</p>
         </div>
         <div
@@ -118,7 +142,9 @@ export default function NavUser({ active }: { active?: number }) {
           )}
         </div>
         <button
-          className="cursor-pointer hover:scale-105"
+          className={`${
+            hamburger ? "text-white " : ""
+          }cursor-pointer hover:scale-105 z-50`}
           onClick={changeHamburger}
         >
           {hamburger ? <MdClose size={24} /> : <GiHamburgerMenu size={24} />}
@@ -126,24 +152,60 @@ export default function NavUser({ active }: { active?: number }) {
       </div>
       {hamburger && (
         <>
-          <div className="fixed w-full h-screen bg-gradient-to-b from-red-600 to-orange-500 flex flex-col items-center justify-between py-20 z-20">
+          <div className="fixed w-full h-full bg-gradient-to-b from-red-600 to-orange-500 flex flex-col items-center justify-between py-20 z-20">
             <div className="w-full flex flex-col items-center justify-center">
-              <div className={`w-full gap-2 text-center ${active == 0? "bg-[#F3EEE7] text-[#E22727]" : "bg-transparent text-white"} text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}>
+              <div
+                className={`w-full gap-2 text-center ${
+                  active == 0
+                    ? "bg-[#F3EEE7] text-[#E22727]"
+                    : "bg-transparent text-white"
+                } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+              >
                 Overview
               </div>
-              <div className={`w-full gap-2 text-center ${active == 1? "bg-[#F3EEE7] text-[#E22727]" : "bg-transparent text-white"} text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}>
+              <div
+                className={`w-full gap-2 text-center ${
+                  active == 1
+                    ? "bg-[#F3EEE7] text-[#E22727]"
+                    : "bg-transparent text-white"
+                } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+              >
                 Profile
               </div>
-              <div className={`w-full gap-2 text-center ${active == 2? "bg-[#F3EEE7] text-[#E22727]" : "bg-transparent text-white"} text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}>
+              <div
+                className={`w-full gap-2 text-center ${
+                  active == 2
+                    ? "bg-[#F3EEE7] text-[#E22727]"
+                    : "bg-transparent text-white"
+                } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+              >
                 Competition
               </div>
-              <div className={`w-full gap-2 text-center ${active == 3? "bg-[#F3EEE7] text-[#E22727]" : "bg-transparent text-white"} text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}>
+              <div
+                className={`w-full gap-2 text-center ${
+                  active == 3
+                    ? "bg-[#F3EEE7] text-[#E22727]"
+                    : "bg-transparent text-white"
+                } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+              >
                 Bootcamp
               </div>
-              <div className={`w-full gap-2 text-center ${active == 4? "bg-[#F3EEE7] text-[#E22727]" : "bg-transparent text-white"} text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}>
+              <div
+                className={`w-full gap-2 text-center ${
+                  active == 4
+                    ? "bg-[#F3EEE7] text-[#E22727]"
+                    : "bg-transparent text-white"
+                } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+              >
                 Webinar
               </div>
-              <div className={`w-full gap-2 text-center ${active == 5? "bg-[#F3EEE7] text-[#E22727]" : "bg-transparent text-white"} text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}>
+              <div
+                className={`w-full gap-2 text-center ${
+                  active == 5
+                    ? "bg-[#F3EEE7] text-[#E22727]"
+                    : "bg-transparent text-white"
+                } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+              >
                 Mini Challenge
               </div>
             </div>

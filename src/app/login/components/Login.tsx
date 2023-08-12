@@ -30,6 +30,7 @@ export default function Login() {
         const { jwt_token } = response.data.data;
 
         cookies.set('jwt_token', jwt_token, { path: '/' });
+        cookies.set('user_id', response.data.data.user.user_id, { path: '/' });
       } else {
         // Handle login error
         console.log("Login failed.");
