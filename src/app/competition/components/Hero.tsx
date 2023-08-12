@@ -61,7 +61,7 @@ export default function Hero() {
     }, []);
     
     return (
-        <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative h-[568px] lg:h-[644px] bg-cover overflow-hidden">
+        <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative h-[568px] lg:h-[644px] bg-cover overflow-hidden mt-20">
             <Image
                 src={BataMidLeft}
                 alt="Bata Mid Left"

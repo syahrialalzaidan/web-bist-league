@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import Image from "next/image";
 import css from "./Header.module.css";
@@ -50,12 +51,12 @@ const Header: React.FC<HeaderProps> = (props) => {
           </button>
           <button className={`${css.navbarItem} `}>
             <Link
-              href="/competetion"
+              href="/competition"
               className={`${
-                props.page === "Competetion" ? css.buttonActive : ""
+                props.page === "Competition" ? css.buttonActive : ""
               }`}
             >
-              Competetion
+              Competition
             </Link>
           </button>
           <button
@@ -184,8 +185,8 @@ const Header: React.FC<HeaderProps> = (props) => {
             <Link href="/">Home</Link>
           </li>
 
-          <li className={props.page === "Competetion" ? css.activeLi : ""}>
-            <Link href="/competetion">Competetion</Link>
+          <li className={props.page === "Competition" ? css.activeLi : ""}>
+            <Link href="/competition">Competition</Link>
           </li>
 
           <li className={props.page === "Bootcamp" ? css.activeLi : ""}>

@@ -31,7 +31,7 @@ export default function Home() {
     };
   }, []);
 
-  const [activities, setActivities] = useState < string > ("competetion"); // Added type annotation
+  const [activities, setActivities] = useState < string > ("competition"); // Added type annotation
 
   const changeActivities = (name: string) => {
     // Added type annotation
@@ -70,7 +70,7 @@ export default function Home() {
         <main className={css.main}>
           {/* Background Image */}
           <div
-            className={`${css.backgroundImage} w-full ${activities === "competetion" ? "" : css.hideBG
+            className={`${css.backgroundImage} w-full ${activities === "competition" ? "" : css.hideBG
               }`}
           >
             <img
@@ -192,22 +192,22 @@ export default function Home() {
             <div className={`${css.activitiesSectionForDesktop}`}>
               {/* Left Side Activities */}
               <div className={`${css.activitiesLeftSide}`}>
-                {/* Competetion Component Desktop */}
-                <div className={`${css.CompetetionDescription}`}>
+                {/* Competition Component Desktop */}
+                <div className={`${css.CompetitionDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${activities == "competetion" ? "" : css.hide
+                    className={`${css.activitiesDate} ${activities == "competition" ? "" : css.hide
                       }`}
                   >
                     14 Agustus - 19 November
                   </p>
                   <button
                     className={`${css.activitiesTitle}`}
-                    onClick={() => changeActivities("competetion")}
+                    onClick={() => changeActivities("competition")}
                   >
                     Competition
                   </button>
                   <p
-                    className={`${css.activitiesText} ${activities == "competetion" ? "" : css.hide
+                    className={`${css.activitiesText} ${activities == "competition" ? "" : css.hide
                       }`}
                   >
                     Business IT Case Competition is one of the main events of
@@ -218,7 +218,7 @@ export default function Home() {
                     undergraduate/D3 students.
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${activities == "competetion" ? "" : css.hide
+                    className={`${css.activitiesButton} ${activities == "competition" ? "" : css.hide
                       } bg-[#276766]`}
                   >
                     More About Competition
@@ -317,7 +317,7 @@ export default function Home() {
               {/* Right Side Activites */}
               <div className={`${css.activitiesRightSide}`}>
                 <div className={`${css.activitiesImageDiv}`}>
-                  <img src="" alt="" className={`${css.competetionImage}`} />
+                  <img src="" alt="" className={`${css.competitionImage}`} />
                   <img src="" alt="" className={`${css.bootcampImage}`} />
                   <img src="" alt="" className={`${css.miniChallenge}`} />
                   <img src="" alt="" className={`${css.webinarImage}`} />
@@ -327,9 +327,9 @@ export default function Home() {
 
             {/* Activites for Mobile */}
             <div className={`${css.activitiesSectionForMobile}`}>
-              {/* Competetion Component Mobile */}
-              <div className={`${css.competetionImageDiv}`}>
-                <img src="" alt="" className={`${css.competetionImage}`} />
+              {/* Competition Component Mobile */}
+              <div className={`${css.competitionImageDiv}`}>
+                <img src="" alt="" className={`${css.competitionImage}`} />
               </div>
               <p className={`${css.activitiesDate}`}>
                 14 Agustus - 19 November

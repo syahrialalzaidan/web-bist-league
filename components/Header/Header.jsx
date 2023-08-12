@@ -1,3 +1,4 @@
+'use client'
 import React, { useState} from 'react'
 import classes from './Header.module.css'
 import Link from 'next/link'
@@ -12,7 +13,7 @@ const Header = (props) => {
 
     const menu = [
         { id: 1, name: 'Home' },
-        { id: 2, name: 'Competetion' },
+        { id: 2, name: 'Competition' },
         { id: 3, name: 'Bootcamp' },
         { id: 4, name: 'Webinar' },
         { id: 5, name: 'Mini Challenge' },
@@ -47,7 +48,7 @@ const Header = (props) => {
 
                 {/* Button */}
                 <button className={`${classes.button} ${props.page === 'Home' ? classes.buttonActive : ''}`} ><Link href='/'>Home</Link></button>
-                <button className={`${classes.button} ${props.page === 'Competetion' ? classes.buttonActive : ''}`} ><Link href='/competetion'>Competetion</Link></button>
+                <button className={`${classes.button} ${props.page === 'Competition' ? classes.buttonActive : ''}`} ><Link href='/competition'>Competition</Link></button>
                 <button className={`${classes.button} ${props.page === 'Bootcamp' ? classes.buttonActive : ''}`} ><Link href='/bootcamp'>Bootcamp</Link></button>
                 <button className={`${classes.button} ${props.page === 'Webinar' ? classes.buttonActive : ''}`} ><Link href='/webinar'>Webinar</Link></button>
                 <button className={`${classes.button} ${props.page === 'Mini Challenge' ? classes.buttonActive : ''}`} ><Link href='/minichallenge'>Mini Challenge</Link></button>
@@ -104,8 +105,8 @@ const Header = (props) => {
                         <Link href='/'>Home</Link>
                     </li>
 
-                    <li className={props.page === 'Competetion' ? classes.activeLi : ''}>
-                        <Link href='/competetion'>Competetion</Link>
+                    <li className={props.page === 'Competition' ? classes.activeLi : ''}>
+                        <Link href='/competition'>Competition</Link>
                     </li>
 
                     <li className={props.page === 'Bootcamp' ? classes.activeLi : ''}>
