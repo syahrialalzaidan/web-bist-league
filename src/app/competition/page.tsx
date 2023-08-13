@@ -10,13 +10,38 @@ import Image from "next/image";
 import KotakBottom from "@images/competition/hero/hero-kotak-bottom.svg";
 import BulatTiga from "@images/competition/registration/regist-bulat-tiga.svg";
 
+import axios from "axios";
+import { cookies } from 'next/headers'
 
+export default async function CompetitionnPage() {
 
-export default function CompetitionnPage() {
+    const cookieStore = cookies()
+    const jwt_token = cookieStore.get("jwt_token")?.value
+
+    const getTeam = async () => {
+        try {
+            const response = await axios.get(
+                "https://be-staging-b6utdt2kwa-et.a.run.app/team",
+                {
+                    headers: {
+                        Authorization: `Bearer ${jwt_token}`,
+                    },
+                }
+            );
+
+            console.log(response.data.data)
+            return response.data.data;
+        } catch (error) {
+            console.error("Error getting profile:", error);
+        }
+    };
+
+    const teamData = await getTeam();
+
     return (
         <div className="bg-[#F3EEE7] overflow-hidden">
             <Header page="competition" username="Tes" />
-            <Hero />
+            <Hero teamData={teamData}/>
             <Description />
             <Timeline />
             <div className="relative">

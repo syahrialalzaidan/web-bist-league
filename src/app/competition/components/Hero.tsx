@@ -10,11 +10,50 @@ import BataBotRight from "@images/competition/hero/hero-bata-botright.svg";
 import KotakSatu from "@images/competition/hero/hero-kotak-satu.svg";
 
 import { useState, useRef, useEffect } from "react";
-import Cookies from 'universal-cookie';
 
-export default function Hero() {
+interface TeamMember {
+    user_id: string;
+    username: string;
+    fullname: string;
+    is_leader: boolean;
+}
+
+interface TeamData {
+    team_id: string;
+    team_name: string;
+    team_redeem_code: string;
+    is_active: boolean;
+    payment_proof: string;
+    payment_proof_url: string;
+    payment_status: string;
+    payment_status_code: number;
+    student_card: string;
+    student_card_url: string;
+    student_card_status: string;
+    student_card_status_code: number;
+    self_portrait: string;
+    self_portrait_url: string;
+    self_portrait_status: string;
+    self_portrait_status_code: number;
+    twibbon: string;
+    twibbon_url: string;
+    twibbon_status: string;
+    twibbon_status_code: number;
+    enrollment: string;
+    enrollment_url: string;
+    enrollment_status: string;
+    enrollment_status_code: number;
+    members: TeamMember[];
+}
+
+interface HeroProps {
+    teamData: TeamData;
+}
+
+export default function Hero({ teamData }: HeroProps) {
     const [login, setLogin] = useState(true);
-    const cookies = new Cookies();
+
+    console.log(teamData)
 
     const [timerDays, setTimerDays] = useState<number>(0);
     const [timerHours, setTimerHours] = useState<number>(0);
@@ -23,10 +62,8 @@ export default function Hero() {
 
     const interval = useRef<NodeJS.Timeout | null>(null);
 
-    console.log(cookies.get('jwt_token'));
-
     const startTimer = () => {
-        const countdownDate = new Date('August 14, 2023 00:00:00').getTime();
+        const countdownDate = new Date('September 18, 2023 00:00:00').getTime();
 
         interval.current = setInterval(() => {
             const now = new Date().getTime();
@@ -59,7 +96,7 @@ export default function Hero() {
             }
         };
     }, []);
-    
+
     return (
         <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative h-[568px] lg:h-[644px] bg-cover overflow-hidden mt-20">
             <Image
@@ -109,7 +146,7 @@ export default function Hero() {
                         </p>
                         <div className="flex items-center justify-center z-10">
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerDays < 10)  ? `0${timerDays}` : timerDays}</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerDays < 10) ? `0${timerDays}` : timerDays}</h1>
                                 <p className="text-[#379392] text-sm lg:text-lg font-extrabold">Days</p>
                             </div>
                             <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
@@ -119,13 +156,13 @@ export default function Hero() {
                             </div>
                             <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerMinutes < 10)  ? `0${timerMinutes}` : timerMinutes}</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerMinutes < 10) ? `0${timerMinutes}` : timerMinutes}</h1>
                                 <p className="hidden lg:block text-[#379392] text-sm lg:text-lg font-extrabold">Minutes</p>
                                 <p className="block lg:hidden text-[#379392] text-sm lg:text-lg font-extrabold">Mins</p>
                             </div>
                             <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
                             <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerSeconds < 10)  ? `0${timerSeconds}` : timerSeconds}</h1>
+                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerSeconds < 10) ? `0${timerSeconds}` : timerSeconds}</h1>
                                 <p className="hidden lg:block text-[#379392] text-sm lg:text-lg font-extrabold">Seconds</p>
                                 <p className="block lg:hidden text-[#379392] text-sm lg:text-lg font-extrabold">Secs</p>
                             </div>
