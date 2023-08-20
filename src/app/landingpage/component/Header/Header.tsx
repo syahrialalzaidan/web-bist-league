@@ -34,7 +34,11 @@ const Header: React.FC<HeaderProps> = (props) => {
       <div className={`h-20 ${css.outer}`}>
         <button>
           <Link href="/">
-            <img src="/images/logo.svg" alt="logo" className={css.logo} />
+            <img
+              src="./images/landingpage/logo.svg"
+              alt="logo"
+              className={css.logo}
+            />
           </Link>
         </button>
 
@@ -148,7 +152,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
           {/* Navbar Burger */}
           <img
-            src="/images/navbarToggle.svg"
+            src="/images/landingpage/navbarToggle.svg"
             alt="navbarToggle"
             className={css.navbarToggle}
             onClick={() => handleNavbarToggle()}
@@ -165,7 +169,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <li className={css.backButtonSection}>
             <button>
               <img
-                src="./images/back-arrow.svg"
+                src="./images/landingpage/back-arrow.svg"
                 alt=""
                 className={css.backButton}
                 onClick={() => handleBackButton()}

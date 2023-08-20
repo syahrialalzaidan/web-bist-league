@@ -24,7 +24,11 @@ const Footer = () => {
     <footer>
       <div className={css.outer}>
         <div className={css.logoSection}>
-          <img src="/images/logo.svg" alt="logo" className={css.logo} />
+          <img
+            src="/images/landingpage/logo.svg"
+            alt="logo"
+            className={css.logo}
+          />
         </div>
         <div className={css.contactPersonSection}>
           <h2 className={css.contactPersonHeading}>Contact Person</h2>
