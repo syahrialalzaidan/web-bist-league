@@ -74,7 +74,7 @@ export default function Home() {
               }`}
           >
             <img
-              src="images/landingPageBackground.svg"
+              src="images/landingpage/landingPageBackground.svg"
               alt="background"
               className={`w-full`}
             />
@@ -84,7 +84,7 @@ export default function Home() {
               }`}
           >
             <img
-              src="images/landingPageBackground2.svg"
+              src="images/landingpage/landingPageBackground2.svg"
               alt="background"
               className={`w-full`}
             />
@@ -94,7 +94,7 @@ export default function Home() {
               }`}
           >
             <img
-              src="images/landingPageBackground3.svg"
+              src="images/landingpage/landingPageBackground3.svg"
               alt="background"
               className={`w-full`}
             />
@@ -104,14 +104,14 @@ export default function Home() {
               }`}
           >
             <img
-              src="images/landingPageBackground4.svg"
+              src="images/landingpage/landingPageBackground4.svg"
               alt="background"
               className={`w-full`}
             />
           </div>
           <div className={`${css.backgroundImageMobile} w-full`}>
             <img
-              src="images/landingPageBackgroundMobile.svg"
+              src="images/landingpage/landingPageBackgroundMobile.svg"
               alt="background"
               className={`w-full`}
             />
@@ -171,7 +171,7 @@ export default function Home() {
             </div>
             <div className={`${css.timelineHorizontalDiv}`}>
               <img
-                src="./images/timelineHorizontal.svg"
+                src="./images/landingpage/timelineHorizontal.svg"
                 alt="timeline"
                 className={`${css.timelineHorizontal}`}
               />
@@ -179,7 +179,7 @@ export default function Home() {
             <div className={`${css.timelineVerticalDiv}`}>
               <h1 className={`${css.timelineHeader}`}>Timeline</h1>
               <img
-                src="./images/timelineVertical.svg"
+                src="./images/landingpage/timelineVertical.svg"
                 alt="timeline"
                 className={`${css.timelineVertical}`}
               />
@@ -400,19 +400,19 @@ export default function Home() {
 
 {
   /* <div className={`${css.background1}`}>
-            <img src="images/background1.svg" alt="background 1" />
+            <img src="images/landingpage/background1.svg" alt="background 1" />
             
           </div>
           <div className={`${css.background2}`}>
-            <img src="images/background2.svg" alt="background 2" />
+            <img src="images/landingpage/background2.svg" alt="background 2" />
           </div>
           <div className={`${css.background3}`}>
-            <img src="images/background3.svg" alt="background 3" />
+            <img src="images/landingpage/background3.svg" alt="background 3" />
           </div>
           <div className={`${css.background4}`}>
-            <img src="images/background4.svg" alt="background 4" />
+            <img src="images/landingpage/background4.svg" alt="background 4" />
           </div>
           <div className={`${css.background5}`}>
-            <img src="images/background5.svg" alt="background 5" />
+            <img src="images/landingpage/background5.svg" alt="background 5" />
           </div> */
 }
