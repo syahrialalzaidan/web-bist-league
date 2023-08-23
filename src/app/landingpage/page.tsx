@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState, useLayoutEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Header from "./component/Header/Header";
 import Footer from "./component/Footer/Footer";
 import css from "./landing.module.css";
 import Countdown from "./component/Countdown/Countdown";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -31,7 +33,7 @@ export default function Home() {
     };
   }, []);
 
-  const [activities, setActivities] = useState < string > ("competition"); // Added type annotation
+  const [activities, setActivities] = useState<string>("competetion"); // Added type annotation
 
   const changeActivities = (name: string) => {
     // Added type annotation
@@ -41,10 +43,11 @@ export default function Home() {
   // Ubah Registration close in -> Extended Registration
   const registrationClose = new Date("September 17, 2023 22:37:00 ").getTime();
 
-  const [componentReady, setcomponentReady] = useState < boolean > (false);
-  const [registrationStatus, setRegistrationStatus] = useState < String > (
+  const [componentReady, setcomponentReady] = useState<boolean>(false);
+  const [registrationStatus, setRegistrationStatus] = useState<String>(
     "Closed Registration in"
   );
+
   useLayoutEffect(() => {
     const now = new Date().getTime();
     if (now > registrationClose) {
@@ -53,16 +56,51 @@ export default function Home() {
     setcomponentReady(true);
   }, []);
 
-  const seacrhParams = useSearchParams();
-  const username = seacrhParams.get("username");
+  // Fetching Username
 
-  // STATE USERNAME DISINI
+  const [userData, setUserData] = useState<any>({});
+  const [username, setUsername] = useState<string | null>(null);
+  const cookies = new Cookies();
+  // const user_id = cookies.get("user_id"); // Read JWT token from cookies
+  const user_id = "e43aee0f-8f18-48c1-97fe-32049a99f40b";
+  const [usernameReady, setUsernameReady] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    if (user_id) {
+      // Call the API to fetch profile data
+      fetchProfileData();
+      setUsernameReady(true);
+    } else {
+      setUsername(null);
+      setUsernameReady(true);
+    }
+  }, []);
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await axios.get(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/profile/" + user_id
+      );
+      setUserData(response.data);
+      setUsername(response.data.data.username);
+    } catch (error) {
+      console.error("Error fetching profile data:", error);
+    }
+  };
+
+  // Route Button
+  const router = useRouter();
+
+  const registerHandler = () => {
+    router.push("/");
+  };
 
   return (
     <>
       <div
-        className={`flex-col justify-center content-center w-full ${componentReady ? "visible" : "invisible"
-          }`}
+        className={`flex-col justify-center content-center w-full ${
+          componentReady ? "visible" : "invisible"
+        }`}
       >
         {/* <Header page="Home" username={username} /> */}
         <Header page="Home" username={username} />
@@ -70,8 +108,9 @@ export default function Home() {
         <main className={css.main}>
           {/* Background Image */}
           <div
-            className={`${css.backgroundImage} w-full ${activities === "competition" ? "" : css.hideBG
-              }`}
+            className={`${css.backgroundImage} w-full ${
+              activities === "competetion" ? "" : css.hideBG
+            }`}
           >
             <img
               src="images/landingpage/landingPageBackground.svg"
@@ -80,8 +119,9 @@ export default function Home() {
             />
           </div>
           <div
-            className={`${css.backgroundImage} w-full ${activities === "bootcamp" ? "" : css.hideBG
-              }`}
+            className={`${css.backgroundImage} w-full ${
+              activities === "bootcamp" ? "" : css.hideBG
+            }`}
           >
             <img
               src="images/landingpage/landingPageBackground2.svg"
@@ -90,8 +130,9 @@ export default function Home() {
             />
           </div>
           <div
-            className={`${css.backgroundImage} w-full ${activities === "miniChallenge" ? "" : css.hideBG
-              }`}
+            className={`${css.backgroundImage} w-full ${
+              activities === "miniChallenge" ? "" : css.hideBG
+            }`}
           >
             <img
               src="images/landingpage/landingPageBackground3.svg"
@@ -100,8 +141,9 @@ export default function Home() {
             />
           </div>
           <div
-            className={`${css.backgroundImage} w-full ${activities === "webinar" ? "" : css.hideBG
-              }`}
+            className={`${css.backgroundImage} w-full ${
+              activities === "webinar" ? "" : css.hideBG
+            }`}
           >
             <img
               src="images/landingpage/landingPageBackground4.svg"
@@ -118,8 +160,10 @@ export default function Home() {
           </div>
 
           {/* Main Section */}
-          <section className={css.body}>
-            <h1 className={`${css.bistLeagueHeader}`}>BIST LEAGUE 6.0</h1>
+          <section className={`${css.body} font-extrabold text-white`}>
+            <h1 className={`${css.bistLeagueHeader} font-monument `}>
+              BIST LEAGUE 6.0
+            </h1>
             <p className={`${css.bistLeagueSubHeader}`}>
               Leveraging Technological Opportunities to Achieve <br />
               Sustainable Business Growth
@@ -137,7 +181,12 @@ export default function Home() {
             <Countdown />
             <p className={`${css.eventDate}`}>17 September 2023</p>
             <div className={`${css.registerButtonDiv}`}>
-              <button className={`${css.registerButton}`}>Register</button>
+              <button
+                className={`${css.registerButton}`}
+                onClick={registerHandler}
+              >
+                Register
+              </button>
             </div>
             <div className={`${css.aboutBistLeagueSection}`}>
               <h1 className={`${css.aboutBistLeagueHeading}`}>
@@ -195,20 +244,29 @@ export default function Home() {
                 {/* Competition Component Desktop */}
                 <div className={`${css.CompetitionDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${activities == "competition" ? "" : css.hide
-                      }`}
+                    className={`${css.activitiesDate} 
+                    
+                    ${
+                      activities == "competetion"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    } `}
                   >
                     14 Agustus - 19 November
                   </p>
                   <button
                     className={`${css.activitiesTitle}`}
-                    onClick={() => changeActivities("competition")}
+                    onMouseOver={() => changeActivities("competetion")}
                   >
                     Competition
                   </button>
                   <p
-                    className={`${css.activitiesText} ${activities == "competition" ? "" : css.hide
-                      }`}
+                    className={`${css.activitiesText}                     
+                    ${
+                      activities == "competetion"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }`}
                   >
                     Business IT Case Competition is one of the main events of
                     BIST League 6.0 which is a competition to hone the solve a
@@ -218,8 +276,13 @@ export default function Home() {
                     undergraduate/D3 students.
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${activities == "competition" ? "" : css.hide
-                      } bg-[#276766]`}
+                    className={`${css.activitiesButton}                     
+                    
+                    ${
+                      activities == "competetion"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    } bg-[#276766]`}
                   >
                     More About Competition
                   </button>
@@ -228,26 +291,39 @@ export default function Home() {
                 {/* Bootcamp Component Desktop */}
                 <div className={`${css.businessCaseDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${activities == "bootcamp" ? "" : css.hide
-                      } mt-8`}
+                    className={`${css.activitiesDate} 
+                    ${
+                      activities == "bootcamp"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    } mt-8`}
                   >
                     Coming Soon
                   </p>
                   <button
                     className={`${css.activitiesTitle}`}
-                    onClick={() => changeActivities("bootcamp")}
+                    onMouseOver={() => changeActivities("bootcamp")}
                   >
                     Business Case Bootcamp
                   </button>
                   <p
-                    className={`${css.activitiesText} ${activities == "bootcamp" ? "" : css.hide
-                      }`}
+                    className={`${css.activitiesText}
+                    ${
+                      activities == "bootcamp"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }`}
                   >
                     (description Here)
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${activities == "bootcamp" ? "" : css.hide
-                      } bg-[#9E1B1B]`}
+                    className={`${css.activitiesButton}
+                    ${
+                      activities == "bootcamp"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }
+                    bg-[#9E1B1B]`}
                   >
                     More About Bootcamp
                   </button>
@@ -256,28 +332,43 @@ export default function Home() {
                 {/* Mini Challenge Component Desktop */}
                 <div className={`${css.miniChallengeDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${activities == "miniChallenge" ? "" : css.hide
-                      } mt-8`}
+                    className={`${css.activitiesDate} 
+                    ${
+                      activities == "miniChallenge"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }
+                    mt-8`}
                   >
                     Coming Soon
                   </p>
                   <button
                     className={`${css.activitiesTitle}`}
-                    onClick={() => changeActivities("miniChallenge")}
+                    onMouseOver={() => changeActivities("miniChallenge")}
                   >
                     Mini Challenge
                   </button>
                   <p
-                    className={`${css.activitiesText} ${activities == "miniChallenge" ? "" : css.hide
-                      }`}
+                    className={`${css.activitiesText}
+                    ${
+                      activities == "miniChallenge"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }
+                    `}
                   >
                     A video challenge that can be joined by participant and
                     public to increase awareness and insight regarding the
                     topics raised by BIST League 6.0
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${activities == "miniChallenge" ? "" : css.hide
-                      } bg-[#463461]`}
+                    className={`${css.activitiesButton}
+                    ${
+                      activities == "miniChallenge"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }
+                    bg-[#463461]`}
                   >
                     More About Mini Challenge
                   </button>
@@ -286,28 +377,42 @@ export default function Home() {
                 {/* Webinar Component Desktop */}
                 <div className={`${css.webinarDescription}`}>
                   <p
-                    className={`${css.activitiesDate} ${activities == "webinar" ? "" : css.hide
-                      } mt-8`}
+                    className={`${css.activitiesDate}
+                    ${
+                      activities == "webinar"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }
+                    mt-8`}
                   >
                     Coming Soon
                   </p>
                   <button
                     className={`${css.activitiesTitle}`}
-                    onClick={() => changeActivities("webinar")}
+                    onMouseOver={() => changeActivities("webinar")}
                   >
                     Webinar
                   </button>
                   <p
-                    className={`${css.activitiesText} ${activities == "webinar" ? "" : css.hide
-                      }`}
+                    className={`${css.activitiesText}
+                    ${
+                      activities == "webinar"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }`}
                   >
                     A sharing sessions with incredible speakers from the
                     Technology industry with topics aligning with BIST League
                     6.0 theme.
                   </p>
                   <button
-                    className={`${css.activitiesButton} ${activities == "webinar" ? "" : css.hide
-                      } bg-[#AE7120]`}
+                    className={`${css.activitiesButton}
+                    ${
+                      activities == "webinar"
+                        ? css.fadeInAnimation
+                        : css.fadeOutAnimation
+                    }
+                     bg-[#AE7120]`}
                   >
                     More About Webinar
                   </button>

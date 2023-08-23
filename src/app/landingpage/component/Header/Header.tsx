@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import css from "./Header.module.css";
 import Link from "next/link";
@@ -28,6 +29,34 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   const handleDropdownLiToggle = () => {
     setDropdownLiToggleClicked(!dropdownLiToggleClicked);
+  };
+
+  // Routing Handler
+
+  const router = useRouter();
+
+  const homeHandler = () => {
+    router.push("/landingpage");
+  };
+
+  const competetionHandler = () => {
+    router.push("/");
+  };
+
+  const bootcampHandler = () => {
+    router.push("/");
+  };
+
+  const webinarHandler = () => {
+    router.push("/");
+  };
+
+  const miniChallengeHandler = () => {
+    router.push("/");
+  };
+
+  const registerUserHandler = () => {
+    router.push("/");
   };
 
   return (
