@@ -1,9 +1,47 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import axios from "axios";
+import Cookies from 'universal-cookie';
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const cookies = new Cookies();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const data = {
+      username,
+      password,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/login",
+        data
+      );
+
+      if (response.status === 200) {
+        // Successful login logic
+        console.log("Login successful!");
+        const { jwt_token } = response.data.data;
+
+        cookies.set('jwt_token', jwt_token, { path: '/' });
+      } else {
+        // Handle login error
+        console.log("Login failed.");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
+
   return (
     <div className="flex flex-start lg:justify-start gap-48">
-      <div className="py-20 px-20 lg:py-6">
+      <div className="py-16 px-14 h-screen lg:px-20 lg:py-6">
         <h1 className="font-extrabold text-base lg:text-2xl lg:mt-12">Login</h1>
         <h1 className="font-extrabold text-base mt-4 mb-4 lg:text-3xl">
           Hello, Welcome Back!
@@ -15,32 +53,41 @@ export default function Login() {
           alt="Login Mobile Thumbnail"
           className="lg:hidden"
         />
-
         <div className="mt-5 lg:mt-16 text-sm lg:text-xl">
           <h1 className="font-bold">Username</h1>
           <input
             className="border-2 border-gray-300 rounded-lg w-full py-2 px-3 mt-2 mb-2 max-w-xl"
             type="text"
-            placeholder="Please enter your username "
+            placeholder="Please enter your username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
           />
         </div>
-
         <div className="mt-5 lg:mt-9 text-sm lg:text-xl">
           <h1 className="font-bold">Password</h1>
           <input
             className="border-2 border-gray-300 rounded-lg w-full py-2 px-3 mt-2 mb-2 max-w-xl"
-            type="text"
+            type="password"
             placeholder="Please enter your password "
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </div>
-
         <div className="flex justify-center max-w-xl">
-          <button className="px-9 lg:px-28 py-2 lg:py-4 bg-[#F8A22D] text-white rounded-xl text-base lg:text-xl font-extrabold mt-5 lg:mt-14">
+          <button
+            className="px-9 lg:px-28 py-2 lg:py-4 bg-[#F8A22D] text-white rounded-xl text-base lg:text-xl font-extrabold mt-5 lg:mt-14"
+            onClick={handleSubmit}
+          >
             Login
           </button>
         </div>
         <p className="text-center hidden lg:block">
-          Do not have the account yet? <span className="underline"> Register</span>{" "}
+          Do not have the account yet?{" "}
+          <span className="underline"> Register</span>{" "}
         </p>
       </div>
 

@@ -1,13 +1,16 @@
 "use client";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useState } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 interface FormattedData {
-  name: string;
+  team_name: string;
   emails: string[];
 }
 
 export default function Createteam() {
+  const cookie = new Cookies();
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [emails, setEmails] = useState(["", "", ""]);
@@ -24,14 +27,37 @@ export default function Createteam() {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = () => {
+  const jwtToken = cookie.get("jwt_token");
+  console.log(jwtToken)
+
+  const handleSubmit = async () => {
     const formattedData: FormattedData = {
-      name,
+      team_name: name,
       emails: emails.filter((email) => email !== ""),
     };
 
-    // Here you can send the formattedData to your API
-    console.log(formattedData);
+    try {
+      const response = await axios.post(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/team",
+        formattedData,
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+          },
+        }
+      );
+
+      console.log(response.data); // Display the API response
+
+      setSubmitted(true); // Assuming you want to set submitted state to true upon success
+    } catch (error) {
+      console.error(error);
+      // Handle error here and provide feedback to the user
+    }
   };
 
   return (

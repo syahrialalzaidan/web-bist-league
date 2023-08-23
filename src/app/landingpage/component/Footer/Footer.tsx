@@ -38,7 +38,7 @@ const Footer = () => {
             <p>akmaljauharsidqi@gmail.com</p>
             <p>085156514184</p>
           </div>
-          <div className={css.competetionContact}>
+          <div className={css.competitionContact}>
             <p className={css.headOfCompetitionDivision}>
               Head of Competition Division
             </p>

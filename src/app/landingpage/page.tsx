@@ -241,8 +241,8 @@ export default function Home() {
             <div className={`${css.activitiesSectionForDesktop}`}>
               {/* Left Side Activities */}
               <div className={`${css.activitiesLeftSide}`}>
-                {/* Competetion Component Desktop */}
-                <div className={`${css.CompetetionDescription}`}>
+                {/* Competition Component Desktop */}
+                <div className={`${css.CompetitionDescription}`}>
                   <p
                     className={`${css.activitiesDate} 
                     
@@ -422,7 +422,7 @@ export default function Home() {
               {/* Right Side Activites */}
               <div className={`${css.activitiesRightSide}`}>
                 <div className={`${css.activitiesImageDiv}`}>
-                  <img src="" alt="" className={`${css.competetionImage}`} />
+                  <img src="" alt="" className={`${css.competitionImage}`} />
                   <img src="" alt="" className={`${css.bootcampImage}`} />
                   <img src="" alt="" className={`${css.miniChallenge}`} />
                   <img src="" alt="" className={`${css.webinarImage}`} />
@@ -432,9 +432,9 @@ export default function Home() {
 
             {/* Activites for Mobile */}
             <div className={`${css.activitiesSectionForMobile}`}>
-              {/* Competetion Component Mobile */}
-              <div className={`${css.competetionImageDiv}`}>
-                <img src="" alt="" className={`${css.competetionImage}`} />
+              {/* Competition Component Mobile */}
+              <div className={`${css.competitionImageDiv}`}>
+                <img src="" alt="" className={`${css.competitionImage}`} />
               </div>
               <p className={`${css.activitiesDate}`}>
                 14 Agustus - 19 November

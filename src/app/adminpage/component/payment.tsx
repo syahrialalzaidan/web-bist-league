@@ -38,7 +38,7 @@ export default function PaymentVerification() {
       <h1 className="font-bold text-[#379392] text-5xl mt-14 mb-10">
         Data Pembayaran Tim
       </h1>
-      <div className="w-full h-auto">
+      <div className="w-full h-auto overflow-auto">
         <table className="w-full">
           <thead className="bg-[#379392] text-white">
             <tr>

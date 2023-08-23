@@ -6,7 +6,7 @@ export default function RegisterPage() {
     <>
       <div className="h-screen aspect-[498/540] w-auto hidden xl:block fixed top-0 left-0">
         <Image
-          src="/images/register/left-register.svg"
+          src="/images/register/register-web.svg"
           fill={true}
           alt="BIST League 6.0"
           className="object-cover w-full h-full"

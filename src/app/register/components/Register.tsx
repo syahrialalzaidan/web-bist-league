@@ -1,6 +1,48 @@
+"use client";
 import Image from "next/image";
+import { useState, useContext } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const data = {
+      email,
+      username,
+      password,
+      re_password: confirmPassword,
+      full_name: fullname,
+    };
+
+    try {
+      console.log;
+      const response = await axios.post(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/register",
+        data
+      );
+
+      if (response.status === 200) {
+        // Successful login logic
+        // console.log("Register successful!");
+        router.push("/login");
+      } else {
+        // Handle login error
+        console.log("Register failed.");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col lg:w-1/2 px-4">
       <div className="flex flex-row items-center mb-10 justify-between">
@@ -11,7 +53,12 @@ export default function Register() {
           </h1>
           <p className="font-semibold hidden lg:block">
             Already have a team account?{" "}
-            <span className="underline">Login</span>
+            <span
+              className="underline cursor-pointer"
+              onClick={() => router.push("/login")}
+            >
+              Login
+            </span>
           </p>
           <h2 className="text-base font-bold lg:hidden">
             Hello, Welcome to BIST League 6.0!
@@ -34,26 +81,47 @@ export default function Register() {
             type="text"
             placeholder="Please enter your fullname"
             className="border-2 border-gray-300 rounded-lg w-full lg:w-80 px-3 py-2 lg:px-6 lg:py-4"
+            onChange={(e) => {
+              setFullname(e.target.value);
+            }}
           />
         </div>
 
         <div className="flex flex-col gap-2">
+          <h3 className="font-bold">Username</h3>
+          <input
+            type="text"
+            placeholder="Please enter your username"
+            className="border-2 border-gray-300 rounded-lg w-full lg:w-80 px-3 py-2 lg:px-6 lg:py-4 lg:max-w-xs"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 mt-2 lg:mt-6 lg:hidden">
           <h3 className="font-bold">Email</h3>
           <input
             type="text"
             placeholder="Please enter your email"
             className="border-2 border-gray-300 rounded-lg w-full lg:w-80 px-3 py-2 lg:px-6 lg:py-4 lg:max-w-xs"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-3 mt-2 lg:mt-6 lg:flex-row lg:justify-between">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 mt-2 lg:mt-0">
           <h3 className="font-bold">Password</h3>
           <input
             type="password"
             placeholder="Please enter your password"
             className="border-2 border-gray-300 rounded-lg w-full lg:w-80 px-3 py-2 lg:px-6 lg:py-4 lg:max-w-xs"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </div>
 
@@ -63,8 +131,23 @@ export default function Register() {
             type="password"
             placeholder="Please re-enter your password"
             className="border-2 border-gray-300 rounded-lg w-full lg:w-80 px-3 py-2 lg:px-6 lg:py-4 lg:max-w-xs"
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
           />
         </div>
+      </div>
+
+      <div className="lg:flex flex-col gap-2 mt-2 lg:mt-6 hidden">
+        <h3 className="font-bold">Email</h3>
+        <input
+          type="text"
+          placeholder="Please enter your email"
+          className="border-2 border-gray-300 rounded-lg w-full lg:w-80 px-3 py-2 lg:px-6 lg:py-4 lg:max-w-xs"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
       </div>
 
       <div className="flex-row hidden lg:flex items-center justify-center lg:gap-2 w-[600px] mt-3">
@@ -76,7 +159,10 @@ export default function Register() {
       </div>
 
       <div className="mt-7 flex justify-center">
-        <div className="cursor-pointer px-6 py-2 bg-[#F8A22D] rounded-xl lg:rounded-lg w-[119px] lg:w-[150px] max-w-sm">
+        <div
+          className="cursor-pointer px-6 py-2 bg-[#F8A22D] rounded-xl lg:rounded-lg w-[119px] lg:w-[150px] max-w-sm"
+          onClick={handleSubmit}
+        >
           <h1 className="text-white text-center font-bold">Register</h1>
         </div>
       </div>
