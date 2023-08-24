@@ -28,7 +28,6 @@ export default function Createteam() {
   };
 
   const jwtToken = cookie.get("jwt_token");
-  console.log(jwtToken)
 
   const handleSubmit = async () => {
     const formattedData: FormattedData = {
@@ -43,15 +42,13 @@ export default function Createteam() {
         {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers":
-              "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+            "Content-Type": "application/json",
           },
         }
       );
 
-      console.log(response.data); // Display the API response
+      const { jwt_token } = response.data.data;
+      cookie.set("jwt_token", jwt_token, { path: "/" });
 
       setSubmitted(true); // Assuming you want to set submitted state to true upon success
     } catch (error) {

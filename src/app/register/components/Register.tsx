@@ -24,7 +24,6 @@ export default function Register() {
     };
 
     try {
-      console.log;
       const response = await axios.post(
         "https://be-staging-b6utdt2kwa-et.a.run.app/register",
         data

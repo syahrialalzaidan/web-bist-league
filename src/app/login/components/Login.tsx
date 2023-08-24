@@ -25,8 +25,8 @@ export default function Login() {
       );
 
       if (response.status === 200) {
-        // Successful login logic
-        console.log("Login successful!");
+        // // Successful login logic
+        // console.log("Login successful!");
         const { jwt_token } = response.data.data;
 
         cookies.set('jwt_token', jwt_token, { path: '/' });
