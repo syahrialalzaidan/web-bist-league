@@ -1,8 +1,10 @@
 "use client";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface FormattedData {
   team_name: string;
@@ -14,6 +16,11 @@ export default function Createteam() {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [emails, setEmails] = useState(["", "", ""]);
+  const router = useRouter();
+  const jwtToken = cookie.get("jwt_token");
+  const [teamName, setTeamName] = useState("");
+
+  
 
   const handleEmailChange = (index: number, value: string) => {
     const updatedEmails = [...emails];
@@ -26,8 +33,6 @@ export default function Createteam() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-
-  const jwtToken = cookie.get("jwt_token");
 
   const handleSubmit = async () => {
     const formattedData: FormattedData = {
@@ -48,11 +53,19 @@ export default function Createteam() {
       );
 
       const { jwt_token } = response.data.data;
+      const { team_redeem_token } = response.data.data;
+      cookie.remove("jwt_token", { path: "/" })
       cookie.set("jwt_token", jwt_token, { path: "/" });
+      cookie.set("team_redeem_token", team_redeem_token, { path: "/" });
 
-      setSubmitted(true); // Assuming you want to set submitted state to true upon success
+      router.push("/createteam/created");
+      // console.log(response.data.data);
+
+      // router.push("/createteam/created");
+      setSubmitted(true);
     } catch (error) {
       console.error(error);
+      toast.error("Already Joined a Team!");
       // Handle error here and provide feedback to the user
     }
   };
@@ -60,7 +73,10 @@ export default function Createteam() {
   return (
     <div className="px-5 py-10">
       <div className="flex text-[#F3EEE7] gap-3 items-center lg:hidden">
-        <AiOutlineArrowLeft className="text-2xl absolute lg:relative" />
+        <AiOutlineArrowLeft
+          className="text-2xl absolute lg:relative cursor-pointer"
+          onClick={() => router.push("/compregistration")}
+        />
         <h1 className="font-extrabold text-2xl lg:hidden w-screen text-center">
           Create a Team
         </h1>
@@ -76,7 +92,7 @@ export default function Createteam() {
       <div className="flex flex-col">
         <div className="bg-white px-4 py-6 lg:p-10 rounded-lg self-center mt-8 lg:mt-1 w-full lg:w-[711px] ">
           <div className="flex flex-col gap-2">
-            <label className="font-bold">Team Name</label>
+            <label className="font-bold">{teamName}</label>
             <input
               type="text"
               placeholder="Input Text Here"
