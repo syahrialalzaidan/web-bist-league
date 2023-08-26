@@ -16,7 +16,9 @@ export default async function SubmissionPage() {
       day: "numeric",
       hour: "numeric",
       minute: "numeric",
+      timeZone: "UTC", // Specify the time zone as UTC
     };
+
     const date = new Date(dateString);
     return date.toLocaleString("en-US", options);
   };
@@ -60,9 +62,10 @@ export default async function SubmissionPage() {
   const teamData = await getTeam();
   const submissionData = await getLastSubmission();
 
-  // if(!teamData.is_active) {
-  //   redirect('/competition')
-  // }
+  if(!teamData.is_active) {
+    redirect('/competition')
+  }
+  
   return (
     <div className="bg-[url('/images/compregister/bg-comp-mobile.svg')] lg:bg-[url('/images/compregister/bg-comp-web.svg')] bg-cover min-h-screen flex flex-col">
       <div className="bg-[url('/images/compregister/right.svg')] lg:bg-[url('/images/compregister/right-web.svg')] bg-no-repeat bg-right-bottom lg:bg-right-top flex-1">

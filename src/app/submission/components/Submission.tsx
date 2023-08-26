@@ -6,6 +6,7 @@ import axios from "axios";
 import Image from "next/image";
 
 import BulatKiri from "@images/submission/left.svg";
+import Link from "next/link";
 
 interface TeamMember {
     user_id: string;
@@ -102,15 +103,17 @@ export default function Submission({ teamData,
     }
     return (
         <div className="px-5 py-7">
-            <div className="flex text-[#F3EEE7] gap-3 items-center mt-8 lg:mt-0">
-                <AiOutlineArrowLeft className="text-2xl lg:text-base" />
-                <h1 className="w-full self-center font-extrabold text-2xl lg:hidden">Submission</h1>
-                <h1 className="font-bold text-base hidden lg:block">Back to Competition</h1>
+            <div className="flex text-[#F3EEE7] items-center justify-between mt-8 lg:mt-0">
+                <div className="flex items-center gap-3">
+                    <AiOutlineArrowLeft className="text-2xl lg:text-base" />
+                    <h1 className="hidden lg:inline font-bold text-base">Back to Competition</h1>
+                </div>
+                <h1 className="w-full self-center font-extrabold text-2xl text-center lg:hidden">Submission</h1>
             </div>
-
+            
             <h1 className="text-center text-white text-5xl font-bold mb-16 mt-8 hidden lg:block">Submission</h1>
 
-            <div className="flex items-center justify-center my-8 ">
+            <div className="flex items-center justify-center my-8">
                 <div className="bg-white py-6 px-5 rounded-lg max-w-[540px] z-10">
                     {!submissionData ? (
                         <h1 className="text-center text-sm lg:text-xl py-16 px-3 lg:px-10 lg:py-0 lg:pt-16 lg:pb-28 ">
@@ -133,9 +136,9 @@ export default function Submission({ teamData,
 
                     <form onSubmit={submitFile}>
                         <div className="border border-[#BDBDBD] mb-4 lg:mx-16 p-3.5 rounded text-sm font-medium flex items-center justify-between">
-                            <span className={!submissionData ? "text-[#BDBDBD]" : "text-[#413687]"}>
+                            <Link href={submissionData.submission_url} className={!submissionData ? "text-[#BDBDBD]" : "text-[#413687]"}>
                                 {submissionData ? submissionData.submission_filename : "Empty"}
-                            </span>
+                            </Link>
                             <AiFillCheckCircle className={!submissionData ? "hidden" : "inline-block ml-2 text-[#27ae60] w-6 h-6"} />
                         </div>
                         <div className="flex flex-row items-center border lg:mx-16 mb-6 border-[#BDBDBD] stroke-1 rounded justify-between pr-1 pl-2.5 py-1.5">
@@ -163,7 +166,7 @@ export default function Submission({ teamData,
                 <Image
                     src={BulatKiri}
                     alt="Hero Round"
-                    className="scale-75 lg:scale-100 absolute bottom-14 -left-20 lg:botton-0 lg:left-0 z-0"
+                    className="scale-75 lg:scale-100 absolute bottom-14 -left-20 lg:bottom-0 lg:left-0 z-0"
                 />
             </div>
         </div>
