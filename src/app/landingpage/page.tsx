@@ -58,36 +58,6 @@ export default function Home() {
 
   // Fetching Username
 
-  const [userData, setUserData] = useState<any>({});
-  const [username, setUsername] = useState<string | null>(null);
-  const cookies = new Cookies();
-  // const user_id = cookies.get("user_id"); // Read JWT token from cookies
-  const user_id = "e43aee0f-8f18-48c1-97fe-32049a99f40b";
-  const [usernameReady, setUsernameReady] = useState<boolean>(false);
-
-  useLayoutEffect(() => {
-    if (user_id) {
-      // Call the API to fetch profile data
-      fetchProfileData();
-      setUsernameReady(true);
-    } else {
-      setUsername(null);
-      setUsernameReady(true);
-    }
-  }, []);
-
-  const fetchProfileData = async () => {
-    try {
-      const response = await axios.get(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/profile/" + user_id
-      );
-      setUserData(response.data);
-      setUsername(response.data.data.username);
-    } catch (error) {
-      console.error("Error fetching profile data:", error);
-    }
-  };
-
   // Route Button
   const router = useRouter();
 
@@ -103,7 +73,7 @@ export default function Home() {
         }`}
       >
         {/* <Header page="Home" username={username} /> */}
-        <Header page="Home" username={username} />
+        <Header page="Home" />
         <div className={`h-20 bg-white`}></div>
         <main className={css.main}>
           {/* Background Image */}
