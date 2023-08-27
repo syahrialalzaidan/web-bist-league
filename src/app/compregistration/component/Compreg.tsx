@@ -9,7 +9,7 @@ export default function Compreg() {
   return (
     <div className="px-5 py-10">
       <div className="flex text-[#F3EEE7] gap-3 items-center">
-        <AiOutlineArrowLeft className="text-2xl absolute lg:relative cursor-pointer" onClick={router.push("/competition")} />
+        <AiOutlineArrowLeft className="text-2xl absolute lg:relative cursor-pointer" onClick={()=>router.push("/competition")} />
         <h1 className="font-extrabold text-2xl lg:hidden text-center w-screen">Register Your Team</h1>
         <h1 className="font-bold text-base hidden lg:block">Back to Competition</h1>
       </div>

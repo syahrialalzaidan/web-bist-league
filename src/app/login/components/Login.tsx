@@ -87,7 +87,7 @@ export default function Login() {
         </div>
         <p className="text-center hidden lg:block">
           Do not have the account yet?{" "}
-          <span className="underline"> Register</span>{" "}
+          <span className="underline cursor-pointer"> Register</span>{" "}
         </p>
       </div>
 

@@ -156,9 +156,7 @@ export default function Createteam() {
           </div>
           <p className="mt-6">Payment to one of the options:</p>
           <br />
-          <p>1. Tim 122212122</p>
-          <p>2. Abam 12221222</p>
-          <p>3. Sul 12221222</p>
+          <p>1. 1420018978022 Bank Mandiri an Rania Sasi Kirana</p>
 
           <div
             className="bg-[#F8A22D] px-12 py-3 rounded-lg cursor-pointer mt-6"

@@ -153,7 +153,7 @@ export default function Register() {
       </div>
 
       <div className="flex-row hidden lg:flex items-center justify-center lg:gap-2 w-[600px] mt-3">
-        <input type="checkbox" className="w-10 h-5 rounded-md" />
+        <input type="checkbox" className="w-10 h-5 rounded-md cursor-pointer" />
         <p>
           I have read and aggree to the Terms, Conditions, & Policy Agreements
           from BIST League 6.0

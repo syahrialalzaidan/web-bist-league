@@ -89,7 +89,7 @@ export default function Token() {
 
       {!joined ? (
         <div className="flex justify-center items-center">
-          <div className="flex flex-col bg-white px-10 lg:py-14 py-7 gap-4 lg:gap-12 rounded-lg mt-8 max-w-sm self-center">
+          <div className="flex flex-col bg-white px-10 lg:py-14 py-7 gap-4 lg:gap-12 rounded-lg mt-8 w-auto max-w-sm self-center">
             <h1 className="text-center text-lg lg:text-xl">
               Input token code here (ask your team leader)
             </h1>
