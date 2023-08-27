@@ -1,13 +1,14 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React, { useState, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import css from "./Header.module.css";
 import Link from "next/link";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 interface HeaderProps {
   page: string;
-  username: string | null;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -57,6 +58,34 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   const registerUserHandler = () => {
     router.push("/");
+  };
+
+  const [username, setUsername] = useState<string | null>(null);
+  const cookies = new Cookies();
+  // const user_id = cookies.get("user_id"); // Read JWT token from cookies
+  const user_id = "e43aee0f-8f18-48c1-97fe-32049a99f40b";
+  const [usernameReady, setUsernameReady] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    if (user_id) {
+      // Call the API to fetch profile data
+      fetchProfileData();
+      setUsernameReady(true);
+    } else {
+      setUsername(null);
+      setUsernameReady(true);
+    }
+  }, []);
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await axios.get(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/profile/" + user_id
+      );
+      setUsername(response.data.data.username);
+    } catch (error) {
+      console.error("Error fetching profile data:", error);
+    }
   };
 
   return (
@@ -114,7 +143,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <Link href="/minichallenge">Mini Challenge</Link>
           </button>
 
-          {props.username === null ? (
+          {username === null ? (
             <button className={`${css.navbarItem}`}>
               <Link href="#">Register</Link>
             </button>
@@ -122,7 +151,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <div className={css.relative}>
               <div className={css.topleftusername}>
                 <p className={`${css.hiUsername}`}>
-                  Hi, <span>{props.username}!</span>
+                  Hi, <span>{username}!</span>
                 </p>
                 <div className={css.personAndDropdown}>
                   <button onClick={() => handleDropdownToggle()}>
@@ -234,7 +263,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <Link href="/minichallenge">Mini Challenge</Link>
           </li>
 
-          {props.username === null ? (
+          {username === null ? (
             <li className="flex justify-center">
               <button className={`${css.registerButton}`}>
                 <Link href="#">Register</Link>
@@ -243,7 +272,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           ) : (
             <li>
               <h1 className="inline-block">
-                Hi, <span>{props.username}!</span>
+                Hi, <span>{username}!</span>
               </h1>
               <button onClick={() => handleDropdownLiToggle()}>
                 <svg
