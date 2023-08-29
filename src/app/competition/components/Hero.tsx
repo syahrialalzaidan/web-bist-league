@@ -46,15 +46,28 @@ interface TeamData {
     members: TeamMember[];
 }
 
-interface HeroProps {
-    teamData: TeamData;
+interface ProfileData {
+    uid: string;
+    team_id: string;
+    email: string;
+    full_name: string;
+    age: 0,
+    username: string;
+    address: string;
+    phone_number: string;
+    institution: string;
+    major: string;
+    entry_year: number;
+    linkedin_url: string;
+    line_id: string;
 }
 
-export default function Hero({ teamData }: HeroProps) {
-    const [login, setLogin] = useState(true);
+interface HeroProps {
+    teamData: TeamData;
+    profileData: ProfileData
+}
 
-    console.log(teamData)
-
+export default function Hero({ teamData, profileData }: HeroProps) {
     const [timerDays, setTimerDays] = useState<number>(0);
     const [timerHours, setTimerHours] = useState<number>(0);
     const [timerMinutes, setTimerMinutes] = useState<number>(0);
@@ -98,7 +111,7 @@ export default function Hero({ teamData }: HeroProps) {
     }, []);
 
     return (
-        <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative h-[568px] lg:h-[644px] bg-cover overflow-hidden mt-20">
+        <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative bg-cover overflow-hidden mt-20 py-24">
             <Image
                 src={BataMidLeft}
                 alt="Bata Mid Left"
@@ -134,12 +147,12 @@ export default function Hero({ teamData }: HeroProps) {
                 <Image
                     src={HeroRound}
                     alt="Hero Round"
-                    className="scale-125 w-[248px] h-[329px] lg:w-[400px] lg:h-[530px] overflow-hidden absolute -top-2.5 left-[-90px] lg:top-20 lg:left-12 z-0"
+                    className="scale-125 w-[248px] h-[329px] lg:w-[400px] lg:h-[530px] overflow-hidden absolute -top-3 left-[-90px] lg:top-20 lg:left-12 z-0"
                 />
-                <p className="mt-24 text-[#F3EEE7] lg:leading-snug font-monument text-3xl lg:text-[64px] font-MonumentExtended font-extrabold drop-shadow-[-4px_4px_0_rgba(16,109,108,1)]">
+                <p className="text-[#F3EEE7] lg:leading-snug font-monument text-3xl lg:text-[64px] font-MonumentExtended font-extrabold drop-shadow-[-4px_4px_0_rgba(16,109,108,1)]">
                     BUSINESS IT CASE COMPETITION
                 </p>
-                {login && (
+                {profileData && (
                     <>
                         <p className="mt-6 mb-3.5 text-2xl text-white font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
                             Registration closes in:
@@ -170,11 +183,13 @@ export default function Hero({ teamData }: HeroProps) {
                     </>
                 )}
 
-                <div className="flex justify-center my-7 lg:my-10 z-10">
-                    <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold">
-                        Register Team
-                    </button>
-                </div>
+                {teamData && (
+                    <div className="flex justify-center mt-7 lg:mt-10 z-10">
+                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold">
+                            Register Team
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
