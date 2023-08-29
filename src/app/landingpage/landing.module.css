@@ -13,6 +13,10 @@
   z-index: -1;
 }
 
+.backgroundImage.fadeOutAnimation {
+  animation: fade-out 0.25s ease forwards; /* Animation name, duration, easing function, and fill mode */
+}
+
 .backgroundImageMobile {
   display: none;
 }
@@ -168,6 +172,30 @@
   width: 75%;
 }
 
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    display: none !important;
+  }
+  to {
+    opacity: 1;
+    display: block;
+  }
+}
+
 .show {
   display: block;
 }
@@ -178,13 +206,14 @@
 }
 
 .fadeOut {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  opacity: 0 !important;
+  transition: opacity 1s ease-in-out;
 }
 
 .hideBG {
   display: none;
   transition: display 1s;
+  transition-delay: 0.5s;
 }
 
 .hide {
@@ -192,7 +221,10 @@
   margin: 0 !important;
   padding: 0 !important;
   visibility: hidden;
-  transition: all 0s ease !important;
+  opacity: 0;
+  display: none !important;
+  transition: all 0.1s ease !important;
+  transition-delay: 1s;
 }
 
 .activitiesHeader {
@@ -222,19 +254,46 @@
   font-weight: bold;
   /* font-size: 1.025rem; */
   font-size: 1.28329;
-  transition: all 0.5s ease-out;
+  opacity: 1;
+  transition: all 0.5s fadeIn;
+}
+
+.activitiesDate.fadeOutAnimation {
+  animation: fade-out 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
+}
+
+.activitiesDate.fadeInAnimation {
+  animation: fade-in 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
 }
 
 .activitiesTitle {
   font-weight: bold;
   font-size: 2.5rem;
   font-size: 3.13vw;
+  opacity: 1;
+}
+
+.activitiesTitle.fadeOutAnimation {
+  animation: fade-out 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
+}
+
+.activitiesTitle.fadeInAnimation {
+  animation: fade-in 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
 }
 
 .activitiesText {
   /* font-size: 1rem; */
   font-size: 1.252vw;
-  transition: all 0.5s ease-out;
+  opacity: 1;
+  transition: all 0.5s fadeIn;
+}
+
+.activitiesText.fadeOutAnimation {
+  animation: fade-out 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
+}
+
+.activitiesText.fadeInAnimation {
+  animation: fade-in 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
 }
 
 .activitiesButton {
@@ -250,7 +309,16 @@
   font-size: 1.5024vw;
   /* margin-bottom: 1rem; */
   margin-bottom: 1.252vw;
-  transition: all 0.5s ease-out;
+  opacity: 1;
+  transition: all 0.5s fadeIn;
+}
+
+.activitiesButton.fadeOutAnimation {
+  animation: fade-out 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
+}
+
+.activitiesButton.fadeInAnimation {
+  animation: fade-in 0.5s ease forwards; /* Animation name, duration, easing function, and fill mode */
 }
 
 .businessCaseDescription {

@@ -1,12 +1,14 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React, { useState, useLayoutEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import css from "./Header.module.css";
 import Link from "next/link";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 interface HeaderProps {
   page: string;
-  username: string | null;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -30,12 +32,72 @@ const Header: React.FC<HeaderProps> = (props) => {
     setDropdownLiToggleClicked(!dropdownLiToggleClicked);
   };
 
+  // Routing Handler
+
+  const router = useRouter();
+
+  const homeHandler = () => {
+    router.push("/landingpage");
+  };
+
+  const competetionHandler = () => {
+    router.push("/");
+  };
+
+  const bootcampHandler = () => {
+    router.push("/");
+  };
+
+  const webinarHandler = () => {
+    router.push("/");
+  };
+
+  const miniChallengeHandler = () => {
+    router.push("/");
+  };
+
+  const registerUserHandler = () => {
+    router.push("/");
+  };
+
+  const [username, setUsername] = useState<string | null>(null);
+  const cookies = new Cookies();
+  // const user_id = cookies.get("user_id"); // Read JWT token from cookies
+  const user_id = "e43aee0f-8f18-48c1-97fe-32049a99f40b";
+  const [usernameReady, setUsernameReady] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    if (user_id) {
+      // Call the API to fetch profile data
+      fetchProfileData();
+      setUsernameReady(true);
+    } else {
+      setUsername(null);
+      setUsernameReady(true);
+    }
+  }, []);
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await axios.get(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/profile/" + user_id
+      );
+      setUsername(response.data.data.username);
+    } catch (error) {
+      console.error("Error fetching profile data:", error);
+    }
+  };
+
   return (
     <section>
       <div className={`h-20 ${css.outer}`}>
         <button>
           <Link href="/">
-            <img src="/images/logo.svg" alt="logo" className={css.logo} />
+            <img
+              src="./images/landingpage/logo.svg"
+              alt="logo"
+              className={css.logo}
+            />
           </Link>
         </button>
 
@@ -81,7 +143,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <Link href="/minichallenge">Mini Challenge</Link>
           </button>
 
-          {props.username === null ? (
+          {username === null ? (
             <button className={`${css.navbarItem}`}>
               <Link href="#">Register</Link>
             </button>
@@ -89,7 +151,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <div className={css.relative}>
               <div className={css.topleftusername}>
                 <p className={`${css.hiUsername}`}>
-                  Hi, <span>{props.username}!</span>
+                  Hi, <span>{username}!</span>
                 </p>
                 <div className={css.personAndDropdown}>
                   <button onClick={() => handleDropdownToggle()}>
@@ -149,7 +211,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
           {/* Navbar Burger */}
           <img
-            src="/images/navbarToggle.svg"
+            src="/images/landingpage/navbarToggle.svg"
             alt="navbarToggle"
             className={css.navbarToggle}
             onClick={() => handleNavbarToggle()}
@@ -166,7 +228,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <li className={css.backButtonSection}>
             <button>
               <img
-                src="./images/back-arrow.svg"
+                src="./images/landingpage/back-arrow.svg"
                 alt=""
                 className={css.backButton}
                 onClick={() => handleBackButton()}
@@ -201,7 +263,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <Link href="/minichallenge">Mini Challenge</Link>
           </li>
 
-          {props.username === null ? (
+          {username === null ? (
             <li className="flex justify-center">
               <button className={`${css.registerButton}`}>
                 <Link href="#">Register</Link>
@@ -210,7 +272,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           ) : (
             <li>
               <h1 className="inline-block">
-                Hi, <span>{props.username}!</span>
+                Hi, <span>{username}!</span>
               </h1>
               <button onClick={() => handleDropdownLiToggle()}>
                 <svg

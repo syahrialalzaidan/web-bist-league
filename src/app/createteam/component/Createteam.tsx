@@ -1,16 +1,26 @@
 "use client";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface FormattedData {
-  name: string;
+  team_name: string;
   emails: string[];
 }
 
 export default function Createteam() {
+  const cookie = new Cookies();
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [emails, setEmails] = useState(["", "", ""]);
+  const router = useRouter();
+  const jwtToken = cookie.get("jwt_token");
+  const [teamName, setTeamName] = useState("");
+
+  
 
   const handleEmailChange = (index: number, value: string) => {
     const updatedEmails = [...emails];
@@ -24,20 +34,49 @@ export default function Createteam() {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const formattedData: FormattedData = {
-      name,
+      team_name: name,
       emails: emails.filter((email) => email !== ""),
     };
 
-    // Here you can send the formattedData to your API
-    console.log(formattedData);
+    try {
+      const response = await axios.post(
+        "https://be-staging-b6utdt2kwa-et.a.run.app/team",
+        formattedData,
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const { jwt_token } = response.data.data;
+      const { team_redeem_token } = response.data.data;
+      cookie.remove("jwt_token", { path: "/" })
+      cookie.set("jwt_token", jwt_token, { path: "/" });
+      cookie.set("team_redeem_token", team_redeem_token, { path: "/" });
+
+      router.push("/createteam/created");
+      // console.log(response.data.data);
+
+      // router.push("/createteam/created");
+      setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      toast.error("Already Joined a Team!");
+      // Handle error here and provide feedback to the user
+    }
   };
 
   return (
     <div className="px-5 py-10">
       <div className="flex text-[#F3EEE7] gap-3 items-center lg:hidden">
-        <AiOutlineArrowLeft className="text-2xl absolute lg:relative" />
+        <AiOutlineArrowLeft
+          className="text-2xl absolute lg:relative cursor-pointer"
+          onClick={() => router.push("/compregistration")}
+        />
         <h1 className="font-extrabold text-2xl lg:hidden w-screen text-center">
           Create a Team
         </h1>
@@ -53,7 +92,7 @@ export default function Createteam() {
       <div className="flex flex-col">
         <div className="bg-white px-4 py-6 lg:p-10 rounded-lg self-center mt-8 lg:mt-1 w-full lg:w-[711px] ">
           <div className="flex flex-col gap-2">
-            <label className="font-bold">Team Name</label>
+            <label className="font-bold">{teamName}</label>
             <input
               type="text"
               placeholder="Input Text Here"
@@ -117,9 +156,7 @@ export default function Createteam() {
           </div>
           <p className="mt-6">Payment to one of the options:</p>
           <br />
-          <p>1. Tim 122212122</p>
-          <p>2. Abam 12221222</p>
-          <p>3. Sul 12221222</p>
+          <p>1. 1420018978022 Bank Mandiri an Rania Sasi Kirana</p>
 
           <div
             className="bg-[#F8A22D] px-12 py-3 rounded-lg cursor-pointer mt-6"
