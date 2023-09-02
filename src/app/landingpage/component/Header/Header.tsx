@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               props.page === "Home" ? css.buttonActive : ""
             }`}
           >
-            <Link href="/" className={``}>
+            <Link href="/landingpage" className={``}>
               Home
             </Link>
           </button>
@@ -199,10 +199,10 @@ const Header: React.FC<HeaderProps> = (props) => {
               >
                 <ul className={css.ulDropDown}>
                   <li className={`${css.liDropDown} ${css.dashboardDropDown}`}>
-                    <Link href="#">Dashboard</Link>
+                    <Link href="/dashboarduser">Dashboard</Link>
                   </li>
                   <li className={`${css.liDropDown} ${css.signOutDropDown}`}>
-                    <Link href="#">Sign Out</Link>
+                    <Link href="/login">Sign Out</Link>
                   </li>
                 </ul>
               </div>
