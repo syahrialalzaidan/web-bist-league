@@ -10,6 +10,6 @@ import CompetitionUser from './dashboarduser/competition'
 
 export default function Home() {
   return (
-    <AdnminPage/>
+    <CompetitionUser/>
   )
 }

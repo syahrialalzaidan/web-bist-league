@@ -31,23 +31,23 @@ export default function ProfilUser() {
         const response = await axios.put(
           url + "profile",
           {
-            full_name: data.full_name,
-            username: data.username,
-            email: data.email,
-            age: data.age,
-            address: data.address,
-            phone_number: data.phone_number,
-            institution: data.institution,
-            linkedin_url: data.linkedin_url,
-            major: data.major,
-            entry_year: data.entry_year,
-            line_id: data.line_id,
+            "full_name": data.full_name,
+            "username": data.username,
+            "email": data.email,
+            "age": data.age,
+            "address": data.address,
+            "phone_number": data.phone_number,
+            "institution": data.institution,
+            "linkedin_url": data.linkedin_url,
+            "major": data.major,
+            "entry_year": data.entry_year,
+            "line_id": data.line_id,
           },
           {
             headers: {
               Authorization: "Bearer " + token,
-            },
-            withCredentials: true,
+              "Content-Type": "application/json",
+            }
           }
         );
         console.log("Profile edited:", response.data);

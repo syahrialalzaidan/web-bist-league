@@ -125,7 +125,7 @@ export default function UserVerification() {
   ];
   return (
     <>
-      <h1 className="font-bold text-[#379392] text-5xl mt-14 mb-10">
+      <h1 className="font-bold text-[#379392] text-4xl md:text-5xl mt-14 mb-10">
         Data Registrasi User
       </h1>
       <div className="w-full h-auto overflow-auto">
@@ -243,7 +243,7 @@ export default function UserVerification() {
             onClick={() => setPopupUrl(null)}
           ></div>
           <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
-            <div className="w-1/5 bg-[#F3EEE7] flex flex-col items-center px-4 py-6 gap-6 rounded-lg">
+            <div className="w-[300px] md:w-[360px] bg-[#F3EEE7] flex flex-col items-center px-4 py-6 gap-6 rounded-lg">
               <div className="w-full flex justify-start text-[#3A9587]">
                 <button onClick={() => setPopupUrl(null)}>
                   <AiOutlineArrowLeft size={24} />
@@ -277,13 +277,13 @@ export default function UserVerification() {
             onClick={() => setPopupUrl(null)}
           ></div>
           <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
-            <div className="w-1/4 bg-[#F3EEE7] flex flex-col items-center px-4 py-6 gap-6 rounded-lg">
+            <div className="w-[300px] md:w-[360px] bg-[#F3EEE7] flex flex-col items-center px-4 py-6 gap-6 rounded-lg">
               <div className="w-full flex justify-start text-[#3A9587]">
                 <button onClick={() => setIsRejected(false)}>
                   <AiOutlineArrowLeft size={24} />
                 </button>
               </div>
-              <p className="text-[#379392] text-[32px] font-bold">
+              <p className="text-[#379392] text-[28px] lg:text-[32px] font-bold text-center">
                 Alasan Penolakan
               </p>
               <div className="w-full flex justify-center px-4">
