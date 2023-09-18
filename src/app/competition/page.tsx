@@ -50,26 +50,26 @@ export default async function CompetitionnPage() {
     const profileData = await getProfile();
 
     return (
-        <div className="bg-[#F3EEE7] overflow-hidden">
-            <Header page="competition" />
-            <Hero teamData={teamData} profileData={profileData}/>
-            <Description />
-            <Timeline />
-            <div className="relative">
-                <Registration />
-                <Guidebook />
-                <Image
-                    src={BulatTiga}
-                    alt="Hero Round"
-                    className="scale-50 lg:scale-100 absolute top-[698px] -right-11 lg:top-60 lg:right-0"
-                />
-            </div>
-            <Image
-                src={KotakBottom}
-                alt="Hero Round"
-                className="scale-50 lg:scale-100 overflow-hidden absolute top-[362px] -right-14 lg:top-[420px] lg:right-6 z-0"
-            />
-            <Footer />
+      <div className="bg-[#F3EEE7] overflow-hidden">
+        <Header page="Competition" />
+        <Hero />
+        <Description />
+        <Timeline />
+        <div className="relative">
+          <Registration />
+          <Guidebook />
+          <Image
+            src={BulatTiga}
+            alt="Hero Round"
+            className="scale-50 lg:scale-100 absolute top-[698px] -right-11 lg:top-60 lg:right-0"
+          />
         </div>
-    )
+        <Image
+          src={KotakBottom}
+          alt="Hero Round"
+          className="scale-50 lg:scale-100 overflow-hidden absolute top-[362px] -right-14 lg:top-[386px] lg:right-6 z-0"
+        />
+        <Footer />
+      </div>
+    );
 }

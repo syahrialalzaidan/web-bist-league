@@ -6,8 +6,7 @@ import Header from "./component/Header/Header";
 import Footer from "./component/Footer/Footer";
 import css from "./landing.module.css";
 import Countdown from "./component/Countdown/Countdown";
-import axios from "axios";
-import Cookies from "universal-cookie";
+import Link from "next/link";
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -254,7 +253,7 @@ export default function Home() {
                         : css.fadeOutAnimation
                     } bg-[#276766]`}
                   >
-                    More About Competition
+                    <Link href="/competition">More About Competition</Link>
                   </button>
                 </div>
 
@@ -295,7 +294,7 @@ export default function Home() {
                     }
                     bg-[#9E1B1B]`}
                   >
-                    More About Bootcamp
+                    <Link href="/bootcamp">More About Bootcamp</Link>
                   </button>
                 </div>
 
@@ -340,7 +339,7 @@ export default function Home() {
                     }
                     bg-[#463461]`}
                   >
-                    More About Mini Challenge
+                    <Link href="minichallenge">More About Mini Challenge</Link>
                   </button>
                 </div>
 
@@ -384,7 +383,7 @@ export default function Home() {
                     }
                      bg-[#AE7120]`}
                   >
-                    More About Webinar
+                    <Link href="/webinar">More About Webinar</Link>
                   </button>
                 </div>
               </div>
@@ -418,7 +417,7 @@ export default function Home() {
                 This competition is intended for undergraduate/D3 students.
               </p>
               <button className={`${css.activitiesButton} bg-[#276766]`}>
-                More About Competition
+                <Link href="competition">More About Competition</Link>
               </button>
 
               {/* Bootcamp Component Mobile */}
@@ -431,7 +430,7 @@ export default function Home() {
               </h1>
               <p className={`${css.activitiesText}`}></p>
               <button className={`${css.bootcampButton} bg-[#943232]`}>
-                More About Bootcamp
+                <Link href="bootcamp">More About Bootcamp</Link>
               </button>
 
               {/* Mini Challenge Component Mobile */}
@@ -447,7 +446,7 @@ export default function Home() {
                 BIST League 6.0
               </p>
               <button className={`${css.miniChallengeButton} bg-[#463461]`}>
-                More About Mini Challenge
+                <Link href="/minichallenge">More About Mini Challenge</Link>
               </button>
 
               {/* Webinar Component Mobile */}
@@ -462,7 +461,7 @@ export default function Home() {
                 industry with topics aligning with BIST League 6.0 theme.
               </p>
               <button className={`${css.webinarButton} bg-[#AE7120]`}>
-                More About Webinar
+                <Link href="webinar">More About Webinar</Link>
               </button>
             </div>
           </section>
@@ -471,23 +470,4 @@ export default function Home() {
       </div>
     </>
   );
-}
-
-{
-  /* <div className={`${css.background1}`}>
-            <img src="images/landingpage/background1.svg" alt="background 1" />
-            
-          </div>
-          <div className={`${css.background2}`}>
-            <img src="images/landingpage/background2.svg" alt="background 2" />
-          </div>
-          <div className={`${css.background3}`}>
-            <img src="images/landingpage/background3.svg" alt="background 3" />
-          </div>
-          <div className={`${css.background4}`}>
-            <img src="images/landingpage/background4.svg" alt="background 4" />
-          </div>
-          <div className={`${css.background5}`}>
-            <img src="images/landingpage/background5.svg" alt="background 5" />
-          </div> */
 }
