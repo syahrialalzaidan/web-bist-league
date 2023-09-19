@@ -2,13 +2,18 @@
 import { MdOpenInNew } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import Image from "next/image";
+import axios from "axios";
 
 export default function UserVerification() {
   const [popupUrl, setPopupUrl] = useState<string | null>(null);
   const [showProfile, setShowProfile] = useState<any>(null);
   const [textareaValue, setTextareaValue] = useState("");
   const [isRejected, setIsRejected] = useState(false);
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const handleChange = (event: any) => {
     setTextareaValue(event.target.value);
   };
@@ -16,113 +21,78 @@ export default function UserVerification() {
     setPopupUrl(null);
     setIsRejected(false);
   };
-  const data = [
-    {
-      id: 1,
-      teamName: "Sultan Alta Alvaro Valencia",
-      userName: "altaalvarojoe@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-    {
-      id: 2,
-      teamName: "Another User",
-      userName: "anotheruser@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-    {
-      id: 2,
-      teamName: "Another User",
-      userName: "anotheruser@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-    {
-      id: 2,
-      teamName: "Another User",
-      userName: "anotheruser@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-    {
-      id: 2,
-      teamName: "Another User",
-      userName: "anotheruser@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-    {
-      id: 2,
-      teamName: "Another User",
-      userName: "anotheruser@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-    {
-      id: 2,
-      teamName: "Another User",
-      userName: "anotheruser@gmail.com",
-      proofOfEnrolment: "/images/adminpage/bist.svg",
-      statusProof: "Verified",
-      studentCard: "/images/adminpage/bist.svg",
-      statusStudent: "Verified",
-      selfPortrait: "/images/adminpage/bist.svg",
-      statusSelf: "Verified",
-      twibbon: "/images/adminpage/bist.svg",
-      statusTwibbon: "Verified",
-      profile: "/images/adminpage/bist.svg",
-      statusProfile: "Verified",
-    },
-  ];
+
+  const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFtX2lkIjoiIiwidXNlcl9pZCI6Ijg5MjkzNjQyLTliZDEtNGNlOS04YmYwLWRiMTY0MTJhMjQ5ZSIsImlzcyI6InJlc3QiLCJleHAiOjE2OTQ0MzcxODAsImlhdCI6MTY5NDAwNTE4MH0.V3fJMCNuZ-IW_dGAO-21tzoCarOfFMhVUZsYiOYADg0";
+
+  const getData = async (page: number) => {
+    try {
+      const response = await axios.get(url + "admin/users?page=" + page, {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      });
+      setTotalPages(response.data?.data?.total_page);
+      setData(response.data?.data?.page_data);
+      console.log(response.data?.data?.page_data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData(1);
+  }, []);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    getData(page);
+  };
+
+  const pushPage = ({ pageNumbers, i }: { pageNumbers: any; i: number }) => {
+    pageNumbers.push(
+      <div
+        key={i}
+        className={
+          currentPage === i
+            ? "text-center bg-[#379392] px-4 py-2 rounded-lg text-white text-[14px] font-bold"
+            : "text-center bg-transparent px-4 py-2 rounded-lg border-2 border-[#828282] text-[#828282] text-[14px] font-bold"
+        }
+        onClick={() => handlePageChange(i)}
+      >
+        {i}
+      </div>
+    );
+  };
+
+  const renderPage = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      if (totalPages < 5) {
+        pushPage({ pageNumbers, i });
+      } else {
+        if (currentPage < totalPages - 3) {
+          if (
+            (i < currentPage + 3 && i >= currentPage - 1) ||
+            i == totalPages
+          ) {
+            pushPage({ pageNumbers, i });
+          } else if (i == currentPage + 3) {
+            pageNumbers.push(<li>...</li>);
+          }
+        } else {
+          if (i >= totalPages - 3 || i <= totalPages - currentPage + 1) {
+            pushPage({ pageNumbers, i });
+          } else if (i == totalPages - 4) {
+            pageNumbers.push(<li>...</li>);
+          }
+        }
+      }
+    }
+    return pageNumbers;
+  };
   return (
     <>
       <h1 className="font-bold text-[#379392] text-4xl md:text-5xl mt-14 mb-10">
@@ -146,7 +116,7 @@ export default function UserVerification() {
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
+            {data.map((row: any, id: number) => (
               <tr className="border-b-2 border-[#BDBDBD]">
                 <td
                   className="px-4 py-2 text-center cursor-pointer"
@@ -235,6 +205,9 @@ export default function UserVerification() {
             ))}
           </tbody>
         </table>
+        <div className="w-full flex justify-end mt-4">
+          <div className="flex items-center gap-3">{renderPage()}</div>
+        </div>
       </div>
       {popupUrl && (
         <>
@@ -249,7 +222,7 @@ export default function UserVerification() {
                   <AiOutlineArrowLeft size={24} />
                 </button>
               </div>
-              <img src={popupUrl} alt="" />
+              <Image src={popupUrl} alt="" />
               <div className="flex justify-center gap-4">
                 <button
                   type="submit"
