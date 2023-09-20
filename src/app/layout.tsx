@@ -20,6 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="icon" href="/images/landingpage/Logo.svg" />
       <body className={manrope.className}>
         <ToasterContext />
         {children}
