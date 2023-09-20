@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         <button>
           <Link href="/">
             <img
-              src="./images/landingpage/logo.svg"
+              src="./images/landingpage/Logo.svg"
               alt="logo"
               className={css.logo}
             />
