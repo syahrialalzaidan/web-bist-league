@@ -53,7 +53,7 @@ export default async function CompetitionnPage() {
     return (
       <div className="bg-[#F3EEE7] overflow-hidden">
         <Header page="Competition" />
-        <Hero />
+        <Hero profileData={profileData} teamData={teamData} />
         <Description />
         <Timeline />
         <div className="relative">
