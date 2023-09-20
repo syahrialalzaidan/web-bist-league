@@ -2,8 +2,9 @@
 
 import React, { useState, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
-import Header from "./component/Header/Header";
-import Footer from "./component/Footer/Footer";
+import Header from "@/component/Header/Header";
+import Footer from "@/component/Footer/Footer";
+
 import css from "./landing.module.css";
 import Countdown from "./component/Countdown/Countdown";
 import Link from "next/link";

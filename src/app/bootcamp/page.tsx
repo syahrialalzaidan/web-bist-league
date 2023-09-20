@@ -1,6 +1,7 @@
 import React from "react";
-import Header from "../landingpage/component/Header/Header";
-import Footer from "../landingpage/component/Footer/Footer";
+import Header from "@/component/Header/Header";
+import Footer from "@/component/Footer/Footer";
+
 
 export default function page() {
   return (

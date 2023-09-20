@@ -3,8 +3,9 @@ import Guidebook from "./components/Guidebook";
 import Hero from "./components/Hero";
 import Registration from "./components/Registration";
 import Timeline from "./components/Timeline";
-import Header from "../landingpage/component/Header/Header";
-import Footer from "../landingpage/component/Footer/Footer";
+import Header from "@/component/Header/Header";
+import Footer from "@/component/Footer/Footer";
+
 
 import Image from "next/image";
 import KotakBottom from "@images/competition/hero/hero-kotak-bottom.svg";
