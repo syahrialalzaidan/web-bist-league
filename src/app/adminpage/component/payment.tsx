@@ -111,7 +111,7 @@ export default function PaymentVerification() {
           </thead>
           <tbody>
             {data.map((row: any, id: number) => (
-              <tr className="border-b-2 border-[#BDBDBD]">
+              <tr key={id} className="border-b-2 border-[#BDBDBD]">
                 <td className="px-4 py-4 text-center">{id + 1}</td>
                 <td className="px-12 py-4 text-center">{row.team_name}</td>
                 <td className="px-12 py-4 text-center">

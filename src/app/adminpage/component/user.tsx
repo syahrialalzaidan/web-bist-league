@@ -117,7 +117,7 @@ export default function UserVerification() {
           </thead>
           <tbody>
             {data.map((row: any, id: number) => (
-              <tr className="border-b-2 border-[#BDBDBD]">
+              <tr key={id} className="border-b-2 border-[#BDBDBD]">
                 <td
                   className="px-4 py-2 text-center cursor-pointer"
                   onClick={() => setShowProfile(row)}
