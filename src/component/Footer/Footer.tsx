@@ -25,7 +25,7 @@ const Footer = () => {
       <div className={css.outer}>
         <div className={css.logoSection}>
           <img
-            src="/images/landingpage/logo.svg"
+            src="/images/landingpage/Logo.svg"
             alt="logo"
             className={css.logo}
           />
