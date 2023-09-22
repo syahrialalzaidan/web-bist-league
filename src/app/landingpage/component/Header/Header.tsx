@@ -62,8 +62,8 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   const [username, setUsername] = useState<string | null>(null);
   const cookies = new Cookies();
-  // const user_id = cookies.get("user_id"); // Read JWT token from cookies
-  const user_id = "e43aee0f-8f18-48c1-97fe-32049a99f40b";
+  const user_id = cookies.get("user_id"); // Read JWT token from cookies
+  // const user_id = "e43aee0f-8f18-48c1-97fe-32049a99f40b";
   const [usernameReady, setUsernameReady] = useState<boolean>(false);
 
   useLayoutEffect(() => {
