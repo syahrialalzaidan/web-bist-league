@@ -1,8 +1,8 @@
 <svg width="358" height="499" viewBox="0 0 358 499" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g clip-path="url(#clip0_390_2090)">
+<g clipPath="url(#clip0_390_2090)">
 <rect x="357.788" y="0.213379" width="498.787" height="357.49" rx="12" transform="rotate(90.0342 357.788 0.213379)" fill="#0D0526"/>
 <rect x="357.788" y="0.213379" width="498.787" height="357.49" rx="12" transform="rotate(90.0342 357.788 0.213379)" fill="url(#pattern0)" fill-opacity="0.1"/>
-<g clip-path="url(#clip1_390_2090)">
+<g clipPath="url(#clip1_390_2090)">
 <rect width="1316.95" height="804.02" transform="translate(402.806 -501.52) rotate(90.0342)" fill="#0D0526"/>
 <rect width="1316.95" height="804.02" transform="translate(402.806 -501.52) rotate(90.0342)" fill="url(#pattern1)" fill-opacity="0.1"/>
 <path d="M-399.515 -516.014L-398.084 1166.7L413.577 1166.39L412.146 -516.329L-399.515 -516.014Z" fill="#2A1D7D" stroke="black"/>

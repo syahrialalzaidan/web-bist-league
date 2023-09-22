@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState, useRef } from "react";
 import Semicolon from "../Semicolon/Semicolon";
-import css from "../../landing.module.css";
+import css from "../../app/landing.module.css"
 
 const Countdown: React.FC = () => {
   const [timerDays, setTimerDays] = useState<string>("00");

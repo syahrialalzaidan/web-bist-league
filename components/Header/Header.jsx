@@ -62,7 +62,7 @@ const Header = (props) => {
                             <p>Hi, <span>{props.username}!</span></p>
                             <div className={classes.personAndDropdown}>
                                 <button onClick={() => handleDropdownToggle()}>
-                                    <svg className={classes.BsPersonCircle} stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" color="#379392" height="1.8rem" width="1.8rem" xmlns="http://www.w3.org/2000/svg"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path></svg>
+                                    <svg className={classes.BsPersonCircle} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" color="#379392" height="1.8rem" width="1.8rem" xmlns="http://www.w3.org/2000/svg"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path><path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path></svg>
                                 </button>
 
                                 <button onClick={() => handleDropdownToggle()}>
@@ -129,7 +129,7 @@ const Header = (props) => {
                             <h1 className="inline-block">Hi, <span>{props.username}!</span></h1>
                             <button onClick={() => handleDropdownLiToggle()}>
                                 <svg className="inline-block ml-2" width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9L12 16L5 9" stroke="#4F4F4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M19 9L12 16L5 9" stroke="#4F4F4F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </button>
                         </li>

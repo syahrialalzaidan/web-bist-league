@@ -9,12 +9,14 @@ interface DropzoneProps {
   onFileSelected: (files: File) => void;
   onFileRejected?: (fileRejections: FileRejection[]) => void;
   onFileDeleted: () => void;
+  name: string;
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({
   onFileSelected,
   onFileRejected,
   onFileDeleted,
+  name,
 }) => {
   const [file, setFile] = useState<File>();
   const handleDrop = useCallback(
@@ -61,7 +63,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
           </p>
         ) : (
           <p className="text-[12px] lg:text-[16px] font-normal ml-4 text-black">
-            No File Selected
+            {name == "" ? "No File Selected" : name}
           </p>
         )}
         <div className="h-full text-[12px] lg:text-[16px] bg-[#379392] text-white py-2 px-3 rounded-lg">

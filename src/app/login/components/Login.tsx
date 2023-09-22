@@ -26,10 +26,10 @@ export default function Login() {
 
       if (response.status === 200) {
         // // Successful login logic
-        // console.log("Login successful!");
-        const { jwt_token } = response.data.data;
+        const { jwt_token, user } = response.data.data;
 
         cookies.set('jwt_token', jwt_token, { path: '/' });
+        cookies.set('user_id', response.data.data.user.user_id, { path: '/' });
       } else {
         // Handle login error
         console.log("Login failed.");

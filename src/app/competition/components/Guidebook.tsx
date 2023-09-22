@@ -9,9 +9,9 @@ export default function Guidebook() {
             <div className="lg:w-[782px]">
                 <h1 className="text-4xl text-white lg:text-5xl font-extrabold">Guidebook</h1>
                 <p className="text-white text-lg lg:text-xl font-normal mt-9 lg:mt-14 leading-7 text-justify">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    As mentioned before, preliminary round will be carried out online and the final round will be carried out offline.
+                    The preliminary case will be announced and submitted through this website. The final round will be held for 2 days in fully offline.
+                    For more detailed information, please download the guidebook below.
                 </p>
                 <div className="flex mt-9 lg:mt-10 justify-center lg:justify-normal">
                     <button className="px-11 lg:px-6 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold">

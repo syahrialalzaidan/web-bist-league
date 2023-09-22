@@ -6,9 +6,12 @@ import { useRouter } from "next/navigation";
 
 export default function Created() {
   const cookie = new Cookies();
-  const team_redeem_token = cookie.get("team_redeem_token");
+  const team_redeem_token: string | undefined = cookie.get("team_redeem_token"); // Added type annotation
   const router = useRouter();
   toast.success("Team created successfully!");
+
+  const displayTokenDigits =
+    team_redeem_token && team_redeem_token.length >= 6 ? true : false;
 
   return (
     <div className="px-5 py-10">
@@ -34,12 +37,16 @@ export default function Created() {
           </h1>
 
           <div className="flex flex-row gap-1 justify-center text-2xl mb-4 lg:mb-10 lg:text-8xl font-extrabold">
-            <p className="bg-[#F3EEE7] py-7 px-3">{team_redeem_token[0]}</p>
-            <p className="bg-[#F3EEE7] py-7 px-3">{team_redeem_token[1]}</p>
-            <p className="bg-[#F3EEE7] py-7 px-3">{team_redeem_token[2]}</p>
-            <p className="bg-[#F3EEE7] py-7 px-3">{team_redeem_token[3]}</p>
-            <p className="bg-[#F3EEE7] py-7 px-3">{team_redeem_token[4]}</p>
-            <p className="bg-[#F3EEE7] py-7 px-3">{team_redeem_token[5]}</p>
+            {displayTokenDigits &&
+              team_redeem_token &&
+              team_redeem_token
+                .slice(0, 6)
+                .split("")
+                .map((digit, index) => (
+                  <p key={index} className="bg-[#F3EEE7] py-7 px-3">
+                    {digit}
+                  </p>
+                ))}
           </div>
           <h1 className="text-center lg:text-xl mb-4">
             The token is also sent to the email you registered with.{" "}
