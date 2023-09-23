@@ -4,6 +4,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function PaymentVerification() {
   const [popupUrl, setPopupUrl] = useState<string | null>(null);
@@ -12,18 +13,15 @@ export default function PaymentVerification() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [teamId, setTeamId] = useState("");
+  const cookie = new Cookies();
+  const token = cookie.get("token_admin");
   const handleChange = (event: any) => {
     setTextareaValue(event.target.value);
   };
-  const closePopUp = () => {
-    setPopupUrl(null);
-    setIsRejected(false);
-  };
-  
-  const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFtX2lkIjoiIiwidXNlcl9pZCI6Ijg5MjkzNjQyLTliZDEtNGNlOS04YmYwLWRiMTY0MTJhMjQ5ZSIsImlzcyI6InJlc3QiLCJleHAiOjE2OTQ0MzcxODAsImlhdCI6MTY5NDAwNTE4MH0.V3fJMCNuZ-IW_dGAO-21tzoCarOfFMhVUZsYiOYADg0";
 
+  const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+  
   const getData = async (page: number) => {
     try {
       const response = await axios.get(url + "admin/payments?page=" + page, {
@@ -35,6 +33,46 @@ export default function PaymentVerification() {
       setTotalPages(response.data?.data?.total_page);
       setData(response.data?.data?.page_data);
       console.log(response.data?.data?.page_data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateDocs = async (status: number) => {
+    try {
+      if (status == -1) {
+        const response = await axios.put(
+          url + "admin/payments/status/" + teamId,
+          {
+            status: -1,
+            rejection: textareaValue,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response);
+        setPopupUrl(null);
+        setIsRejected(false);
+      }
+      if (status == 2) {
+        const response = await axios.put(
+          url + "admin/payments/status/" + teamId,
+          {
+            status: 2,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -120,7 +158,10 @@ export default function PaymentVerification() {
                 <td className="px-12 py-10 flex justify-center items-center">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-2"
-                    onClick={() => setPopupUrl(row.payment_url)}
+                    onClick={() => {
+                      setPopupUrl(row.payment_url);
+                      setTeamId(row.team_id);
+                    }}
                   >
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
@@ -130,16 +171,16 @@ export default function PaymentVerification() {
                 <td className="px-6 py-4 text-center">
                   <p
                     className={`font-bold ${
-                      row.status == "Verified"
+                      row.payment_status == "accepted"
                         ? "text-[#3AD820]"
-                        : row.status == "Rejected"
+                        : row.payment_status == "rejected"
                         ? "text-[#E22727]"
+                        : row.payment_status == "under review"
+                        ? "text-[#E2B93B]"
                         : "text-[#4F4F4F]"
                     }`}
                   >
-                    {row.payment_status == "no file" || "under review"
-                      ? "-"
-                      : row.payment_status}
+                    {row.payment_status == "no file" ? "-" : row.payment_status}
                   </p>
                 </td>
               </tr>
@@ -163,12 +204,15 @@ export default function PaymentVerification() {
                   <AiOutlineArrowLeft size={24} />
                 </button>
               </div>
-              <Image src={popupUrl} alt="" />
+              <Image src={popupUrl} width={200} height={200} alt="" />
               <div className="flex justify-center gap-4">
                 <button
                   type="submit"
                   className="text-white bg-[#3AD820] rounded-lg px-8 py-2"
-                  onClick={() => setPopupUrl(null)}
+                  onClick={() => {
+                    setPopupUrl(null);
+                    updateDocs(2);
+                  }}
                 >
                   Verify
                 </button>
@@ -213,7 +257,7 @@ export default function PaymentVerification() {
               <button
                 type="submit"
                 className="text-white bg-[#379392] rounded-lg px-8 py-2"
-                onClick={closePopUp}
+                onClick={() => updateDocs(-1)}
               >
                 Submit
               </button>

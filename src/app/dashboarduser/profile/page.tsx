@@ -1,9 +1,9 @@
 "use client";
-import NavUser from "./component/nav";
+import NavUser from "../component/nav";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import LoadingPage from "./component/loadingPage";
+import LoadingPage from "../component/loadingPage";
 
 export default function ProfilUser() {
   const [data, setData] = useState<any | null>();
@@ -12,6 +12,7 @@ export default function ProfilUser() {
   const token = cookie.get("jwt_token");
   const user_id = cookie.get("user_id");
   const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+  console.log(token);
 
   const getProfileData = async () => {
     try {

@@ -6,9 +6,10 @@ import { IoMdLaptop } from "react-icons/io";
 import { LuArrowUpRightFromCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import Link from "next/link";
 
 export default function NavUser({ active }: { active?: number }) {
   const [hamburger, setHamburger] = useState(false);
@@ -46,7 +47,7 @@ export default function NavUser({ active }: { active?: number }) {
           <p className="text-[20px] font-bold mb-[2px]">{fullName}</p>
           <p className="text-[12px] font-bold">ITB Team</p>
         </div>
-        <div
+        <Link href="/dashboarduser"
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 0
               ? "bg-[#F3EEE7] text-[#E22727]"
@@ -55,8 +56,8 @@ export default function NavUser({ active }: { active?: number }) {
         >
           <GoHomeFill size={24} />
           <p className="text-[18px] font-bold">Overview</p>
-        </div>
-        <div
+        </Link >
+        <Link href="/dashboarduser/profile"
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 1
               ? "bg-[#F3EEE7] text-[#E22727]"
@@ -65,8 +66,8 @@ export default function NavUser({ active }: { active?: number }) {
         >
           <CgProfile size={24} />
           <p className="text-[18px] font-bold">Profile</p>
-        </div>
-        <div
+        </Link>
+        <Link href="/dashboarduser/competition"
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 2
               ? "bg-[#F3EEE7] text-[#E22727]"
@@ -75,7 +76,7 @@ export default function NavUser({ active }: { active?: number }) {
         >
           <FaTrophy size={24} />
           <p className="text-[18px] font-bold">Competition</p>
-        </div>
+        </Link>
         <div
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 3
@@ -154,33 +155,36 @@ export default function NavUser({ active }: { active?: number }) {
         <>
           <div className="fixed w-full h-full bg-gradient-to-b from-red-600 to-orange-500 flex flex-col items-center justify-between py-20 z-20">
             <div className="w-full flex flex-col items-center justify-center">
-              <div
+              <Link
                 className={`w-full gap-2 text-center ${
                   active == 0
                     ? "bg-[#F3EEE7] text-[#E22727]"
                     : "bg-transparent text-white"
                 } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+                href="/dashboarduser"
               >
                 Overview
-              </div>
-              <div
+              </Link>
+              <Link
                 className={`w-full gap-2 text-center ${
                   active == 1
                     ? "bg-[#F3EEE7] text-[#E22727]"
                     : "bg-transparent text-white"
                 } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+                href="/dashboarduser/profile"
               >
                 Profile
-              </div>
-              <div
+              </Link>
+              <Link
                 className={`w-full gap-2 text-center ${
                   active == 2
                     ? "bg-[#F3EEE7] text-[#E22727]"
                     : "bg-transparent text-white"
                 } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
+                href="/dashboarduser/competition"
               >
                 Competition
-              </div>
+              </Link>
               <div
                 className={`w-full gap-2 text-center ${
                   active == 3
