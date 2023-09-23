@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               props.page === "Home" ? css.buttonActive : ""
             }`}
           >
-            <Link href="/landingpage" className={``}>
+            <Link href="/" className={``}>
               Home
             </Link>
           </button>
@@ -266,7 +266,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           {username === null ? (
             <li className="flex justify-center">
               <button className={`${css.registerButton}`}>
-                <Link href="#">Register</Link>
+                <Link href="/register">Register</Link>
               </button>
             </li>
           ) : (
