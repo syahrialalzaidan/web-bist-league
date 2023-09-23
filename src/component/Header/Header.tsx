@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const router = useRouter();
 
   const homeHandler = () => {
-    router.push("/landingpage");
+    router.push("/");
   };
 
   const competetionHandler = () => {
@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               props.page === "Home" ? css.buttonActive : ""
             }`}
           >
-            <Link href="/landingpage" className={``}>
+            <Link href="/" className={``}>
               Home
             </Link>
           </button>

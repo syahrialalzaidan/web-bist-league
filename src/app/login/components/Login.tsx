@@ -3,10 +3,12 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const cookies = new Cookies();
 
@@ -30,6 +32,7 @@ export default function Login() {
 
         cookies.set('jwt_token', jwt_token, { path: '/' });
         cookies.set('user_id', response.data.data.user.user_id, { path: '/' });
+        router.push("/")
       } else {
         // Handle login error
         console.log("Login failed.");
@@ -87,7 +90,7 @@ export default function Login() {
         </div>
         <p className="text-center hidden lg:block">
           Do not have the account yet?{" "}
-          <span className="underline cursor-pointer"> Register</span>{" "}
+          <span className="underline cursor-pointer" onClick={() => router.push("/register")}> Register</span>{" "}
         </p>
       </div>
 

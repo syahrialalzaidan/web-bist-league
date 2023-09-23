@@ -16,6 +16,7 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+
     const data = {
       email,
       username,
