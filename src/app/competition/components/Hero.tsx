@@ -10,6 +10,7 @@ import BataBotRight from "@images/competition/hero/hero-bata-botright.svg";
 import KotakSatu from "@images/competition/hero/hero-kotak-satu.svg";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface TeamMember {
     user_id: string;
@@ -68,6 +69,8 @@ interface HeroProps {
 }
 
 export default function Hero({ teamData, profileData }: HeroProps) {
+    const router = useRouter();
+
     const [timerDays, setTimerDays] = useState<number>(0);
     const [timerHours, setTimerHours] = useState<number>(0);
     const [timerMinutes, setTimerMinutes] = useState<number>(0);
@@ -76,7 +79,7 @@ export default function Hero({ teamData, profileData }: HeroProps) {
     const interval = useRef<NodeJS.Timeout | null>(null);
 
     const startTimer = () => {
-        const countdownDate = new Date('September 18, 2023 00:00:00').getTime();
+        const countdownDate = new Date('November 05, 2023 00:00:00').getTime();
 
         interval.current = setInterval(() => {
             const now = new Date().getTime();
@@ -152,7 +155,7 @@ export default function Hero({ teamData, profileData }: HeroProps) {
                 <p className="text-[#F3EEE7] lg:leading-snug font-monument text-3xl lg:text-[64px] font-MonumentExtended font-extrabold drop-shadow-[-4px_4px_0_rgba(16,109,108,1)]">
                     BUSINESS IT CASE COMPETITION
                 </p>
-                {profileData && (
+                {profileData ? (
                     <>
                         <p className="mt-6 mb-3.5 text-2xl text-white font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
                             Registration closes in:
@@ -181,11 +184,17 @@ export default function Hero({ teamData, profileData }: HeroProps) {
                             </div>
                         </div>
                     </>
+                ) : (
+                    <div className="flex justify-center mt-7 lg:mt-24 mb-20 z-10">
+                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold" onClick={() => router.push("/register")}>
+                            Register Now
+                        </button>
+                    </div>
                 )}
 
                 {teamData && (
                     <div className="flex justify-center mt-7 lg:mt-10 z-10">
-                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold">
+                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold" onClick={() => router.push("/createteam")}>
                             Register Team
                         </button>
                     </div>
