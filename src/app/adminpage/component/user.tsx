@@ -2,9 +2,10 @@
 import { MdOpenInNew } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function UserVerification() {
   const [popupUrl, setPopupUrl] = useState<string | null>(null);
@@ -14,18 +15,16 @@ export default function UserVerification() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [doc, setDoc] = useState("");
+  const [uid, setUid] = useState("");
+  const cookie = new Cookies();
+  const token = cookie.get("token_admin");
   const handleChange = (event: any) => {
     setTextareaValue(event.target.value);
   };
-  const closePopUp = () => {
-    setPopupUrl(null);
-    setIsRejected(false);
-  };
 
   const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFtX2lkIjoiIiwidXNlcl9pZCI6Ijg5MjkzNjQyLTliZDEtNGNlOS04YmYwLWRiMTY0MTJhMjQ5ZSIsImlzcyI6InJlc3QiLCJleHAiOjE2OTQ0MzcxODAsImlhdCI6MTY5NDAwNTE4MH0.V3fJMCNuZ-IW_dGAO-21tzoCarOfFMhVUZsYiOYADg0";
-
+ 
   const getData = async (page: number) => {
     try {
       const response = await axios.get(url + "admin/users?page=" + page, {
@@ -37,6 +36,56 @@ export default function UserVerification() {
       setTotalPages(response.data?.data?.total_page);
       setData(response.data?.data?.page_data);
       console.log(response.data?.data?.page_data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProfileData = async (id: string) => {
+    try {
+      const response = await axios.get(url + "profile/" + id);
+      setShowProfile(response.data?.data);
+      console.log(response.data?.data);
+    } catch (error) {}
+  };
+
+  const updateDocs = async (status: number) => {
+    try {
+      if (status == -1) {
+        const response = await axios.put(
+          url + "admin/users/status/" + uid,
+          {
+            status: -1,
+            rejection: textareaValue,
+            doc_type: doc,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response);
+        setPopupUrl(null);
+        setIsRejected(false);
+      }
+      if (status == 2) {
+        const response = await axios.put(
+          url + "admin/users/status/" + uid,
+          {
+            status: 2,
+            doc_type: doc,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -117,88 +166,132 @@ export default function UserVerification() {
           </thead>
           <tbody>
             {data.map((row: any, id: number) => (
-              <tr key={id} className="border-b-2 border-[#BDBDBD]">
-                <td
-                  className="px-4 py-2 text-center cursor-pointer"
-                  onClick={() => setShowProfile(row)}
-                >
-                  {row.id}
-                </td>
-                <td
-                  className="px-12 py-2 text-center cursor-pointer"
-                  onClick={() => setShowProfile(row)}
-                >
-                  {row.teamName}
-                </td>
-                <td
-                  className="px-12 py-2 cursor-pointer"
-                  onClick={() => setShowProfile(row)}
-                >
-                  {row.userName}
-                </td>
+              <tr className="border-b-2 border-[#BDBDBD]">
+                <td className="px-4 py-2 text-center">{id + 1}</td>
+                <td className="px-12 py-2 text-center">{row.team_name}</td>
+                <td className="px-12 py-2">{row.full_name}</td>
+
                 <td className="px-6 py-2">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-1 z-20"
-                    onClick={() => setPopupUrl(row.proofOfEnrolment)}
+                    onClick={() => {
+                      setPopupUrl(row.enrollment_url);
+                      setUid(row.uid);
+                      setDoc("enrollment");
+                    }}
                   >
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
                   </button>
-                  <div className="flex items-center text-[#27AE60]">
+                  <div
+                    className={`flex items-center ${
+                      row.enrollment_status == "accepted"
+                        ? "text-[#27AE60]"
+                        : row.enrollment_status == "rejected"
+                        ? "text-[#EB5757]"
+                        : row.enrollment_status == "under review"
+                        ? "text-[#E2B93B]"
+                        : "text-[#4F4F4F]"
+                    }`}
+                  >
                     <HiOutlineInformationCircle />
-                    <p className="text-[14px]">{row.statusProof}</p>
+                    <p className="text-[14px]">{row.enrollment_status}</p>
                   </div>
                 </td>
                 <td className="px-6 py-2">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-1"
-                    onClick={() => setPopupUrl(row.studentCard)}
+                    onClick={() => {
+                      setPopupUrl(row.student_card_url);
+                      setUid(row.uid);
+                      setDoc("student_card");
+                    }}
                   >
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
                   </button>
-                  <div className="flex items-center text-[#27AE60]">
+                  <div
+                    className={`flex items-center ${
+                      row.student_card_status == "accepted"
+                        ? "text-[#27AE60]"
+                        : row.student_card_status == "rejected"
+                        ? "text-[#EB5757]"
+                        : row.student_card_status == "under review"
+                        ? "text-[#E2B93B]"
+                        : "text-[#4F4F4F]"
+                    }`}
+                  >
                     <HiOutlineInformationCircle />
-                    <p className="text-[14px]">{row.statusStudent}</p>
+                    <p className="text-[14px]">{row.student_card_status}</p>
                   </div>
                 </td>
                 <td className="px-6 py-2">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-1"
-                    onClick={() => setPopupUrl(row.selfPortrait)}
+                    onClick={() => {
+                      setPopupUrl(row.self_portrait_url);
+                      setUid(row.uid);
+                      setDoc("self_portrait");
+                    }}
                   >
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
                   </button>
-                  <div className="flex items-center text-[#27AE60]">
+                  <div
+                    className={`flex items-center ${
+                      row.self_portrait_status == "accepted"
+                        ? "text-[#27AE60]"
+                        : row.self_portrait_status == "rejected"
+                        ? "text-[#EB5757]"
+                        : row.self_portrait_status == "under review"
+                        ? "text-[#E2B93B]"
+                        : "text-[#4F4F4F]"
+                    }`}
+                  >
                     <HiOutlineInformationCircle />
-                    <p className="text-[14px]">{row.statusSelf}</p>
+                    <p className="text-[14px]">{row.self_portrait_status}</p>
                   </div>
                 </td>
                 <td className="px-6 py-2">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-1"
-                    onClick={() => setPopupUrl(row.twibbon)}
+                    onClick={() => {
+                      setPopupUrl(row.twibbon_url);
+                      setUid(row.uid);
+                      setDoc("twibbon");
+                    }}
                   >
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
                   </button>
-                  <div className="flex items-center text-[#27AE60]">
+                  <div
+                    className={`flex items-center ${
+                      row.twibbon_status == "accepted"
+                        ? "text-[#27AE60]"
+                        : row.twibbon_status == "rejected"
+                        ? "text-[#EB5757]"
+                        : row.twibbon_status == "under review"
+                        ? "text-[#E2B93B]"
+                        : "text-[#4F4F4F]"
+                    }`}
+                  >
                     <HiOutlineInformationCircle />
-                    <p className="text-[14px]">{row.statusTwibbon}</p>
+                    <p className="text-[14px]">{row.twibbon_status}</p>
                   </div>
                 </td>
                 <td className="px-6 py-2">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-1"
-                    onClick={() => setPopupUrl(row.profile)}
+                    onClick={() => getProfileData(row.uid)}
                   >
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
                   </button>
-                  <div className="flex items-center text-[#27AE60]">
+                  <div className={`flex items-center ${row.IsProfileVerified ? "text-[#27AE60]" : "text-[#EB5757]"}`}>
                     <HiOutlineInformationCircle />
-                    <p className="text-[14px]">{row.statusProfile}</p>
+                    <p className="text-[14px]">
+                      {row.IsProfileVerified ? "Complete" : "Incomplete"}
+                    </p>
                   </div>
                 </td>
               </tr>
@@ -222,12 +315,15 @@ export default function UserVerification() {
                   <AiOutlineArrowLeft size={24} />
                 </button>
               </div>
-              <Image src={popupUrl} alt="" />
+              <Image src={popupUrl} width={200} height={200} alt="" />
               <div className="flex justify-center gap-4">
                 <button
                   type="submit"
                   className="text-white bg-[#3AD820] rounded-lg px-8 py-2"
-                  onClick={() => setPopupUrl(null)}
+                  onClick={() => {
+                    setPopupUrl(null);
+                    updateDocs(2);
+                  }}
                 >
                   Verify
                 </button>
@@ -272,7 +368,7 @@ export default function UserVerification() {
               <button
                 type="submit"
                 className="text-white bg-[#379392] rounded-lg px-8 py-2"
-                onClick={closePopUp}
+                onClick={() => updateDocs(-1)}
               >
                 Submit
               </button>
@@ -287,7 +383,7 @@ export default function UserVerification() {
             onClick={() => setShowProfile(null)}
           ></div>
           <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center">
-            <div className="w-1/3 bg-[#F3EEE7] flex flex-col items-center px-6 py-6 gap-2 rounded-lg">
+            <div className="md:w-1/2 w-full bg-[#F3EEE7] flex flex-col items-center px-6 py-6 gap-2 rounded-lg">
               <div className="w-full flex justify-start">
                 <p className="font-bold text-[#379392] text-[32px]">
                   Personal Information
@@ -300,7 +396,7 @@ export default function UserVerification() {
                     Full Name
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.teamName}
+                    {showProfile.full_name}
                   </p>
                 </div>
                 <div className="flex flex-col">
@@ -308,22 +404,18 @@ export default function UserVerification() {
                     Username
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.userName}
+                    {showProfile.username}
                   </p>
                 </div>
               </div>
               <div className="w-full flex justify-between mb-3">
                 <div className="flex flex-col">
                   <p className="font-bold text-[#379392] text-[24px]">Email</p>
-                  <p className="text-black text-[18px]">
-                    {showProfile.userName}
-                  </p>
+                  <p className="text-black text-[18px]">{showProfile.email}</p>
                 </div>
                 <div className="flex flex-col">
                   <p className="font-bold text-[#379392] text-[24px]">Age</p>
-                  <p className="text-black text-[18px]">
-                    {showProfile.userName}
-                  </p>
+                  <p className="text-black text-[18px]">{showProfile.age}</p>
                 </div>
               </div>
               <div className="w-full flex justify-between mb-3">
@@ -332,7 +424,7 @@ export default function UserVerification() {
                     Address
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.teamName}
+                    {showProfile.address}
                   </p>
                 </div>
                 <div className="flex flex-col">
@@ -340,7 +432,7 @@ export default function UserVerification() {
                     Phone Number
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.userName}
+                    {showProfile.phone_number}
                   </p>
                 </div>
               </div>
@@ -350,7 +442,7 @@ export default function UserVerification() {
                     Institution
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.teamName}
+                    {showProfile.institution}
                   </p>
                 </div>
                 <div className="flex flex-col">
@@ -358,33 +450,31 @@ export default function UserVerification() {
                     LinkedIn
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.userName}
+                    {showProfile.linkedin_url}
                   </p>
                 </div>
               </div>
               <div className="w-full flex justify-between mb-3">
                 <div className="flex flex-col">
                   <p className="font-bold text-[#379392] text-[24px]">Major</p>
-                  <p className="text-black text-[18px]">
-                    {showProfile.teamName}
-                  </p>
+                  <p className="text-black text-[18px]">{showProfile.major}</p>
                 </div>
                 <div className="flex flex-col">
                   <p className="font-bold text-[#379392] text-[24px]">
                     ID Line
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.userName}
+                    {showProfile.line_id}
                   </p>
                 </div>
               </div>
               <div className="w-full flex justify-between">
-              <div className="flex flex-col">
+                <div className="flex flex-col">
                   <p className="font-bold text-[#379392] text-[24px]">
                     Entry Year
                   </p>
                   <p className="text-black text-[18px]">
-                    {showProfile.userName}
+                    {showProfile.entry_year}
                   </p>
                 </div>
                 <button

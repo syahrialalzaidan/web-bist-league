@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import CountDown from "./component/countdown";
-import Dropzone from "./component/dropzone";
-import NavUser from "./component/nav";
+import CountDown from "../component/countdown";
+import Dropzone from "../component/dropzone";
+import NavUser from "../component/nav";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { MdCancel } from "react-icons/md";
@@ -10,8 +10,7 @@ import { BiUpload } from "react-icons/bi";
 import { FileRejection } from "react-dropzone";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import LoadingPage from "./component/loadingPage";
-import UserBox from "./component/userbox";
+import LoadingPage from "../component/loadingPage";
 
 interface SubmittedData {
   doc_type: string;
@@ -30,7 +29,7 @@ export default function CompetitionUser() {
   const [data, setData] = useState<any | null>();
   const [isLoading, setisLoading] = useState(true);
 
-  const [date, setDate] = useState("September 18, 2023 23:59:59");
+  const [date, setDate] = useState("October 01, 2023 23:59:59");
   const [fase, setFase] = useState(1);
 
   const [base64, setBase64] = useState("");
@@ -63,13 +62,13 @@ export default function CompetitionUser() {
     const temp = fase + 1;
     setFase(temp);
     if (fase == 2) {
-      setDate("October 2, 2023 23:59:59");
+      setDate("October 22, 2023 23:59:59");
     } else if (fase == 3) {
-      setDate("October 23, 2023 00:00:00");
+      setDate("November 5, 2023 00:00:00");
     } else if (fase == 4) {
-      setDate("November 18, 2023 17:59:59");
+      setDate("November 19, 2023 17:59:59");
     } else if (fase == 5) {
-      setDate("November 19, 2023 06:00:00");
+      setDate("December 3, 2023 06:00:00");
     } else {
       setDate("December 20, 2023 00:00:00");
     }
@@ -165,13 +164,13 @@ export default function CompetitionUser() {
           >
             <p className="text-[16px] lg:text-[24px] text-center mb-2">
               {fase == 1
-                ? "Competition start in"
+                ? "Early bid closes in"
                 : fase == 3
-                ? "Preliminary submission closes in"
+                ? "Preliminary Case Release in"
                 : fase == 4
-                ? "Announcement in"
+                ? "Preliminary Submission closes in"
                 : fase == 5
-                ? "Final round start in"
+                ? "Finalist Announcement in"
                 : fase == 6
                 ? "Submission Final close in"
                 : ""}
