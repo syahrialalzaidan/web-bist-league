@@ -3,12 +3,14 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const cookies = new Cookies();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ export default function Login() {
       username,
       password,
     };
+
 
     try {
       const response = await axios.post(
@@ -29,6 +32,7 @@ export default function Login() {
         const { jwt_token, user } = response.data.data;
 
         cookies.set('token_admin', jwt_token, { path: '/' });
+        router.push('/adminpage');
       } else {
         // Handle login error
         console.log("Login failed.");
