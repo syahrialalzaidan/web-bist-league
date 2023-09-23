@@ -1,21 +1,20 @@
-import Image from 'next/image'
-import LoginPage from './login/page'
-import PaymentVerification from './adminpage/component/payment'
-import UserVerification from './adminpage/component/user'
-import AdnminPage from './adminpage/page'
-import NavUser from './dashboarduser/component/nav'
-import ProfilUser from './dashboarduser/profile/page'
-import OverviewUser from './dashboarduser/overview'
-
 "use client";
+
+// import Image from "next/image";
+// import LoginPage from "./login/page";
+// import PaymentVerification from "./adminpage/component/payment";
+// import UserVerification from "./adminpage/component/user";
+// import AdnminPage from "./adminpage/page";
+// import NavUser from "./dashboarduser/component/nav";
+// import ProfilUser from "./dashboarduser/profile/page";
+// import OverviewUser from "./dashboarduser/overview";
 
 import React, { useState, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@/component/Header/Header";
 import Footer from "@/component/Footer/Footer";
-import css from "@/app/landing.module.css"
+import css from "@/app/landing.module.css";
 import Countdown from "@/component/Countdown/Countdown";
-import Link from "next/link";
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -49,17 +48,30 @@ export default function Home() {
   };
 
   // Ubah Registration close in -> Extended Registration
-  const registrationClose = new Date("September 17, 2023 22:37:00 ").getTime();
+  const earlyBirdRegistrationClose = new Date(
+    "October 1, 2023 23:59:59 "
+  ).getTime();
+  const normalRegistrationClose = new Date(
+    "October 29, 2023 23:59:59 "
+  ).getTime();
+  const lateRegistrationClose = new Date(
+    "November 5, 2023 23:59:59 "
+  ).getTime();
 
   const [componentReady, setcomponentReady] = useState<boolean>(false);
   const [registrationStatus, setRegistrationStatus] = useState<String>(
-    "Closed Registration in"
+    "Closed Early Bird Registration in"
   );
+  const [date, setDate] = useState<String>("1 Oktober 2023");
 
   useLayoutEffect(() => {
     const now = new Date().getTime();
-    if (now > registrationClose) {
-      setRegistrationStatus("Extended Registration");
+    if (now > earlyBirdRegistrationClose) {
+      setRegistrationStatus("Closed Registration");
+      setDate("29 Oktober 2023");
+    } else if (now > normalRegistrationClose) {
+      setRegistrationStatus("Closed late Registration in");
+      setDate("5 November 2023");
     }
     setcomponentReady(true);
   }, []);
@@ -70,7 +82,7 @@ export default function Home() {
   const router = useRouter();
 
   const registerHandler = () => {
-    router.push("/");
+    router.push("/compregistration");
   };
 
   return (
@@ -157,7 +169,7 @@ export default function Home() {
 
             {/* Countdown Section */}
             <Countdown />
-            <p className={`${css.eventDate}`}>17 September 2023</p>
+            <p className={`${css.eventDate}`}>{date}</p>
             <div className={`${css.registerButtonDiv}`}>
               <button
                 className={`${css.registerButton}`}
@@ -261,8 +273,9 @@ export default function Home() {
                         ? css.fadeInAnimation
                         : css.fadeOutAnimation
                     } bg-[#276766]`}
+                    onClick={() => router.push("/competition")}
                   >
-                    <Link href="/competition">More About Competition</Link>
+                    More About Competition
                   </button>
                 </div>
 
@@ -302,8 +315,9 @@ export default function Home() {
                         : css.fadeOutAnimation
                     }
                     bg-[#9E1B1B]`}
+                    onClick={() => router.push("/bootcamp")}
                   >
-                    <Link href="/bootcamp">More About Bootcamp</Link>
+                    More About Bootcamp
                   </button>
                 </div>
 
@@ -347,8 +361,9 @@ export default function Home() {
                         : css.fadeOutAnimation
                     }
                     bg-[#463461]`}
+                    onClick={() => router.push("/minichallenge")}
                   >
-                    <Link href="minichallenge">More About Mini Challenge</Link>
+                    More About Mini Challenge
                   </button>
                 </div>
 
@@ -391,8 +406,9 @@ export default function Home() {
                         : css.fadeOutAnimation
                     }
                      bg-[#AE7120]`}
+                    onClick={() => router.push("/webinar")}
                   >
-                    <Link href="/webinar">More About Webinar</Link>
+                    More About Webinar
                   </button>
                 </div>
               </div>
@@ -400,10 +416,42 @@ export default function Home() {
               {/* Right Side Activites */}
               <div className={`${css.activitiesRightSide}`}>
                 <div className={`${css.activitiesImageDiv}`}>
-                  <img src="" alt="" className={`${css.competitionImage}`} />
-                  <img src="" alt="" className={`${css.bootcampImage}`} />
-                  <img src="" alt="" className={`${css.miniChallenge}`} />
-                  <img src="" alt="" className={`${css.webinarImage}`} />
+                  <img
+                    src="images/landingpage/competitionBistLeague.jpg"
+                    alt=""
+                    className={`${css.competitionImage} ${
+                      activities == "competetion" ? "" : "hidden"
+                    } w-full h-full object-cover`}
+                    height="57.5vw"
+                    width="57.5vw"
+                  />
+                  <img
+                    src="images/landingpage/bootcampBistLeague.jpg"
+                    alt=""
+                    className={`${css.bootcampImage} ${
+                      activities == "bootcamp" ? "" : "hidden"
+                    } h-full  w-full object-cover`}
+                    height="57.5vw"
+                    width="57.5vw"
+                  />
+                  <img
+                    src="images/landingpage/miniChallengeBistLeague.jpg"
+                    alt=""
+                    className={`${css.miniChallenge} ${
+                      activities == "miniChallenge" ? "" : "hidden"
+                    } h-full w-full object-fit`}
+                    height="57.5vw"
+                    width="57.5vw"
+                  />
+                  <img
+                    src="images/landingpage/webinarBistLeague.jpg"
+                    alt=""
+                    className={`${css.webinarImage} ${
+                      activities == "webinar" ? "" : "hidden"
+                    } h-full w-full object-fit`}
+                    height="57.5vw"
+                    width="57.5vw"
+                  />
                 </div>
               </div>
             </div>
@@ -412,7 +460,13 @@ export default function Home() {
             <div className={`${css.activitiesSectionForMobile}`}>
               {/* Competition Component Mobile */}
               <div className={`${css.competitionImageDiv}`}>
-                <img src="" alt="" className={`${css.competitionImage}`} />
+                <img
+                  src="/images/landingpage/competitionBistLeague.jpg"
+                  alt=""
+                  className={`${css.competitionImage} w-full h-full object-cover`}
+                  height="57.5vw"
+                  width="57.5vw"
+                />
               </div>
               <p className={`${css.activitiesDate}`}>
                 14 Agustus - 19 November
@@ -425,26 +479,44 @@ export default function Home() {
                 solving skills in creating creative and effective solutions.
                 This competition is intended for undergraduate/D3 students.
               </p>
-              <button className={`${css.activitiesButton} bg-[#276766]`}>
-                <Link href="competition">More About Competition</Link>
+              <button
+                className={`${css.activitiesButton} bg-[#276766]`}
+                onClick={() => router.push("/competition")}
+              >
+                More About Competition
               </button>
 
               {/* Bootcamp Component Mobile */}
               <div className={`${css.bootcampImageDiv}`}>
-                <img src="" alt="" className={`${css.bootcampImage}`} />
+                <img
+                  src="/images/landingpage/bootcampBistLeague.jpg"
+                  alt=""
+                  className={`${css.bootcampImage} w-full h-full object-cover`}
+                  height="57.5vw"
+                  width="57.5vw"
+                />
               </div>
               <p className={`${css.activitiesDate}`}>Coming Soon</p>
               <h1 className={`${css.activitiesTitle}`}>
                 Business Case Bootcamp
               </h1>
               <p className={`${css.activitiesText}`}></p>
-              <button className={`${css.bootcampButton} bg-[#943232]`}>
-                <Link href="bootcamp">More About Bootcamp</Link>
+              <button
+                className={`${css.bootcampButton} bg-[#943232]`}
+                onClick={() => router.push("/bootcamp")}
+              >
+                More About Bootcamp
               </button>
 
               {/* Mini Challenge Component Mobile */}
               <div className={`${css.miniChallengeImageDiv}`}>
-                <img src="" alt="" className={`${css.miniChallenge}`} />
+                <img
+                  src="/images/landingpage/miniChallengeBistLeague.jpg"
+                  alt=""
+                  className={`${css.miniChallenge} w-full h-full object-fit`}
+                  height="57.5vw"
+                  width="57.5vw"
+                />
               </div>
 
               <p className={`${css.activitiesDate}`}>Coming Soon</p>
@@ -454,13 +526,22 @@ export default function Home() {
                 to increase awareness and insight regarding the topics raised by
                 BIST League 6.0
               </p>
-              <button className={`${css.miniChallengeButton} bg-[#463461]`}>
-                <Link href="/minichallenge">More About Mini Challenge</Link>
+              <button
+                className={`${css.miniChallengeButton} bg-[#463461]`}
+                onClick={() => router.push("/minichallenge")}
+              >
+                More About Mini Challenge
               </button>
 
               {/* Webinar Component Mobile */}
               <div className={`${css.webinarImageDiv}`}>
-                <img src="" alt="" className={`${css.webinarImage}`} />
+                <img
+                  src="/images/landingpage/webinarBistLeague.jpg"
+                  alt=""
+                  className={`${css.webinarImage} w-full h-full object-fit`}
+                  height="57.5vw"
+                  width="57.5vw"
+                />
               </div>
 
               <p className={`${css.activitiesDate}`}>Coming Soon</p>
@@ -469,8 +550,11 @@ export default function Home() {
                 A sharing sessions with incredible speakers from the Technology
                 industry with topics aligning with BIST League 6.0 theme.
               </p>
-              <button className={`${css.webinarButton} bg-[#AE7120]`}>
-                <Link href="webinar">More About Webinar</Link>
+              <button
+                className={`${css.webinarButton} bg-[#AE7120]`}
+                onClick={() => router.push("/webinar")}
+              >
+                More About Webinar
               </button>
             </div>
           </section>
