@@ -36,8 +36,10 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   const router = useRouter();
 
+
   const signOutHandler = () => {
     router.push("/login");
+
   };
 
   const [username, setUsername] = useState<string | null>(null);
@@ -88,7 +90,9 @@ const Header: React.FC<HeaderProps> = (props) => {
             }`}
             onClick={() => router.push("/")}
           >
+
             Home
+
           </button>
 
           <button
