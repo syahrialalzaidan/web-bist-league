@@ -170,6 +170,7 @@ export default function UserVerification() {
                 <td className="px-4 py-2 text-center">{id + 1}</td>
                 <td className="px-12 py-2 text-center">{row.team_name}</td>
                 <td className="px-12 py-2">{row.full_name}</td>
+
                 <td className="px-6 py-2">
                   <button
                     className="bg-[#40A89F] rounded-lg flex items-center gap-1 text-white px-4 py-1 z-20"
