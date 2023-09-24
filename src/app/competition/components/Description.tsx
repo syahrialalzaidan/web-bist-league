@@ -10,10 +10,10 @@ export default function Description() {
                 </p>
                 <br></br>
                 <p>
-                    This year, the BIST League 6.0 theme is <span className="font-bold">“Leveraging technological opportunities to achieve a sustainable business growth” </span>
-                    as an effort to take advantage of opportunities for developing information technology in the digital era in order to catalyze
-                    the company{"'"}s business growth to participants. The series of competition events will be carried out consisting of a registration
-                    phase, preliminary round, final round which will be carried out fully offline.
+                    This year, the BIST League 6.0 theme is <span className="font-bold">“Achieving Technological Opportunities to Achieve a Sustainable Business Growth”</span> 
+                    as an effort to take advantage of opportunities for developing information technology in the digital era in order to catalyze 
+                    the company{"'"}s business growth to participants. The series of Competition events will be carried out consisting of a registration phase, 
+                    preliminary round, and final round, with details of the preliminary round being carried out online and the final round being carried out offline.
                 </p>
             </div>
         </div>
