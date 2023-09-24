@@ -188,13 +188,13 @@ const Header: React.FC<HeaderProps> = (props) => {
               >
                 <ul className={css.ulDropDown}>
                   <li
-                    className={`${css.liDropDown} ${css.dashboardDropDown} select-none`}
+                    className={`${css.liDropDown} ${css.dashboardDropDown} select-none cursor-pointer`}
                     onClick={() => router.push("/dashboarduser")}
                   >
                     Dashboard
                   </li>
                   <li
-                    className={`${css.liDropDown} ${css.signOutDropDown} select-none`}
+                    className={`${css.liDropDown} ${css.signOutDropDown} select-none cursor-pointer`}
                     onClick={signOutHandler}
                   >
                     Sign Out
