@@ -9,7 +9,9 @@ import BataMidRight from "@images/competition/hero/hero-bata-rightmid.svg";
 import BataBotRight from "@images/competition/hero/hero-bata-botright.svg";
 import KotakSatu from "@images/competition/hero/hero-kotak-satu.svg";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
+import { useRouter } from "next/navigation";
+import Countdown from "@/component/Countdown/Countdown";
 
 interface TeamMember {
     user_id: string;
@@ -68,6 +70,8 @@ interface HeroProps {
 }
 
 export default function Hero({ teamData, profileData }: HeroProps) {
+    const router = useRouter();
+
     const [timerDays, setTimerDays] = useState<number>(0);
     const [timerHours, setTimerHours] = useState<number>(0);
     const [timerMinutes, setTimerMinutes] = useState<number>(0);
@@ -75,40 +79,35 @@ export default function Hero({ teamData, profileData }: HeroProps) {
 
     const interval = useRef<NodeJS.Timeout | null>(null);
 
-    const startTimer = () => {
-        const countdownDate = new Date('September 18, 2023 00:00:00').getTime();
+    const earlyBirdRegistrationClose = new Date(
+        "October 1, 2023 23:59:59 "
+    ).getTime();
+    const normalRegistrationClose = new Date(
+        "October 29, 2023 23:59:59 "
+    ).getTime();
+    const lateRegistrationClose = new Date(
+        "November 5, 2023 23:59:59 "
+    ).getTime();
 
-        interval.current = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
+    const [componentReady, setcomponentReady] = useState<boolean>(false);
+    const [registrationStatus, setRegistrationStatus] = useState<String>(
+        "Closed Early Bird Registration in"
+    );
+    const [date, setDate] = useState<String>("1 Oktober 2023");
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            if (distance < 0) {
-                // Stop timer
-                clearInterval(interval.current!);
-            } else {
-                // Update timer
-                setTimerDays(days);
-                setTimerHours(hours);
-                setTimerMinutes(minutes);
-                setTimerSeconds(seconds);
-            }
-        }, 1000);
-    };
-
-    // componentDidMount
-    useEffect(() => {
-        startTimer();
-        return () => {
-            if (interval.current) {
-                clearInterval(interval.current);
-            }
-        };
+    useLayoutEffect(() => {
+        const now = new Date().getTime();
+        if (now > earlyBirdRegistrationClose) {
+            setRegistrationStatus("Closed Registration");
+            setDate("29 Oktober 2023");
+        } else if (now > normalRegistrationClose) {
+            setRegistrationStatus("Closed late Registration in");
+            setDate("5 November 2023");
+        }
+        setcomponentReady(true);
     }, []);
+
+
 
     return (
         <div className="bg-[url('/images/competition/hero/bg-hero-mobile.svg')] lg:bg-[url('/images/competition/hero/bg-hero-web.svg')] relative bg-cover overflow-hidden mt-20 py-24">
@@ -149,43 +148,32 @@ export default function Hero({ teamData, profileData }: HeroProps) {
                     alt="Hero Round"
                     className="scale-125 w-[248px] h-[329px] lg:w-[400px] lg:h-[530px] overflow-hidden absolute -top-3 left-[-90px] lg:top-20 lg:left-12 z-0"
                 />
-                <p className="text-[#F3EEE7] lg:leading-snug font-monument text-3xl lg:text-[64px] font-MonumentExtended font-extrabold drop-shadow-[-4px_4px_0_rgba(16,109,108,1)]">
-                    BUSINESS IT CASE COMPETITION
-                </p>
-                {profileData && (
+                {profileData ? (
                     <>
-                        <p className="mt-6 mb-3.5 text-2xl text-white font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+                        <p className="text-[#F3EEE7] lg:leading-snug font-monument text-3xl lg:text-[64px] font-MonumentExtended font-extrabold drop-shadow-[-4px_4px_0_rgba(16,109,108,1)]">
+                            BUSINESS IT CASE COMPETITION
+                        </p>
+                        <p className="mt-6 lg:mt-2 text-2xl text-white font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
                             Registration closes in:
                         </p>
-                        <div className="flex items-center justify-center z-10">
-                            <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerDays < 10) ? `0${timerDays}` : timerDays}</h1>
-                                <p className="text-[#379392] text-sm lg:text-lg font-extrabold">Days</p>
-                            </div>
-                            <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
-                            <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerHours < 10) ? `0${timerHours}` : timerHours}</h1>
-                                <p className="text-[#379392] text-sm lg:text-lg font-extrabold">Hours</p>
-                            </div>
-                            <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
-                            <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerMinutes < 10) ? `0${timerMinutes}` : timerMinutes}</h1>
-                                <p className="hidden lg:block text-[#379392] text-sm lg:text-lg font-extrabold">Minutes</p>
-                                <p className="block lg:hidden text-[#379392] text-sm lg:text-lg font-extrabold">Mins</p>
-                            </div>
-                            <p className="text-4xl lg:text-7xl text-[#F4F0EC] font-MonumentExtended font-extrabold mb-2 lg:mb-5">:</p>
-                            <div className="w-[60px] h-[74px] lg:w-[141px] lg:h-[142px] bg-[#F4F0EC] rounded-lg py-2.5 px-2.5 lg:py-5 shadow-xl">
-                                <h1 className="text-[#379392] text-2xl lg:text-7xl font-extrabold">{(timerSeconds < 10) ? `0${timerSeconds}` : timerSeconds}</h1>
-                                <p className="hidden lg:block text-[#379392] text-sm lg:text-lg font-extrabold">Seconds</p>
-                                <p className="block lg:hidden text-[#379392] text-sm lg:text-lg font-extrabold">Secs</p>
-                            </div>
+                        <Countdown />
+                    </>
+                ) : (
+                    <>
+                        <p className="text-[#F3EEE7] lg:leading-snug font-monument text-3xl lg:text-[64px] lg:mt-20 font-MonumentExtended font-extrabold drop-shadow-[-4px_4px_0_rgba(16,109,108,1)]">
+                            BUSINESS IT CASE COMPETITION
+                        </p>
+                        <div className="flex justify-center mt-7 lg:mt-20 mb-10 z-10">
+                            <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold" onClick={() => router.push("/register")}>
+                                Register Now
+                            </button>
                         </div>
                     </>
                 )}
 
                 {teamData && (
                     <div className="flex justify-center mt-7 lg:mt-10 z-10">
-                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold">
+                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold" onClick={() => router.push("/createteam")}>
                             Register Team
                         </button>
                     </div>

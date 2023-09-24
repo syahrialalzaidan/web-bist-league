@@ -103,7 +103,7 @@ export default function Submission({ teamData,
     }
     return (
         <div className="px-5 py-7">
-            <div className="flex text-[#F3EEE7] items-center justify-between mt-8 lg:mt-0">
+            <div className="flex text-[#F3EEE7] items-center justify-between mt-8 lg:mt-0 relative z-10">
                 <div className="flex items-center gap-3">
                     <AiOutlineArrowLeft className="text-2xl lg:text-base" />
                     <h1 className="hidden lg:inline font-bold text-base">Back to Competition</h1>
@@ -163,12 +163,12 @@ export default function Submission({ teamData,
                         </div>
                     </form>
                 </div>
-                <Image
-                    src={BulatKiri}
-                    alt="Hero Round"
-                    className="scale-75 lg:scale-100 absolute bottom-14 -left-20 lg:bottom-0 lg:left-0 z-0"
-                />
             </div>
+            <Image
+                src={BulatKiri}
+                alt="Hero Round"
+                className="scale-75 lg:scale-100 absolute bottom-14 -left-20 lg:bottom-0 lg:left-0 z-0"
+            />
         </div>
     )
 }
