@@ -191,8 +191,8 @@ export default function Home() {
                   solving skills on business problems related to information
                   technology. BIST League 6.0 theme is{" "}
                   <b>
-                    “Leveraging technological opportunities to achieve
-                    sustainable business growth”.{" "}
+                    “Achieving Technological Opportunities to Achieve a
+                    Sustainable Business Growth”.{" "}
                   </b>
                   In addition to the main competition, we also hold a Business
                   Case Bootcamp which in planned to improve the ability of
