@@ -91,6 +91,7 @@
 }
 
 .eventDate {
+  font-size: 2rem;
   text-align: center;
   font-weight: bold;
   /* margin-top: 1.2rem; */
@@ -1148,7 +1149,7 @@
     font-weight: bold;
     text-align: center;
     /* margin-top: 11vh; */
-    margin-top: 25vw;
+    margin-top: 39vw;
   }
 
   .aboutBistLeagueContainer {
