@@ -36,28 +36,10 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   const router = useRouter();
 
-  const homeHandler = () => {
-    router.push("/");
-  };
 
-  const competetionHandler = () => {
-    router.push("/");
-  };
+  const signOutHandler = () => {
+    router.push("/login");
 
-  const bootcampHandler = () => {
-    router.push("/");
-  };
-
-  const webinarHandler = () => {
-    router.push("/");
-  };
-
-  const miniChallengeHandler = () => {
-    router.push("/");
-  };
-
-  const registerUserHandler = () => {
-    router.push("/");
   };
 
   const [username, setUsername] = useState<string | null>(null);
@@ -92,13 +74,13 @@ const Header: React.FC<HeaderProps> = (props) => {
     <section>
       <div className={`h-20 ${css.outer}`}>
         <button>
-          <Link href="/">
+          <button onClick={() => router.push("/")}>
             <img
               src="./images/landingpage/Logo.svg"
               alt="logo"
               className={css.logo}
             />
-          </Link>
+          </button>
         </button>
 
         <div className={`${css.rightNavbar}`}>
@@ -106,46 +88,55 @@ const Header: React.FC<HeaderProps> = (props) => {
             className={`${css.navbarItem} ${
               props.page === "Home" ? css.buttonActive : ""
             }`}
+            onClick={() => router.push("/")}
           >
-            <Link href="/" className={``}>
-              Home
-            </Link>
+
+            Home
+
           </button>
-          <button className={`${css.navbarItem} `}>
-            <Link
-              href="/competition"
-              className={`${
-                props.page === "Competition" ? css.buttonActive : ""
-              }`}
-            >
-              Competition
-            </Link>
+
+          <button
+            className={`${css.navbarItem} ${
+              props.page === "Competition" ? css.buttonActive : ""
+            }`}
+            onClick={() => router.push("/competition")}
+          >
+            Competition
           </button>
+
           <button
             className={`${css.navbarItem} ${
               props.page === "Bootcamp" ? css.buttonActive : ""
             }`}
+            onClick={() => router.push("/bootcamp")}
           >
-            <Link href="/bootcamp">Bootcamp</Link>
+            Bootcamp
           </button>
+
           <button
             className={`${css.navbarItem} ${
               props.page === "Webinar" ? css.buttonActive : ""
             }`}
+            onClick={() => router.push("/webinar")}
           >
-            <Link href="/webinar">Webinar</Link>
+            Webinar
           </button>
+
           <button
             className={`${css.navbarItem} ${
               props.page === "Mini Challenge" ? css.buttonActive : ""
             }`}
+            onClick={() => router.push("/minichallenge")}
           >
-            <Link href="/minichallenge">Mini Challenge</Link>
+            Mini Challenge
           </button>
 
           {username === null ? (
-            <button className={`${css.navbarItem}`}>
-              <Link href="#">Register</Link>
+            <button
+              className={`${css.navbarItem}`}
+              onClick={() => router.push("/register")}
+            >
+              Register
             </button>
           ) : (
             <div className={css.relative}>
@@ -198,11 +189,17 @@ const Header: React.FC<HeaderProps> = (props) => {
                 }`}
               >
                 <ul className={css.ulDropDown}>
-                  <li className={`${css.liDropDown} ${css.dashboardDropDown}`}>
-                    <Link href="/dashboarduser">Dashboard</Link>
+                  <li
+                    className={`${css.liDropDown} ${css.dashboardDropDown}`}
+                    onClick={() => router.push("/dashboarduser")}
+                  >
+                    Dashboard
                   </li>
-                  <li className={`${css.liDropDown} ${css.signOutDropDown}`}>
-                    <Link href="/login">Sign Out</Link>
+                  <li
+                    className={`${css.liDropDown} ${css.signOutDropDown}`}
+                    onClick={() => signOutHandler}
+                  >
+                    Sign Out
                   </li>
                 </ul>
               </div>
@@ -228,7 +225,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <li className={css.backButtonSection}>
             <button>
               <img
-                src="./images/landingpage/back-arrow.svg"
+                src="images/landingpage/back-arrow.svg"
                 alt=""
                 className={css.backButton}
                 onClick={() => handleBackButton()}
@@ -244,29 +241,36 @@ const Header: React.FC<HeaderProps> = (props) => {
           </li>
 
           <li className={`${props.page === "Home" ? css.activeLi : ""}`}>
-            <Link href="/">Home</Link>
+            <button onClick={() => router.push("/")}>Home</button>
           </li>
 
           <li className={props.page === "Competition" ? css.activeLi : ""}>
-            <Link href="/competition">Competition</Link>
+            <button onClick={() => router.push("/competition")}>
+              Competition
+            </button>
           </li>
 
           <li className={props.page === "Bootcamp" ? css.activeLi : ""}>
-            <Link href="/bootcamp">Bootcamp</Link>
+            <button onClick={() => router.push("/bootcamp")}>Bootcamp</button>
           </li>
 
           <li className={props.page === "Webinar" ? css.activeLi : ""}>
-            <Link href="/webinar">Webinar</Link>
+            <button onClick={() => router.push("/webinar")}>Webinar</button>
           </li>
 
           <li className={props.page === "Mini Challenge" ? css.activeLi : ""}>
-            <Link href="/minichallenge">Mini Challenge</Link>
+            <button onClick={() => router.push("/minichallenge")}>
+              Mini Challenge
+            </button>
           </li>
 
           {username === null ? (
-            <li className="flex justify-center">
-              <button className={`${css.registerButton}`}>
-                <Link href="#">Register</Link>
+            <li className={`flex justify-center ${css.backButtonSection}`}>
+              <button
+                className={`${css.registerButton}`}
+                onClick={() => router.push("/register")}
+              >
+                Register
               </button>
             </li>
           ) : (

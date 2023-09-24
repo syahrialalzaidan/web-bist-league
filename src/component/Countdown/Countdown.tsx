@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState, useRef } from "react";
 import Semicolon from "../Semicolon/Semicolon";
-import css from "../../app/landing.module.css"
+import css from "../../app/landing.module.css";
 
 const Countdown: React.FC = () => {
   const [timerDays, setTimerDays] = useState<string>("00");
@@ -12,14 +12,26 @@ const Countdown: React.FC = () => {
 
   const getNextTargetDate = (currentDate: Date): Date => {
     if (
-      currentDate.getDate() >= 17 &&
-      currentDate.getMonth() >= 8 &&
+      currentDate.getDate() >= 25 &&
+      currentDate.getMonth() >= 9 &&
       currentDate.getFullYear() <= 2023
     ) {
       // If current date is on or after 17th September, target 1st October
-      return new Date("October 1, 2023 00:00:00");
+      return new Date("October 1, 2023 23:59:59");
+    } else if (
+      currentDate.getDate() > 1 &&
+      currentDate.getMonth() >= 10 &&
+      currentDate.getFullYear() <= 2023
+    ) {
+      return new Date("October 29, 2023 23:59:59");
+    } else if (
+      currentDate.getDate() > 29 &&
+      currentDate.getMonth() >= 10 &&
+      currentDate.getFullYear() <= 2023
+    ) {
+      return new Date("November 5, 2023 23:59:59");
     } else {
-      // Otherwise, target 17th September of next year
+      // Otherwise, target 17th September
       return new Date("September 17, 2023 00:00:00");
     }
   };
