@@ -62,7 +62,7 @@ export default async function SubmissionPage() {
   const teamData = await getTeam();
   const submissionData = await getLastSubmission();
 
-  if(!teamData.is_active) {
+  if(!teamData?.is_active) {
     redirect('/competition')
   }
   

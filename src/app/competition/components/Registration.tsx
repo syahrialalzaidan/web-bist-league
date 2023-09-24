@@ -13,15 +13,15 @@ export default function Registration() {
             <Image
                 src={KotakTop}
                 alt="Hero Round"
-                className="hidden lg:block overflow-hidden absolute lg:top-0 lg:right-14"
+                className="hidden lg:block overflow-hidden absolute lg:top-0 lg:right-14 z-0"
             />
             <Image
                 src={KotakBottom}
                 alt="Hero Round"
-                className="hidden lg:block overflow-hidden absolute lg:bottom-[152px] lg:left-28"
+                className="hidden lg:block overflow-hidden absolute lg:bottom-[152px] lg:left-28 z-0"
             />
 
-            <h1 className="text-4xl lg:text-5xl font-extrabold">Registration Fees</h1>
+            <h1 className="text-4xl lg:text-5xl font-extrabold relative z-10">Registration Fees</h1>
             <div className="flex flex-wrap justify-center text-center gap-9 xl:gap-x-44 xl:gap-y-14 my-9">
                 <Image
                     src={KotakTopMobile}
