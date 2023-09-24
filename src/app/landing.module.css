@@ -234,7 +234,14 @@
   font-weight: bold;
   text-align: center;
   /* margin-top: 11rem; */
-  margin-top: 13.772vw;
+  /* margin-top: 13.772vw;*/ /* untuk Background yang tidak di Trim*/
+  margin-top: 17vw;
+}
+
+@media (min-width: 1440px) {
+  .activitiesHeader {
+    margin-top: 30vw;
+  }
 }
 
 .activitiesSectionForDesktop {
