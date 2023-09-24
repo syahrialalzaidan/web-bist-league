@@ -36,12 +36,6 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   const router = useRouter();
 
-
-  const signOutHandler = () => {
-    router.push("/login");
-
-  };
-
   const [username, setUsername] = useState<string | null>(null);
   const cookies = new Cookies();
   const user_id = cookies.get("user_id"); // Read JWT token from cookies
@@ -70,6 +64,12 @@ const Header: React.FC<HeaderProps> = (props) => {
     }
   };
 
+  const signOutHandler = () => {
+    cookies.remove("jwt_token", { path: "/" });
+    cookies.remove("user_id", { path: "/" });
+    router.push("/login");
+  };
+
   return (
     <section>
       <div className={`h-20 ${css.outer}`}>
@@ -90,9 +90,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             }`}
             onClick={() => router.push("/")}
           >
-
             Home
-
           </button>
 
           <button
@@ -190,14 +188,14 @@ const Header: React.FC<HeaderProps> = (props) => {
               >
                 <ul className={css.ulDropDown}>
                   <li
-                    className={`${css.liDropDown} ${css.dashboardDropDown}`}
+                    className={`${css.liDropDown} ${css.dashboardDropDown} select-none`}
                     onClick={() => router.push("/dashboarduser")}
                   >
                     Dashboard
                   </li>
                   <li
-                    className={`${css.liDropDown} ${css.signOutDropDown}`}
-                    onClick={() => signOutHandler}
+                    className={`${css.liDropDown} ${css.signOutDropDown} select-none`}
+                    onClick={signOutHandler}
                   >
                     Sign Out
                   </li>

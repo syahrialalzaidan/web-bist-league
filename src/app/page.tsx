@@ -103,7 +103,7 @@ export default function Home() {
             }`}
           >
             <img
-              src="images/landingpage/landingPageBackground.svg"
+              src="images/landingpage/landingPageBackgroundTrimmed.svg"
               alt="background"
               className={`w-full`}
             />
@@ -114,7 +114,7 @@ export default function Home() {
             }`}
           >
             <img
-              src="images/landingpage/landingPageBackground2.svg"
+              src="images/landingpage/landingPageBackgroundTrimmed2.svg"
               alt="background"
               className={`w-full`}
             />
@@ -125,7 +125,7 @@ export default function Home() {
             }`}
           >
             <img
-              src="images/landingpage/landingPageBackground3.svg"
+              src="images/landingpage/landingPageBackgroundTrimmed3.svg"
               alt="background"
               className={`w-full`}
             />
@@ -136,14 +136,14 @@ export default function Home() {
             }`}
           >
             <img
-              src="images/landingpage/landingPageBackground4.svg"
+              src="images/landingpage/landingPageBackgroundTrimmed4.svg"
               alt="background"
               className={`w-full`}
             />
           </div>
           <div className={`${css.backgroundImageMobile} w-full`}>
             <img
-              src="images/landingpage/landingPageBackgroundMobile.svg"
+              src="images/landingpage/landingPageBackgroundMobileTrimmed.svg"
               alt="background"
               className={`w-full`}
             />
