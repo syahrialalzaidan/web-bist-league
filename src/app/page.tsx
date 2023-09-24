@@ -305,7 +305,10 @@ export default function Home() {
                         : css.fadeOutAnimation
                     }`}
                   >
-                    (description Here)
+                    Business IT bootcamp is an intensive training program that
+                    combines business and information technology education,
+                    offering practical skills and knowledge for professionals to
+                    excel in IT-related roles within the business sector.
                   </p>
                   <button
                     className={`${css.activitiesButton}
@@ -469,7 +472,7 @@ export default function Home() {
                 />
               </div>
               <p className={`${css.activitiesDate}`}>
-                14 Agustus - 19 November
+                22 October - 19 November
               </p>
               <h1 className={`${css.activitiesTitle}`}>Competition</h1>
               <p className={`${css.activitiesText}`}>
