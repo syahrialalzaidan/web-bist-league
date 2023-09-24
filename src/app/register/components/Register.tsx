@@ -100,6 +100,8 @@ export default function Register() {
               setUsername(e.target.value);
             }}
           />
+
+          {username.length < 8 ? <p className="text-red-500 text-sm">Username must be {">"} 8 characters</p> : <div className="h-5"></div>}
         </div>
 
         <div className="flex flex-col gap-2 mt-2 lg:mt-6 lg:hidden">
@@ -138,6 +140,8 @@ export default function Register() {
               setConfirmPassword(e.target.value);
             }}
           />
+          {password != confirmPassword ? <p className="text-red-500 text-sm">Password must match</p> : <div className="h-5"></div>}
+
         </div>
       </div>
 

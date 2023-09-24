@@ -92,7 +92,7 @@ export default function Createteam() {
       <div className="flex flex-col">
         <div className="bg-white px-4 py-6 lg:p-10 rounded-lg self-center mt-8 lg:mt-1 w-full lg:w-[711px] ">
           <div className="flex flex-col gap-2">
-            <label className="font-bold">{teamName}</label>
+            <label className="font-bold">Team Name</label>
             <input
               type="text"
               placeholder="Input Text Here"
