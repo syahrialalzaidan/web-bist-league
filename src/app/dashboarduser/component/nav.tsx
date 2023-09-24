@@ -9,7 +9,7 @@ import { MdClose } from "react-icons/md";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function NavUser({ active }: { active?: number }) {
   const [hamburger, setHamburger] = useState(false);
@@ -19,11 +19,13 @@ export default function NavUser({ active }: { active?: number }) {
     }
   };
   const [fullName, setFullName] = useState("");
+  const [teamName, setTeamName] = useState("");
   const [isLoading, setisLoading] = useState(true);
   const cookie = new Cookies();
   const token = cookie.get("jwt_token");
   const user_id = cookie.get("user_id");
   const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+  const router = useRouter();
 
   const getProfileData = async () => {
     try {
@@ -37,17 +39,38 @@ export default function NavUser({ active }: { active?: number }) {
     }
   };
 
+  const getTeamData = async () => {
+    try {
+      const response = await axios.get(url + "team", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      console.log(response.data.data);
+      setTeamName(response.data.data.team_name);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisLoading(false);
+    }
+  };
+
   useEffect(() => {
     getProfileData();
+  }, []);
+
+  useEffect(() => {
+    getTeamData();
   }, []);
   return (
     <>
       <div className="hidden lg:w-1/5 lg:bg-gradient-to-b lg:from-red-600 lg:to-orange-500 lg:flex lg:flex-col lg:px-3 lg:py-12">
         <div className="w-full rounded-lg bg-[#F3EEE7] px-4 py-4 mb-8">
           <p className="text-[20px] font-bold mb-[2px]">{fullName}</p>
-          <p className="text-[12px] font-bold">ITB Team</p>
+          <p className="text-[12px] font-bold">{teamName}</p>
         </div>
-        <Link href="/dashboarduser"
+        <div
+          onClick={() => router.push("/dashboarduser")}
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 0
               ? "bg-[#F3EEE7] text-[#E22727]"
@@ -56,8 +79,9 @@ export default function NavUser({ active }: { active?: number }) {
         >
           <GoHomeFill size={24} />
           <p className="text-[18px] font-bold">Overview</p>
-        </Link >
-        <Link href="/dashboarduser/profile"
+        </div>
+        <div
+          onClick={() => router.push("/dashboarduser/profile")}
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 1
               ? "bg-[#F3EEE7] text-[#E22727]"
@@ -66,8 +90,9 @@ export default function NavUser({ active }: { active?: number }) {
         >
           <CgProfile size={24} />
           <p className="text-[18px] font-bold">Profile</p>
-        </Link>
-        <Link href="/dashboarduser/competition"
+        </div>
+        <div
+          onClick={() => router.push("/dashboarduser/competition")}
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 2
               ? "bg-[#F3EEE7] text-[#E22727]"
@@ -76,7 +101,7 @@ export default function NavUser({ active }: { active?: number }) {
         >
           <FaTrophy size={24} />
           <p className="text-[18px] font-bold">Competition</p>
-        </Link>
+        </div>
         <div
           className={`w-full flex items-center gap-2 rounded-lg ${
             active == 3
@@ -155,36 +180,36 @@ export default function NavUser({ active }: { active?: number }) {
         <>
           <div className="fixed w-full h-full bg-gradient-to-b from-red-600 to-orange-500 flex flex-col items-center justify-between py-20 z-20">
             <div className="w-full flex flex-col items-center justify-center">
-              <Link
+              <div
+                onClick={() => router.push("/dashboarduser")}
                 className={`w-full gap-2 text-center ${
                   active == 0
                     ? "bg-[#F3EEE7] text-[#E22727]"
                     : "bg-transparent text-white"
                 } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
-                href="/dashboarduser"
               >
                 Overview
-              </Link>
-              <Link
+              </div>
+              <div
+                onClick={() => router.push("/dashboarduser/profile")}
                 className={`w-full gap-2 text-center ${
                   active == 1
                     ? "bg-[#F3EEE7] text-[#E22727]"
                     : "bg-transparent text-white"
                 } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
-                href="/dashboarduser/profile"
               >
                 Profile
-              </Link>
-              <Link
+              </div>
+              <div
+                onClick={() => router.push("/dashboarduser/competition")}
                 className={`w-full gap-2 text-center ${
                   active == 2
                     ? "bg-[#F3EEE7] text-[#E22727]"
                     : "bg-transparent text-white"
                 } text-[18px] font-bold cursor-pointer py-2 hover:bg-[#F3EEE7] hover:text-[#E22727]`}
-                href="/dashboarduser/competition"
               >
                 Competition
-              </Link>
+              </div>
               <div
                 className={`w-full gap-2 text-center ${
                   active == 3
