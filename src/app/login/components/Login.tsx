@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -35,10 +36,12 @@ export default function Login() {
         router.push("/")
       } else {
         // Handle login error
-        console.log("Login failed.");
+        // console.log("Login failed.");
+        toast.error("User not Found!");
       }
     } catch (error) {
-      console.error("Error logging in:", error);
+      // console.error("Error logging in:", error);
+      toast.error("User not Found!");
     }
   };
 

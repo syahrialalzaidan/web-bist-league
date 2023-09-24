@@ -37,11 +37,11 @@ export default function Register() {
         router.push("/login");
       } else {
         // Handle login error
-        console.log("Register failed.");
+        // console.log("Register failed.");
         toast.error("Register failed, Make sure to input data correctly!");
       }
     } catch (error) {
-      console.error("Error Register:", error);
+      // console.error("Error Register:", error);
       toast.error("Make sure to input data correctly!");
     }
   };
