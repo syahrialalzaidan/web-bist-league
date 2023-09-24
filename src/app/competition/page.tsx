@@ -62,7 +62,7 @@ export default async function CompetitionnPage() {
           <Image
             src={BulatTiga}
             alt="Hero Round"
-            className="scale-50 lg:scale-100 absolute top-[698px] -right-11 lg:top-60 lg:right-0"
+            className="scale-50 lg:scale-100 absolute top-[363px] -right-11 lg:top-24 lg:right-0"
           />
         </div>
         <Image
