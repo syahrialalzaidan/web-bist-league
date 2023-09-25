@@ -33,6 +33,7 @@ export default function Login() {
 
         cookies.set('jwt_token', jwt_token, { path: '/' });
         cookies.set('user_id', response.data.data.user.user_id, { path: '/' });
+        cookies.set('refresh', response.data.data.refresh_token, { path: '/' });
         router.push("/")
       } else {
         // Handle login error

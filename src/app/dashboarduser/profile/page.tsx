@@ -8,6 +8,7 @@ import LoadingPage from "../component/loadingPage";
 export default function ProfilUser() {
   const [data, setData] = useState<any | null>();
   const [isLoading, setisLoading] = useState(true);
+  const [trigger,setTrigger] = useState(0);
   const cookie = new Cookies();
   const token = cookie.get("jwt_token");
   const user_id = cookie.get("user_id");
@@ -51,6 +52,7 @@ export default function ProfilUser() {
             }
           }
         );
+        setTrigger(trigger + 1);
         console.log("Profile edited:", response.data);
       } catch (error) {
         console.log(error);
@@ -60,7 +62,7 @@ export default function ProfilUser() {
 
   useEffect(() => {
     getProfileData();
-  }, []);
+  }, [trigger]);
 
   return (
     <>

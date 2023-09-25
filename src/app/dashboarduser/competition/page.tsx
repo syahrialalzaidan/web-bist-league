@@ -41,6 +41,7 @@ export default function CompetitionUser() {
 
   const cookie = new Cookies();
   const token = cookie.get("jwt_token");
+  const refresh = cookie.get("refresh");
   const user_id = cookie.get("user_id");
   // console.log(token);
   const url = "https://be-production-b6utdt2kwa-et.a.run.app/";
@@ -97,6 +98,12 @@ export default function CompetitionUser() {
       //   }
       // }
     } catch (error) {
+      const response2 = await axios.post(url + "refresh", {
+        refresh_token: refresh,
+        user_id: user_id,
+      });
+      console.log(response2);
+      cookie.set("jwt_token", response2.data.data.jwt_token, { path: "/" });
       console.log(error);
     } finally {
       setisLoading(false);
@@ -127,7 +134,7 @@ export default function CompetitionUser() {
 
   useEffect(() => {
     getTeamData();
-  }, [trigger]);
+  }, [trigger, token]);
 
   return (
     <>
@@ -214,9 +221,8 @@ export default function CompetitionUser() {
                 {data && data.team_name}
               </p>
               <button
-                className={`${
-                  data && data.members[0].is_leader ? "" : "invisible"
-                } flex justify-center items-center bg-white border-2 border-[#379392] rounded-lg text-[12px] lg:text-[16px] text-[#379392] font-extrabold px-1 lg:px-6 py-3`}
+                className={`
+                 flex justify-center items-center bg-white border-2 border-[#379392] rounded-lg text-[12px] lg:text-[16px] text-[#379392] font-extrabold px-1 lg:px-6 py-3`}
               >
                 Invitation Token:{" "}
                 <span className="font-normal">
@@ -335,9 +341,7 @@ export default function CompetitionUser() {
           </p>
           <div className="w-full bg-white flex flex-col rounded-lg gap-6 py-6 px-6 md:py-8 md:px-12">
             {data && (
-              <div
-                className={`flex flex-col gap-2`}
-              >
+              <div className={`flex flex-col gap-2`}>
                 <p className="font-bold text-[16px] lg:text-[24px]">
                   Proof of Payment (Only for Leaders)
                 </p>
