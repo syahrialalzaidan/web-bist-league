@@ -17,7 +17,7 @@ export default function Token() {
   const fetchTeamData = async () => {
     try {
       const response = await axios.get(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/team",
+        "https://be-production-b6utdt2kwa-et.a.run.app/team",
         {
           headers: {
             Authorization: `Bearer ${cookie.get("jwt_token")}`,
@@ -38,7 +38,7 @@ export default function Token() {
     try {
       // Make a POST request to the API endpoint
       const response = await axios.post(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/team/redeem",
+        "https://be-production-b6utdt2kwa-et.a.run.app/team/redeem",
         {
           redeem_code: tokenInput,
         },

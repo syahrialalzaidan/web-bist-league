@@ -12,7 +12,7 @@ export default function OverviewUser() {
   const cookie = new Cookies();
   const token = cookie.get("jwt_token");
   const user_id = cookie.get("user_id");
-  const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+  const url = "https://be-production-b6utdt2kwa-et.a.run.app/";
 
   const getProfileData = async () => {
     try {
