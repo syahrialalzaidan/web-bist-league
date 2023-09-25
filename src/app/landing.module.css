@@ -1201,7 +1201,8 @@
   }
 
   .timelineVertical {
-    width: 75vw;
+    /* width: 75vw */
+    width: 65vw;
   }
 
   .activitiesSectionForDesktop {
