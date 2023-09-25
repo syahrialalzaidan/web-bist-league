@@ -136,6 +136,16 @@ export default function CompetitionUser() {
     getTeamData();
   }, [trigger, token]);
 
+  const downloadpdf = () => {
+    const pdfUrl = '/guidebook.pdf'; // Replace with your PDF file URL
+
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.target = '_blank';
+    link.download = 'Guidebook.pdf'; // Desired file name for the downloaded PDF
+    link.click();
+};
+
   return (
     <>
       <LoadingPage isLoad={isLoading} />
@@ -198,7 +208,7 @@ export default function CompetitionUser() {
             </p>
             <CountDown date={date} />
             <div className="w-full flex justify-center gap-4 mt-5">
-              <button className="flex justify-center bg-white border-2 border-[#379392] rounded-lg text-[12px] lg:text-[16px] text-[#379392] font-extrabold px-6 lg:px-12 py-3">
+              <button className="flex justify-center bg-white border-2 border-[#379392] rounded-lg text-[12px] lg:text-[16px] text-[#379392] font-extrabold px-6 lg:px-12 py-3" onClick={() => downloadpdf()}>
                 {fase >= 1 && fase <= 3
                   ? "Download Guidebook"
                   : "Download Final Guidebook"}
