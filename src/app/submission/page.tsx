@@ -26,7 +26,7 @@ export default async function SubmissionPage() {
   const getTeam = async () => {
     try {
       const response = await axios.get(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/team",
+        "https://be-production-b6utdt2kwa-et.a.run.app/team",
         {
           headers: {
             Authorization: `Bearer ${jwt_token}`,
@@ -43,7 +43,7 @@ export default async function SubmissionPage() {
   const getLastSubmission = async () => {
     try {
       const response = await axios.get(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/team/submission/1",
+        "https://be-production-b6utdt2kwa-et.a.run.app/team/submission/1",
         {
           headers: {
             Authorization: `Bearer ${jwt_token}`,

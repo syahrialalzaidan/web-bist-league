@@ -91,7 +91,7 @@ export default function Submission({ teamData,
         }
 
         try {
-            const submit = await axios.post("https://be-staging-b6utdt2kwa-et.a.run.app/team/document", submittedData, {
+            const submit = await axios.post("https://be-production-b6utdt2kwa-et.a.run.app/team/document", submittedData, {
                 headers: {
                     Authorization: `Bearer ${jwt_token}`,
                 }

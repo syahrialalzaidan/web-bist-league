@@ -22,7 +22,7 @@ export default async function CompetitionnPage() {
 
     const getProfile = async () => {
         try {
-            const response = await axios.get(`https://be-staging-b6utdt2kwa-et.a.run.app/profile/${user_id}`);
+            const response = await axios.get(`https://be-production-b6utdt2kwa-et.a.run.app/profile/${user_id}`);
 
             return response.data.data;
         } catch (error) {
