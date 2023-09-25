@@ -488,7 +488,6 @@ export default function Home() {
               >
                 More About Competition
               </button>
-
               {/* Bootcamp Component Mobile */}
               <div className={`${css.bootcampImageDiv}`}>
                 <img
@@ -503,14 +502,17 @@ export default function Home() {
               <h1 className={`${css.activitiesTitle}`}>
                 Business Case Bootcamp
               </h1>
-              <p className={`${css.activitiesText}`}></p>
+              <p className={`${css.activitiesText}`}>Business IT bootcamp is
+              an intensive training program that combines business and
+              information technology education, offering practical skills and
+              knowledge for professionals to excel in IT-related roles within
+              the business sector.</p>
               <button
                 className={`${css.bootcampButton} bg-[#943232]`}
                 onClick={() => router.push("/bootcamp")}
               >
                 More About Bootcamp
               </button>
-
               {/* Mini Challenge Component Mobile */}
               <div className={`${css.miniChallengeImageDiv}`}>
                 <img
@@ -521,7 +523,6 @@ export default function Home() {
                   width="57.5vw"
                 />
               </div>
-
               <p className={`${css.activitiesDate}`}>Coming Soon</p>
               <h1 className={`${css.activitiesTitle}`}>Mini Challenge</h1>
               <p className={`${css.activitiesText}`}>
@@ -535,7 +536,6 @@ export default function Home() {
               >
                 More About Mini Challenge
               </button>
-
               {/* Webinar Component Mobile */}
               <div className={`${css.webinarImageDiv}`}>
                 <img
@@ -546,7 +546,6 @@ export default function Home() {
                   width="57.5vw"
                 />
               </div>
-
               <p className={`${css.activitiesDate}`}>Coming Soon</p>
               <h1 className={`${css.activitiesTitle}`}>Webinar</h1>
               <p className={`${css.activitiesText}`}>
