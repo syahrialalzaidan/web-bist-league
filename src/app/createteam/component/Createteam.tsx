@@ -42,7 +42,7 @@ export default function Createteam() {
 
     try {
       const response = await axios.post(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/team",
+        "https://be-production-b6utdt2kwa-et.a.run.app/team",
         formattedData,
         {
           headers: {

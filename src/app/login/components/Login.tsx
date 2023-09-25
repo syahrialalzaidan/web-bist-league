@@ -23,7 +23,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/login",
+        "https://be-production-b6utdt2kwa-et.a.run.app/login",
         data
       );
 

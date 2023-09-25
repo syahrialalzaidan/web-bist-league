@@ -20,26 +20,9 @@ export default async function CompetitionnPage() {
     const jwt_token = cookieStore.get("jwt_token")?.value
     const user_id = cookieStore.get("user_id")?.value
 
-    const getTeam = async () => {
-        try {
-            const response = await axios.get(
-                "https://be-staging-b6utdt2kwa-et.a.run.app/team",
-                {
-                    headers: {
-                        Authorization: `Bearer ${jwt_token}`,
-                    },
-                }
-            );
-
-            return response.data.data;
-        } catch (error) {
-            return null
-        }
-    };
-
     const getProfile = async () => {
         try {
-            const response = await axios.get(`https://be-staging-b6utdt2kwa-et.a.run.app/profile/${user_id}`);
+            const response = await axios.get(`https://be-production-b6utdt2kwa-et.a.run.app/profile/${user_id}`);
 
             return response.data.data;
         } catch (error) {
@@ -47,13 +30,12 @@ export default async function CompetitionnPage() {
         }
     }
 
-    const teamData = await getTeam();
     const profileData = await getProfile();
 
     return (
       <div className="bg-[#F3EEE7] overflow-hidden">
         <Header page="Competition" />
-        <Hero profileData={profileData} teamData={teamData} />
+        <Hero profileData={profileData} />
         <Description />
         <Timeline />
         <div className="relative">
@@ -62,7 +44,7 @@ export default async function CompetitionnPage() {
           <Image
             src={BulatTiga}
             alt="Hero Round"
-            className="scale-50 lg:scale-100 absolute top-[363px] -right-11 lg:top-24 lg:right-0"
+            className="scale-50 lg:scale-100 absolute top-[363px] -right-11 lg:top-24 lg:right-0 z-0"
           />
         </div>
         <Image

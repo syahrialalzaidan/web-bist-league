@@ -43,7 +43,7 @@ export default function CompetitionUser() {
   const token = cookie.get("jwt_token");
   const user_id = cookie.get("user_id");
   // console.log(token);
-  const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
+  const url = "https://be-production-b6utdt2kwa-et.a.run.app/";
 
   const now = new Date().getTime();
   const target = new Date(date).getTime();

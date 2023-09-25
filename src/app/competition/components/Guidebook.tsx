@@ -6,7 +6,7 @@ import BulatKecil from "@images/competition/guidebook/guidebook-bulat-kecil.svg"
 export default function Guidebook() {
     return (
         <div className="bg-[url('/images/competition/guidebook/bg-guidebook-mobile.svg')] lg:bg-[url('/images/competition/guidebook/bg-guidebook-web.svg')] relative h-[700px] lg:h-full bg-cover pt-16 lg:py-14 pb-9 px-3.5 lg:px-40 overflow-hidden">
-            <div className="lg:w-[782px]">
+            <div className="lg:w-[782px] relative z-10">
                 <h1 className="text-4xl text-white lg:text-5xl font-extrabold">Guidebook</h1>
                 <p className="text-white text-lg lg:text-xl font-normal mt-9 lg:mt-14 leading-7 text-justify">
                     As mentioned before, preliminary round will be carried out online and the final round will be carried out offline.

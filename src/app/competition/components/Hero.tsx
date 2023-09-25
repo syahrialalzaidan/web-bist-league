@@ -13,41 +13,6 @@ import { useState, useRef, useLayoutEffect } from "react";
 import { useRouter } from "next/navigation";
 import Countdown from "@/component/Countdown/Countdown";
 
-interface TeamMember {
-    user_id: string;
-    username: string;
-    fullname: string;
-    is_leader: boolean;
-}
-
-interface TeamData {
-    team_id: string;
-    team_name: string;
-    team_redeem_code: string;
-    is_active: boolean;
-    payment_proof: string;
-    payment_proof_url: string;
-    payment_status: string;
-    payment_status_code: number;
-    student_card: string;
-    student_card_url: string;
-    student_card_status: string;
-    student_card_status_code: number;
-    self_portrait: string;
-    self_portrait_url: string;
-    self_portrait_status: string;
-    self_portrait_status_code: number;
-    twibbon: string;
-    twibbon_url: string;
-    twibbon_status: string;
-    twibbon_status_code: number;
-    enrollment: string;
-    enrollment_url: string;
-    enrollment_status: string;
-    enrollment_status_code: number;
-    members: TeamMember[];
-}
-
 interface ProfileData {
     uid: string;
     team_id: string;
@@ -64,12 +29,7 @@ interface ProfileData {
     line_id: string;
 }
 
-interface HeroProps {
-    teamData: TeamData;
-    profileData: ProfileData
-}
-
-export default function Hero({ teamData, profileData }: HeroProps) {
+export default function Hero({ profileData }: { profileData: ProfileData }) {
     const router = useRouter();
 
     const [timerDays, setTimerDays] = useState<number>(0);
@@ -157,6 +117,15 @@ export default function Hero({ teamData, profileData }: HeroProps) {
                             Registration closes in:
                         </p>
                         <Countdown />
+                        <div className="flex justify-center mt-7 lg:mt-10 z-10">
+                            <button
+                                className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold"
+                                onClick={() => router.push("/createteam")}
+                                disabled={profileData.team_id ? true : false}
+                            >
+                                Register Team
+                            </button>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -169,14 +138,6 @@ export default function Hero({ teamData, profileData }: HeroProps) {
                             </button>
                         </div>
                     </>
-                )}
-
-                {teamData && (
-                    <div className="flex justify-center mt-7 lg:mt-10 z-10">
-                        <button className="px-20 lg:px-24 py-4 bg-[#F8A22D] rounded-lg text-base lg:text-2xl font-bold" onClick={() => router.push("/createteam")}>
-                            Register Team
-                        </button>
-                    </div>
                 )}
             </div>
         </div>

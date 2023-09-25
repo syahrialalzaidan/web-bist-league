@@ -27,7 +27,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://be-staging-b6utdt2kwa-et.a.run.app/register",
+        "https://be-production-b6utdt2kwa-et.a.run.app/register",
         data
       );
 
