@@ -13,20 +13,20 @@ const Countdown: React.FC = () => {
   const getNextTargetDate = (currentDate: Date): Date => {
     if (
       currentDate.getDate() >= 25 &&
-      currentDate.getMonth() >= 9 &&
+      currentDate.getMonth() >= 8 &&
       currentDate.getFullYear() <= 2023
     ) {
       // If current date is on or after 17th September, target 1st October
       return new Date("October 1, 2023 23:59:59");
     } else if (
       currentDate.getDate() > 1 &&
-      currentDate.getMonth() >= 10 &&
+      currentDate.getMonth() >= 9 &&
       currentDate.getFullYear() <= 2023
     ) {
       return new Date("October 29, 2023 23:59:59");
     } else if (
       currentDate.getDate() > 29 &&
-      currentDate.getMonth() >= 10 &&
+      currentDate.getMonth() >= 9 &&
       currentDate.getFullYear() <= 2023
     ) {
       return new Date("November 5, 2023 23:59:59");
