@@ -10,7 +10,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Bist League 5.0",
+  title: "Bist League 6.0",
   description: "Your favourite League is Back",
 };
 
