@@ -28,13 +28,16 @@ export default function CompetitionUser() {
 
   const [data, setData] = useState<any | null>();
   const [isLoading, setisLoading] = useState(true);
+  const [trigger, setTrigger] = useState(0);
 
-  const [date, setDate] = useState("October 01, 2023 23:59:59");
+  const [date, setDate] = useState("October 22, 2023 23:59:59");
   const [fase, setFase] = useState(1);
 
   const [base64, setBase64] = useState("");
   const [fileName, setFileName] = useState("");
   const [isNotice, setIsNotice] = useState(false);
+  // const [fullName, setFullName] = useState("");
+  // const [isLeader, setIsLeader] = useState(-1);
 
   const cookie = new Cookies();
   const token = cookie.get("jwt_token");
@@ -62,11 +65,11 @@ export default function CompetitionUser() {
     const temp = fase + 1;
     setFase(temp);
     if (fase == 2) {
-      setDate("October 22, 2023 23:59:59");
+      setDate("November 5, 2023 23:59:59");
     } else if (fase == 3) {
-      setDate("November 5, 2023 00:00:00");
+      setDate("November 19, 2023 00:00:00");
     } else if (fase == 4) {
-      setDate("November 19, 2023 17:59:59");
+      setDate("December 2, 2023 17:59:59");
     } else if (fase == 5) {
       setDate("December 3, 2023 06:00:00");
     } else {
@@ -76,6 +79,7 @@ export default function CompetitionUser() {
 
   const getTeamData = async () => {
     try {
+      setisLoading(true);
       const response = await axios.get(url + "team", {
         headers: {
           Authorization: "Bearer " + token,
@@ -83,6 +87,15 @@ export default function CompetitionUser() {
       });
       console.log(response.data.data);
       setData(response.data.data);
+      // const response2 = await axios.get(url + "profile/" + user_id);
+      // console.log(response2);
+      // setFullName(response2.data.data.full_name);
+      // for (let i = 0; i < 3; i++) {
+      //   if (response.data.data?.members[i]?.fullname == fullName) {
+      //     setIsLeader(i);
+      //     console.log(i);
+      //   }
+      // }
     } catch (error) {
       console.log(error);
     } finally {
@@ -104,6 +117,7 @@ export default function CompetitionUser() {
         },
       });
       console.log("success");
+      setTrigger(trigger + 1);
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +127,7 @@ export default function CompetitionUser() {
 
   useEffect(() => {
     getTeamData();
-  }, []);
+  }, [trigger]);
 
   return (
     <>
@@ -164,13 +178,13 @@ export default function CompetitionUser() {
           >
             <p className="text-[16px] lg:text-[24px] text-center mb-2">
               {fase == 1
-                ? "Early bid closes in"
+                ? "Competition starts in"
                 : fase == 3
-                ? "Preliminary Case Release in"
+                ? "Preliminary Submission Closes in"
                 : fase == 4
-                ? "Preliminary Submission closes in"
-                : fase == 5
                 ? "Finalist Announcement in"
+                : fase == 5
+                ? "Final starts in"
                 : fase == 6
                 ? "Submission Final close in"
                 : ""}
@@ -257,7 +271,9 @@ export default function CompetitionUser() {
                       {data && data.members[1].is_doc_verified ? (
                         <BsFillCheckCircleFill size={20} />
                       ) : (
-                        <MdCancel size={24} />
+                        <div className="text-[#EB5757]">
+                          <MdCancel size={24} />
+                        </div>
                       )}
                     </div>
                     <div className="w-full flex justify-between items-center text-[#27AE60]">
@@ -267,7 +283,9 @@ export default function CompetitionUser() {
                       {data && data.members[1].is_profile_verified ? (
                         <BsFillCheckCircleFill size={20} />
                       ) : (
-                        <MdCancel size={24} />
+                        <div className="text-[#EB5757]">
+                          <MdCancel size={24} />
+                        </div>
                       )}
                     </div>{" "}
                   </>
@@ -290,7 +308,9 @@ export default function CompetitionUser() {
                       {data && data.members[2].is_doc_verified ? (
                         <BsFillCheckCircleFill size={20} />
                       ) : (
-                        <MdCancel size={24} />
+                        <div className="text-[#EB5757]">
+                          <MdCancel size={24} />
+                        </div>
                       )}
                     </div>
                     <div className="w-full flex justify-between items-center text-[#27AE60]">
@@ -300,7 +320,9 @@ export default function CompetitionUser() {
                       {data && data.members[2].is_profile_verified ? (
                         <BsFillCheckCircleFill size={20} />
                       ) : (
-                        <MdCancel size={24} />
+                        <div className="text-[#EB5757]">
+                          <MdCancel size={24} />
+                        </div>
                       )}
                     </div>
                   </>
@@ -313,7 +335,9 @@ export default function CompetitionUser() {
           </p>
           <div className="w-full bg-white flex flex-col rounded-lg gap-6 py-6 px-6 md:py-8 md:px-12">
             {data && (
-              <div className="flex flex-col gap-2">
+              <div
+                className={`flex flex-col gap-2`}
+              >
                 <p className="font-bold text-[16px] lg:text-[24px]">
                   Proof of Payment (Only for Leaders)
                 </p>
@@ -351,11 +375,19 @@ export default function CompetitionUser() {
                         Accepted
                       </p>
                     </div>
-                  ) : (
+                  ) : data && data.payment_status == "rejected" ? (
                     <div className="flex items-center gap-2 text-[#EB5757]">
                       <MdCancel size={24} />
                       <p className="text-[12px] lg:text-[16px] font-normal">
-                        Rejected - Please resubmit
+                        Rejected - Please resubmit <br />
+                        Note : {data.payment_status_rejection}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 text-[#4F4F4F]">
+                      <MdCancel size={24} />
+                      <p className="text-[12px] lg:text-[16px] font-normal">
+                        No File
                       </p>
                     </div>
                   )}
@@ -383,7 +415,7 @@ export default function CompetitionUser() {
                       setDocType("enrollment");
                       setIsNotice(true);
                     }}
-                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block"
+                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white block"
                   >
                     <BiUpload size={24} />
                   </button>
@@ -401,11 +433,19 @@ export default function CompetitionUser() {
                         Accepted
                       </p>
                     </div>
-                  ) : (
+                  ) : data && data.enrollment_status == "rejected" ? (
                     <div className="flex items-center gap-2 text-[#EB5757]">
                       <MdCancel size={24} />
                       <p className="text-[12px] lg:text-[16px] font-normal">
-                        Rejected - Please resubmit
+                        Rejected - Please resubmit <br />
+                        Note : {data.enrollment_rejection}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 text-[#4F4F4F]">
+                      <MdCancel size={24} />
+                      <p className="text-[12px] lg:text-[16px] font-normal">
+                        No File
                       </p>
                     </div>
                   )}
@@ -433,7 +473,7 @@ export default function CompetitionUser() {
                       setDocType("student_card");
                       setIsNotice(true);
                     }}
-                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block"
+                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white block"
                   >
                     <BiUpload size={24} />
                   </button>
@@ -451,11 +491,19 @@ export default function CompetitionUser() {
                         Accepted
                       </p>
                     </div>
-                  ) : (
+                  ) : data && data.student_card_status == "rejected" ? (
                     <div className="flex items-center gap-2 text-[#EB5757]">
                       <MdCancel size={24} />
                       <p className="text-[12px] lg:text-[16px] font-normal">
-                        Rejected - Please resubmit
+                        Rejected - Please resubmit <br />
+                        Note : {data.student_card_rejection}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 text-[#4F4F4F]">
+                      <MdCancel size={24} />
+                      <p className="text-[12px] lg:text-[16px] font-normal">
+                        No File
                       </p>
                     </div>
                   )}
@@ -483,7 +531,7 @@ export default function CompetitionUser() {
                       setDocType("self_portrait");
                       setIsNotice(true);
                     }}
-                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block"
+                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white block"
                   >
                     <BiUpload size={24} />
                   </button>
@@ -501,11 +549,19 @@ export default function CompetitionUser() {
                         Accepted
                       </p>
                     </div>
-                  ) : (
+                  ) : data && data.self_portrait_status == "rejected" ? (
                     <div className="flex items-center gap-2 text-[#EB5757]">
                       <MdCancel size={24} />
                       <p className="text-[12px] lg:text-[16px] font-normal">
-                        Rejected - Please resubmit
+                        Rejected - Please resubmit <br />
+                        Note : {data.self_portrait_rejection}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 text-[#4F4F4F]">
+                      <MdCancel size={24} />
+                      <p className="text-[12px] lg:text-[16px] font-normal">
+                        No File
                       </p>
                     </div>
                   )}
@@ -533,7 +589,7 @@ export default function CompetitionUser() {
                       setDocType("twibbon");
                       setIsNotice(true);
                     }}
-                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white hidden lg:block"
+                    className="bg-[#379392] px-2 py-2 text-center rounded-lg text-white block"
                   >
                     <BiUpload size={24} />
                   </button>
@@ -551,11 +607,19 @@ export default function CompetitionUser() {
                         Accepted
                       </p>
                     </div>
-                  ) : (
+                  ) : data && data.twibbon_status == "rejected" ? (
                     <div className="flex items-center gap-2 text-[#EB5757]">
                       <MdCancel size={24} />
                       <p className="text-[12px] lg:text-[16px] font-normal">
-                        Rejected - Please resubmit
+                        Rejected - Please resubmit <br />
+                        Note : {data.twibbon_rejection}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 text-[#4F4F4F]">
+                      <MdCancel size={24} />
+                      <p className="text-[12px] lg:text-[16px] font-normal">
+                        No File
                       </p>
                     </div>
                   )}

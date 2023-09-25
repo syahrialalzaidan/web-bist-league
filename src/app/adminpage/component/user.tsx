@@ -17,6 +17,7 @@ export default function UserVerification() {
   const [totalPages, setTotalPages] = useState(1);
   const [doc, setDoc] = useState("");
   const [uid, setUid] = useState("");
+  const [trigger, setTrigger] = useState(0);
   const cookie = new Cookies();
   const token = cookie.get("token_admin");
   const handleChange = (event: any) => {
@@ -24,7 +25,7 @@ export default function UserVerification() {
   };
 
   const url = "https://be-staging-b6utdt2kwa-et.a.run.app/";
- 
+
   const getData = async (page: number) => {
     try {
       const response = await axios.get(url + "admin/users?page=" + page, {
@@ -67,6 +68,7 @@ export default function UserVerification() {
           }
         );
         console.log(response);
+        setTrigger(trigger + 1);
         setPopupUrl(null);
         setIsRejected(false);
       }
@@ -85,6 +87,7 @@ export default function UserVerification() {
           }
         );
         console.log(response);
+        setTrigger(trigger + 1);
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +96,7 @@ export default function UserVerification() {
 
   useEffect(() => {
     getData(1);
-  }, []);
+  }, [trigger]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -287,7 +290,13 @@ export default function UserVerification() {
                     <p className="text-white">Open</p>
                     <MdOpenInNew />
                   </button>
-                  <div className={`flex items-center ${row.IsProfileVerified ? "text-[#27AE60]" : "text-[#EB5757]"}`}>
+                  <div
+                    className={`flex items-center ${
+                      row.IsProfileVerified
+                        ? "text-[#27AE60]"
+                        : "text-[#EB5757]"
+                    }`}
+                  >
                     <HiOutlineInformationCircle />
                     <p className="text-[14px]">
                       {row.IsProfileVerified ? "Complete" : "Incomplete"}

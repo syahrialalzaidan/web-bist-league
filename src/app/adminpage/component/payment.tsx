@@ -14,6 +14,7 @@ export default function PaymentVerification() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [teamId, setTeamId] = useState("");
+  const [trigger,setTrigger] = useState(0);
   const cookie = new Cookies();
   const token = cookie.get("token_admin");
   const handleChange = (event: any) => {
@@ -55,6 +56,7 @@ export default function PaymentVerification() {
           }
         );
         console.log(response);
+        setTrigger(trigger + 1);
         setPopupUrl(null);
         setIsRejected(false);
       }
@@ -72,6 +74,7 @@ export default function PaymentVerification() {
           }
         );
         console.log(response);
+        setTrigger(trigger + 1);
       }
     } catch (error) {
       console.log(error);
@@ -80,7 +83,7 @@ export default function PaymentVerification() {
 
   useEffect(() => {
     getData(1);
-  }, []);
+  }, [trigger]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
